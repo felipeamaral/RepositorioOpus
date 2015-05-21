@@ -121,8 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Arquivos\Codigos\" />
-    <Folder Include="Arquivos\Imagens\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -130,6 +128,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
+    <Compile Include="DAL\ComponenteRepository.cs" />
+    <Compile Include="DAL\IComponenteRepository.cs" />
     <Compile Include="Models\Area.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -169,6 +169,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Arquivos\Codigos\1\arq.css" />
+    <Content Include="Arquivos\Codigos\1\arq.html" />
+    <Content Include="Arquivos\Codigos\1\arq.js" />
+    <Content Include="Arquivos\Codigos\2\arq.css" />
+    <Content Include="Arquivos\Codigos\2\arq.html" />
+    <Content Include="Arquivos\Codigos\3\arq.css" />
+    <Content Include="Arquivos\Codigos\3\arq.html" />
+    <Content Include="Arquivos\Imagens\3.png" />
+    <Content Include="Arquivos\Imagens\4.png" />
+    <Content Include="Arquivos\Imagens\5.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

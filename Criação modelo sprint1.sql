@@ -1,5 +1,5 @@
 CREATE TABLE Usuario(
-	email VARCHAR(100) PRIMARY KEY,
+	email VARCHAR(100) PRIMARY KEY DEFAULT 'desconhecido',
 	nome VARCHAR(200) NOT NULL,
 );
 
@@ -8,7 +8,7 @@ CREATE TABLE Cliente(
 );
 
 CREATE TABLE Area(
-	nome VARCHAR(23) PRIMARY KEY
+	nome VARCHAR(23) PRIMARY KEY DEFAULT 'desconhecida'
 );
 
 CREATE TABLE Projeto(
@@ -18,7 +18,7 @@ CREATE TABLE Projeto(
 	dataIni DATE NOT NULL,
 	dataFim DATE,
 	descricao VARCHAR(500) NOT NULL,
-	area VARCHAR(23) NOT NULL DEFAULT 'desconhecida',
+	area VARCHAR(23),
 	FOREIGN KEY (cliente) REFERENCES Cliente(nome) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (area) REFERENCES Area(nome) ON UPDATE CASCADE ON DELETE SET DEFAULT
 );
@@ -38,7 +38,7 @@ CREATE TABLE Keyword(
 CREATE TABLE Componente(
 	idComponente INT IDENTITY(1, 1) PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
-	usuario VARCHAR(100) NOT NULL DEFAULT 'desconhecido',
+	usuario VARCHAR(100),
 	projeto INT,
 	FOREIGN KEY (projeto) REFERENCES Projeto(idProjeto) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (usuario) REFERENCES Usuario(email) ON UPDATE CASCADE ON DELETE SET DEFAULT
@@ -51,3 +51,11 @@ CREATE TABLE componente_kw(
 	FOREIGN KEY (idComponente) REFERENCES Componente(idComponente) ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY (idComponente, kw)
 );
+
+INSERT INTO Usuario VALUES ('camila@gmail.com', 'camila');
+INSERT INTO Componente VALUES('nome1', 'camila@gmail.com', NULL);
+INSERT INTO Componente VALUES('nome2', 'camila@gmail.com', NULL);
+INSERT INTO Componente VALUES('nome3', 'camila@gmail.com', NULL);
+
+select * from Componente;
+

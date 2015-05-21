@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b952e7cc4eeb4058be6d49b25030bef8" Name="Diagram1">
-        <EntityTypeShape EntityType="projetoModel.Area" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="projetoModel.Cliente" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="projetoModel.Componente" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="projetoModel.Keyword" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="projetoModel.Projeto" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="projetoModel.Usuario" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <AssociationConnector Association="projetoModel.FK__Projeto__area__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="projetoModel.FK__Projeto__cliente__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="projetoModel.FK__Component__proje__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="projetoModel.FK__Component__usuar__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="projetoModel.componente_kw" ManuallyRouted="false" />
-        <AssociationConnector Association="projetoModel.ProjetoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="projetoModel.Area" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="projetoModel.Cliente" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="projetoModel.Componente" Width="1.5" PointX="7.5" PointY="3.25" />
+        <EntityTypeShape EntityType="projetoModel.Keyword" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="projetoModel.Projeto" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="projetoModel.Usuario" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="projetoModel.FK__Projeto__area__239E4DCF" />
+        <AssociationConnector Association="projetoModel.FK__Projeto__cliente__22AA2996" />
+        <AssociationConnector Association="projetoModel.FK__Component__proje__34C8D9D1" />
+        <AssociationConnector Association="projetoModel.FK__Component__usuar__35BCFE0A" />
+        <AssociationConnector Association="projetoModel.componente_kw" />
+        <AssociationConnector Association="projetoModel.ProjetoUsuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
