@@ -1,0 +1,41 @@
+CREATE TABLE Cliente(
+	nome VARCHAR(150) PRIMARY KEY
+);
+
+CREATE TABLE Projeto(
+	idProjeto INT IDENTITY(1, 1) PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	cliente VARCHAR(150),
+	dataIni DATE NOT NULL,
+	dataFim DATE,
+	descricao VARCHAR(500) NOT NULL,
+	area VARCHAR(23) NOT NULL,
+	FOREIGN KEY (cliente) REFERENCES Cliente(nome) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE ProjetoUsuario(
+	idProjeto INT,
+	usuario VARCHAR(50) NOT NULL,
+	FOREIGN KEY (idProjeto) REFERENCES Projeto(idProjeto) ON UPDATE CASCADE ON DELETE CASCADE,
+	PRIMARY KEY (idProjeto, usuario)
+);
+
+CREATE TABLE Keyword(
+	kw VARCHAR(100) PRIMARY KEY
+);
+
+CREATE TABLE Componente(
+	idComponente INT IDENTITY(1, 1) PRIMARY KEY,
+	nome VARCHAR(100) not null,
+	usuario VARCHAR(50) not null,
+	projeto INT,
+	FOREIGN KEY (projeto) REFERENCES Projeto(idProjeto) ON UPDATE CASCADE ON DELETE SET NULL,
+);
+
+CREATE TABLE componente_kw(
+	kw VARCHAR(100),
+	idComponente INT,
+	FOREIGN KEY (kw) REFERENCES Keyword(kw) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (idComponente) REFERENCES Componente(idComponente) ON UPDATE CASCADE ON DELETE CASCADE,
+	PRIMARY KEY (idComponente, kw)
+);
