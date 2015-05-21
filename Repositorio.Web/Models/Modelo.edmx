@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="projetoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="23" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="idComponente" />
+          </Key>
+          <Property Name="idComponente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="projeto" Type="int" />
+        </EntityType>
+        <EntityType Name="componente_kw">
+          <Key>
+            <PropertyRef Name="kw" />
+            <PropertyRef Name="idComponente" />
+          </Key>
+          <Property Name="kw" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idComponente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="kw" />
+          </Key>
+          <Property Name="kw" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projeto">
+          <Key>
+            <PropertyRef Name="idProjeto" />
+          </Key>
+          <Property Name="idProjeto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cliente" Type="varchar" MaxLength="150" />
+          <Property Name="dataIni" Type="date" Nullable="false" />
+          <Property Name="dataFim" Type="date" />
+          <Property Name="descricao" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="area" Type="varchar" MaxLength="23" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjetoUsuario">
+          <Key>
+            <PropertyRef Name="idProjeto" />
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="idProjeto" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__component__idCom__35BCFE0A">
+          <End Role="Componente" Type="Self.Componente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="componente_kw" Type="Self.componente_kw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Componente">
+              <PropertyRef Name="idComponente" />
+            </Principal>
+            <Dependent Role="componente_kw">
+              <PropertyRef Name="idComponente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__proje__30F848ED">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="0..1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="idProjeto" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__usuar__31EC6D26">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__componente_k__kw__34C8D9D1">
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="componente_kw" Type="Self.componente_kw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keyword">
+              <PropertyRef Name="kw" />
+            </Principal>
+            <Dependent Role="componente_kw">
+              <PropertyRef Name="kw" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__area__29572725">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__cliente__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjetoUs__idPro__2C3393D0">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjetoUsuario" Type="Self.ProjetoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="idProjeto" />
+            </Principal>
+            <Dependent Role="ProjetoUsuario">
+              <PropertyRef Name="idProjeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjetoUs__usuar__2D27B809">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjetoUsuario" Type="Self.ProjetoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="ProjetoUsuario">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projetoModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="componente_kw" EntityType="Self.componente_kw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keyword" EntityType="Self.Keyword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projeto" EntityType="Self.Projeto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjetoUsuario" EntityType="Self.ProjetoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__component__idCom__35BCFE0A" Association="Self.FK__component__idCom__35BCFE0A">
+            <End Role="Componente" EntitySet="Componente" />
+            <End Role="componente_kw" EntitySet="componente_kw" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__proje__30F848ED" Association="Self.FK__Component__proje__30F848ED">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__usuar__31EC6D26" Association="Self.FK__Component__usuar__31EC6D26">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__componente_k__kw__34C8D9D1" Association="Self.FK__componente_k__kw__34C8D9D1">
+            <End Role="Keyword" EntitySet="Keyword" />
+            <End Role="componente_kw" EntitySet="componente_kw" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__area__29572725" Association="Self.FK__Projeto__area__29572725">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__cliente__286302EC" Association="Self.FK__Projeto__cliente__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjetoUs__idPro__2C3393D0" Association="Self.FK__ProjetoUs__idPro__2C3393D0">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="ProjetoUsuario" EntitySet="ProjetoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjetoUs__usuar__2D27B809" Association="Self.FK__ProjetoUs__usuar__2D27B809">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ProjetoUsuario" EntitySet="ProjetoUsuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="projetoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="String" MaxLength="23" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__area__29572725" FromRole="Area" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__cliente__286302EC" FromRole="Cliente" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Componente">
+          <Key>
+            <PropertyRef Name="idComponente" />
+          </Key>
+          <Property Name="idComponente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="projeto" Type="Int32" />
+          <NavigationProperty Name="Projeto1" Relationship="Self.FK__Component__proje__30F848ED" FromRole="Componente" ToRole="Projeto" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Component__usuar__31EC6D26" FromRole="Componente" ToRole="Usuario" />
+          <NavigationProperty Name="Keyword" Relationship="Self.componente_kw" FromRole="Componente" ToRole="Keyword" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="kw" />
+          </Key>
+          <Property Name="kw" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Componente" Relationship="Self.componente_kw" FromRole="Keyword" ToRole="Componente" />
+        </EntityType>
+        <EntityType Name="Projeto">
+          <Key>
+            <PropertyRef Name="idProjeto" />
+          </Key>
+          <Property Name="idProjeto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cliente" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dataIni" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dataFim" Type="DateTime" Precision="0" />
+          <Property Name="descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="area" Type="String" MaxLength="23" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Area1" Relationship="Self.FK__Projeto__area__29572725" FromRole="Projeto" ToRole="Area" />
+          <NavigationProperty Name="Cliente1" Relationship="Self.FK__Projeto__cliente__286302EC" FromRole="Projeto" ToRole="Cliente" />
+          <NavigationProperty Name="Componente" Relationship="Self.FK__Component__proje__30F848ED" FromRole="Projeto" ToRole="Componente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.ProjetoUsuario" FromRole="Projeto" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Componente" Relationship="Self.FK__Component__usuar__31EC6D26" FromRole="Usuario" ToRole="Componente" />
+          <NavigationProperty Name="Projeto" Relationship="Self.ProjetoUsuario" FromRole="Usuario" ToRole="Projeto" />
+        </EntityType>
+        <Association Name="FK__Projeto__area__29572725">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__cliente__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__proje__30F848ED">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="0..1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="idProjeto" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__usuar__31EC6D26">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Componente">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="componente_kw">
+          <End Role="Componente" Type="Self.Componente" Multiplicity="*" />
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjetoUsuario">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="projetoDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Area" EntityType="Self.Area" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Componente" EntityType="Self.Componente" />
+          <EntitySet Name="Keyword" EntityType="Self.Keyword" />
+          <EntitySet Name="Projeto" EntityType="Self.Projeto" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Projeto__area__29572725" Association="Self.FK__Projeto__area__29572725">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__cliente__286302EC" Association="Self.FK__Projeto__cliente__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__proje__30F848ED" Association="Self.FK__Component__proje__30F848ED">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__usuar__31EC6D26" Association="Self.FK__Component__usuar__31EC6D26">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Componente" EntitySet="Componente" />
+          </AssociationSet>
+          <AssociationSet Name="componente_kw" Association="Self.componente_kw">
+            <End Role="Componente" EntitySet="Componente" />
+            <End Role="Keyword" EntitySet="Keyword" />
+          </AssociationSet>
+          <AssociationSet Name="ProjetoUsuario" Association="Self.ProjetoUsuario">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="projetoModelStoreContainer" CdmEntityContainer="projetoDBContext">
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="projetoModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="projetoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Componente">
+            <EntityTypeMapping TypeName="projetoModel.Componente">
+              <MappingFragment StoreEntitySet="Componente">
+                <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="projeto" ColumnName="projeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keyword">
+            <EntityTypeMapping TypeName="projetoModel.Keyword">
+              <MappingFragment StoreEntitySet="Keyword">
+                <ScalarProperty Name="kw" ColumnName="kw" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projeto">
+            <EntityTypeMapping TypeName="projetoModel.Projeto">
+              <MappingFragment StoreEntitySet="Projeto">
+                <ScalarProperty Name="idProjeto" ColumnName="idProjeto" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="dataIni" ColumnName="dataIni" />
+                <ScalarProperty Name="dataFim" ColumnName="dataFim" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="area" ColumnName="area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="projetoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="componente_kw" TypeName="projetoModel.componente_kw" StoreEntitySet="componente_kw">
+            <EndProperty Name="Componente">
+              <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+            </EndProperty>
+            <EndProperty Name="Keyword">
+              <ScalarProperty Name="kw" ColumnName="kw" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProjetoUsuario" TypeName="projetoModel.ProjetoUsuario" StoreEntitySet="ProjetoUsuario">
+            <EndProperty Name="Projeto">
+              <ScalarProperty Name="idProjeto" ColumnName="idProjeto" />
+            </EndProperty>
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="email" ColumnName="usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
