@@ -145,11 +145,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\KeywordController.cs" />
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAL\ClienteRepository.cs" />
     <Compile Include="DAL\ComponenteRepository.cs" />
+    <Compile Include="DAL\IClienteRepository.cs" />
     <Compile Include="DAL\IComponenteRepository.cs" />
     <Compile Include="DAL\IKeywordRepository.cs" />
     <Compile Include="DAL\IProjetoRepository.cs" />

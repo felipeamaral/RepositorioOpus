@@ -34,9 +34,9 @@ namespace Projeto.Dados.Controllers
             return this.userRepository.GetUsuarioByEmail(email);
         }
 
-        //api/keyword/busca/kw
+        //api/usuario/busca/nome
         [Route("api/usuario/busca/{nome}")]
-        // Retorna todas as keywords que contém no seu nome a string passada (busca relativa)
+        // Retorna todos os usuários que contém no seu nome a string passada (busca relativa)
         public Usuario[] GetNome(string nome)
         {
             return this.userRepository.GetUsuarios().Where(u => u.nome.ToLower().Contains(nome.ToLower())).ToArray();
