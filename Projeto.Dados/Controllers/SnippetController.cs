@@ -17,10 +17,16 @@ namespace Projeto.Dados.Controllers
 
         private projetoDBContext db = new projetoDBContext();
         private IComponenteRepository snippetRepository;
+        private IProjetoRepository projRepository;
+        private IKeywordRepository kwRepository;
+        private IUsuarioRepository userRepository;
 
         public SnippetController()
         {
             this.snippetRepository = new ComponenteRepository(this.db);
+            this.projRepository = new ProjetoRepository(this.db);
+            this.kwRepository = new KeywordRepository(this.db);
+            this.userRepository = new UsuarioRepository(this.db);
         }
 
         // Monta os endereços de um conjunto de imagens
@@ -44,6 +50,89 @@ namespace Projeto.Dados.Controllers
             List<Componente> snippets = this.snippetRepository.GetComponentes().ToList();
 
             return getEndImagens(snippets);
+        }
+
+        // Adiciona um novo snippet -- OK
+        // POST api/snippet 
+        public HttpResponseMessage Post([FromBody] Componente snippet)
+        {
+
+            List<Keyword> kws = new List<Keyword>();            
+
+            // Pega o objeto do projeto
+            if (snippet.projeto != null)
+            {
+                snippet.Projeto1 = this.projRepository.GetProjetoByID(Convert.ToInt32(snippet.projeto));
+            }
+
+            // Verifica se as keywords existem
+            foreach (Keyword kw in snippet.Keyword)
+            {
+                Keyword aux = this.kwRepository.GetKeywordByKw(kw.kw);
+                if (aux == null)
+                {
+                    aux = new Keyword();
+                    aux.kw = kw.kw;
+                }              
+                kws.Add(aux);
+            }
+            //Atualiza a lista de keywords do snippet
+            snippet.Keyword = kws;
+
+            //Seta o objeto do usuário
+            snippet.Usuario1 = this.userRepository.GetUsuarioByEmail(snippet.usuario);
+
+            // Insere o snippet no banco
+            this.snippetRepository.InsertComponente(snippet);
+
+            var response = Request.CreateResponse<Componente>(System.Net.HttpStatusCode.Created, snippet);
+
+            return response;
+
+        }
+
+        // Edita um snippet já existente
+        // PUT api/snippet/id
+        public HttpResponseMessage Put(int id, [FromBody]Componente snippet)
+        {
+            List<Keyword> kws = new List<Keyword>();  
+
+            // Pega o snippet a ser modificado no banco
+            Componente snippetInserir = this.snippetRepository.GetComponenteByID(id);
+
+            // Seta itens que são do próprio snippet
+            snippetInserir.nome = snippet.nome;
+
+            // Seta o usuário
+            snippetInserir.Usuario1 = this.userRepository.GetUsuarioByEmail(snippet.usuario);
+            snippetInserir.usuario = snippetInserir.Usuario1.email;
+
+            // Seta o projeto
+            if (snippet.projeto != null){
+                snippetInserir.Projeto1 = this.projRepository.GetProjetoByID(Convert.ToInt32(snippet.projeto));
+                snippetInserir.projeto = snippetInserir.Projeto1.idProjeto;
+            }
+
+            // Seta as keywords
+            foreach (Keyword kw in snippet.Keyword)
+            {
+                Keyword aux = this.kwRepository.GetKeywordByKw(kw.kw);
+                if (aux == null)
+                {
+                    aux = new Keyword();
+                    aux.kw = kw.kw;
+                }
+                kws.Add(aux);
+            }
+            snippetInserir.Keyword = kws;
+
+            // Atualiza o objeto no banco
+            this.snippetRepository.UpdateComponente(snippetInserir);
+
+            var response = Request.CreateResponse<Componente>(System.Net.HttpStatusCode.Created, snippetInserir);
+
+            return response;
+
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo e keyword -- OK
@@ -93,7 +182,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna os arquivos -- OK
         [Route("api/snippet/{id}/files/download")]
-        public string[] DownloadFiles(int id)
+        public string[] GetFiles(int id)
         {
 
             List<string> result = new List<string>();
