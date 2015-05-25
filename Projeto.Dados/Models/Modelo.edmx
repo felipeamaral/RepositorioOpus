@@ -217,7 +217,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="projetoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="projetoDBContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="projetoDBContext" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Area" EntityType="projetoModel.Area" />
           <EntitySet Name="Cliente" EntityType="projetoModel.Cliente" />
           <EntitySet Name="Componente" EntityType="projetoModel.Componente" />

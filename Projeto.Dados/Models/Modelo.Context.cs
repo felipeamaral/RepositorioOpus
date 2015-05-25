@@ -18,6 +18,7 @@ namespace Projeto.Dados.Models
         public projetoDBContext()
             : base("name=projetoDBContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

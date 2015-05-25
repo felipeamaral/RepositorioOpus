@@ -18,7 +18,7 @@ namespace Projeto.Dados.DAL
         //Retorna todos os componentes contidos no banco
         public Componente[] GetComponentes()
         {
-            return this.context.Componente.ToArray();
+            return this.context.Componente.Include("Keyword").ToArray();
         }
 
         //Retorna um componente através do seu id
