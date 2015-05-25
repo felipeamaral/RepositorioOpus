@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ArquivoController.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
     <Compile Include="DAL\ComponenteRepository.cs" />
     <Compile Include="DAL\IComponenteRepository.cs" />
