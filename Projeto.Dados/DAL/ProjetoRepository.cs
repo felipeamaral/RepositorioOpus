@@ -6,49 +6,49 @@ using Projeto.Dados.Models;
 
 namespace Projeto.Dados.DAL
 {
-    public class ComponenteRepository : IComponenteRepository, IDisposable
+    public class ProjetoRepository : IProjetoRepository, IDisposable
     {
         private projetoDBContext context = new projetoDBContext();
         private bool disposed = false;
 
-        public ComponenteRepository(projetoDBContext db){
+        public ProjetoRepository(projetoDBContext db){
             this.context = db;
         }
 
-        //Retorna todos os componentes contidos no banco
-        public Componente[] GetComponentes()
+        //Retorna todos os projetos contidos no banco
+        public Models.Projeto[] GetProjetos()
         {
-            return this.context.Componente.Include("Keyword").ToArray();
+            return this.context.Projeto.ToArray();
         }
 
-        //Retorna um componente através do seu id
-        public Componente GetComponenteByID(int componenteID)
+        //Retorna um projeto através do seu id
+        public Models.Projeto GetProjetoByID(int projetoID)
         {
-            return this.context.Componente.Find(componenteID);
+            return this.context.Projeto.Find(projetoID);
         }
 
-        //Insere um novo componente no banco
-        public void InsertComponente(Componente comp)
+        //Insere um novo projeto no banco
+        public void InsertProjeto(Models.Projeto proj)
         {
-            this.context.Componente.Add(comp);
+            this.context.Projeto.Add(proj);
             Save();
         }
 
-        //Remove um componente do banco
-        public void DeleteComponente(int componenteID)
+        //Remove um projeto do banco
+        public void DeleteProjeto(int projetoID)
         {
-            Componente comp = GetComponenteByID(componenteID);
-            if (comp != null)
+            Models.Projeto proj = GetProjetoByID(projetoID);
+            if (proj != null)
             {
-                this.context.Componente.Remove(comp);
+                this.context.Projeto.Remove(proj);
                 Save();
             }
         }
 
-        //Atualiza um componente no banco
-        public void UpdateComponente(Componente comp)
+        //Atualiza um projeto no banco
+        public void UpdateProjeto(Models.Projeto proj)
         {
-            this.context.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+            this.context.Entry(proj).State = System.Data.Entity.EntityState.Modified;
             Save();
         }
 

@@ -145,10 +145,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ArquivoController.cs" />
+    <Compile Include="Controllers\KeywordController.cs" />
+    <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DAL\ComponenteRepository.cs" />
     <Compile Include="DAL\IComponenteRepository.cs" />
+    <Compile Include="DAL\IKeywordRepository.cs" />
+    <Compile Include="DAL\IProjetoRepository.cs" />
+    <Compile Include="DAL\IUsuarioRepository.cs" />
+    <Compile Include="DAL\KeywordRepository.cs" />
+    <Compile Include="DAL\ProjetoRepository.cs" />
+    <Compile Include="DAL\UsuarioRepository.cs" />
     <Compile Include="Models\Area.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
