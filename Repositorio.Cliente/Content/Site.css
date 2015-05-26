@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +23,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.menuBar md-toolbar md-icon.md-default-theme {
+  color: white; }
+
+.inputIcons .inputIcons {
+  min-height: 48px; }
+.inputIcons md-input-container:not(.md-input-invalid) > md-icon.email {
+  color: white; }
+.inputIcons md-input-container:not(.md-input-invalid) > md-icon.name {
+  color: white; }
+.inputIcons md-input-container.md-input-invalid > md-icon.email, .inputIcons md-input-container.md-input-invalid > md-icon.name {
+  color: white; }
+
+.tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button, .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
+  box-shadow: none;
+  border: none;
+  transform: none;
+  -webkit-transform: none; }
+.tooltipdemoBasicUsage .left {
+  top: 70px !important;
+  left: 56px !important; }
+.tooltipdemoBasicUsage .right {
+  top: 70px !important;
+  right: 56px !important; }
+
+.listdemoListControls md-divider {
+  margin-top: 10px;
+  margin-bottom: 10px; }
