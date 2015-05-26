@@ -51,3 +51,50 @@ textarea {
 .listdemoListControls md-divider {
   margin-top: 10px;
   margin-bottom: 10px; }
+
+ /* Cards */
+.card-action.action > a:first-child{
+    margin-right:3em;
+    color: red;
+}
+
+.card-action.action > a:nth-child(2){
+    margin-right: 0em;
+    color: red;
+}
+
+.card-action.action > a:nth-child(2):hover, .card-action.action > a:first-child:hover{
+    color: #F08080;
+}
+
+.card-action{
+    background-color: white;
+}
+
+.card > .card-title.center{
+    color: #A9A9A9;
+    padding: 0.3em 0.1em 0.3em 0.1em;
+    font-size: 1.5em;
+}
+
+.row > .col.s12.m4.l4, .row > .col.s12.m4.l4 > .card{
+    padding:0em 1em 0em 1em;
+    margin-bottom: 1em;
+}
+
+.pagination > li > a{
+    color: red;
+}
+
+.pagination > li > a:hover{
+    background-color: #1F1F1F;
+}
+
+#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap{
+    background-color: #1F1F1F;
+    border-top: 0.2em solid red;
+}
+
+.navbar-fixed-bottom.md-default-theme span{
+    color: red;
+}
