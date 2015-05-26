@@ -356,8 +356,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="componente_kw">
-          <End Type="projetoModel.Componente" Role="Componente" Multiplicity="*" />
-          <End Type="projetoModel.Keyword" Role="Keyword" Multiplicity="*" />
+          <End Type="projetoModel.Componente" Role="Componente" Multiplicity="*" >
+          </End>
+          <End Type="projetoModel.Keyword" Role="Keyword" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="ProjetoUsuario">
           <End Type="projetoModel.Projeto" Role="Projeto" Multiplicity="*" />

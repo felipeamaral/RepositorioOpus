@@ -24,7 +24,8 @@ namespace Projeto.Dados.DAL
         //Retorna uma keyword através de seu nome
         public Keyword GetKeywordByKw(string kw)
         {
-            return this.context.Keyword.Find(kw);
+            return this.context.Keyword.Include("Componente").Include("Componente.Keyword").
+                Where(k => k.kw.ToLower().Equals(kw.ToLower())).FirstOrDefault();
         }
 
         //Insere uma nova keyword no banco

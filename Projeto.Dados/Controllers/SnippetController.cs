@@ -124,6 +124,7 @@ namespace Projeto.Dados.Controllers
                 }
                 kws.Add(aux);
             }
+            snippetInserir.Keyword.Clear();
             snippetInserir.Keyword = kws;
 
             // Atualiza o objeto no banco
@@ -190,8 +191,7 @@ namespace Projeto.Dados.Controllers
             //Verifica se existe um snippet com esse id
             if (this.snippetRepository.GetComponenteByID(id) != null)
             {
-
-                string path = @"C:\Users\manoela.OPUS\Documents\Projeto_Final_Estagio\RepositorioOpus\Projeto.Dados\Arquivos\Codigos\" + id.ToString();
+                string path = System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos/" + id.ToString());
 
                 // Verifica se o arquivo html existe
                 if (File.Exists(path + "\\arq.html"))
