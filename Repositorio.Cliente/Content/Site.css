@@ -98,3 +98,8 @@ textarea {
 .navbar-fixed-bottom.md-default-theme span{
     color: red;
 }
+
+.fixed-action-btn{
+    top: 5em;
+    right: 2em;
+}
