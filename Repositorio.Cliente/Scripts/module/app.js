@@ -8,13 +8,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     // States
     $stateProvider
-        .state('Repositorio/Home', {
+        .state('home', {
             url: "/Repositorio/Home",
             templateUrl: "Templates/Snippets.html"
         })
-        .state('Repositorio/Projetos', {
+        .state('projetos', {
             url: "/Repositorio/Projetos",
             templateUrl: "Templates/Projetos.html"
+        })
+        .state('snippets', {
+            url: "/Repositorio/Snippets",
+            templateUrl: "Templates/Snippets.html"
         })
 });
 
