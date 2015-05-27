@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    height:100%;
     
 }
 
@@ -8,6 +9,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    height: 100%;
+    width: 100%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -102,4 +105,9 @@ textarea {
 .fixed-action-btn{
     top: 5em;
     right: 2em;
+}
+
+.ace_editor {
+    width:600px;
+    height:300px;
 }

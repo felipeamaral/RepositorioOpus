@@ -1,1 +1,70 @@
-﻿
+﻿<!-- Import de css e imagens-->
+<link type="text/css" rel="stylesheet" href="Content/materialize.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<script src="http://ace.ajax.org/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css" media="screen">
+    #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+
+<div class="container">
+    <h1>
+        Adicionar Snippet
+    </h1>
+
+    <md-content layout-padding="">
+        <form name="userForm">
+            <div layout="" layout-sm="column">
+                <md-input-container flex="">
+                    <label><b>Titulo</b></label>
+                    <input ng-model="snippet.Titulo">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label><b>Projeto</b></label>
+                    <input ng-model="snippet.Projeto">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label><b>Palavras-Chave</b></label>
+                    <input ng-model="snippet.Tags">
+                </md-input-container>
+            </div>
+        </form>
+    </md-content>
+
+    <div id="editor">
+        alguma coisa
+    </div>
+
+ 
+    <!-- Botão de adicionar novo snippet -->
+    <div class="action-btn center">
+        <a class="btn-floating btn-large red">
+            <i class="mdi-file-file-upload"></i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-insert-chart"></i></a></li>
+            <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-format-quote"></i></a></li>
+            <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-publish"></i></a></li>
+            <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-attach-file"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Import de js -->
+<script type="text/javascript" src="~/Scripts/materialize/materialize.js"></script>
+
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
