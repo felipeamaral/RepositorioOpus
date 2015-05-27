@@ -102,12 +102,29 @@ textarea {
     color: red;
 }
 
-.fixed-action-btn{
+.fixed-action-btn.top{
     top: 5em;
     right: 2em;
 }
 
+.fixed-action-btn.bottom{
+    bottom: 5em;
+    right: 2em;
+}
+
 .ace_editor {
-    width:600px;
-    height:300px;
+    height: 25em;
+}
+
+.btn-sm.red{
+    color: white;
+    margin-right: 0.3em;
+}
+
+.btn-sm.red:last-child{
+    margin-right: 0em;
+}
+
+.btn-sm.red:hover{
+    text-decoration: none;
 }
