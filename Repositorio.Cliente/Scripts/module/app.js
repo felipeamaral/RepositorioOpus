@@ -22,6 +22,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: "/Repositorio/Submeter",
             templateUrl: "Templates/Snippets_Adicionar.html"
         })
+        .state('adicionarSnippets.editor', {
+            url: '/Codigos',
+            templateUrl: "Templates/editor.html"
+        })
+        .state('adicionaProjetos', {
+            url: "/Repositorio/Projeto/Submeter",
+            templateUrl: "Templates/Projetos-Adicionar.html"
+        })
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/id",
             templateUrl: "Templates/Visualiza_Snippet.html"
