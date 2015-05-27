@@ -1,0 +1,56 @@
+﻿<style>
+    .ace_editor {
+        width: 100%;
+    }
+</style>
+
+
+<div>
+
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">one</a></li>
+        <li><a href="#!">two</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">three</a></li>
+    </ul>
+
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="HTML">
+                <md-content class="md-padding">
+                    <div ui-ace="{
+                         theme:'monokai',
+                         mode: 'html',
+                         rendererOptions: { fontSize: 13 }
+                     }"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="CSS">
+                <md-content class="md-padding">
+                    <div ui-ace="{
+                         theme:'monokai',
+                         mode: 'css',
+                         rendererOptions: { fontSize: 14 }
+                     }"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="JS">
+                <md-content class="md-padding">
+                    <div ui-ace="{
+                         theme:'monokai',
+                         mode: 'javascript',
+                         rendererOptions: { fontSize: 14 }
+                     }"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Visualização">
+                <md-content class="md-padding">
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

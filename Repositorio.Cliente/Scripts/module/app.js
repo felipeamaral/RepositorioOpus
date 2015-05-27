@@ -1,10 +1,8 @@
-﻿var app = angular.module('app', ['ngMaterial', 'ui.router']);
+﻿var app = angular.module('app', ['ngMaterial', 'ui.router', 'ui.ace']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-
-     // Unmatched url
-    $urlRouterProvider.otherwise('/Repositorio/Home');
+    $urlRouterProvider.when('/Repositorio/Snippet/id', '/Repositorio/Snippet/id/Visualizar');
 
     // States
     $stateProvider
@@ -24,6 +22,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: "/Repositorio/Submeter",
             templateUrl: "Templates/Snippets_Adicionar.html"
         })
+        .state('visualizaSnippet', {
+            url: "/Repositorio/Snippet/id",
+            templateUrl: "Templates/Visualiza_Snippet.html"
+        })
+        .state('visualizaSnippet.editor', {
+            url: '/Visualizar',
+            templateUrl: "Templates/editor.html"
+        })
+
+        // Unmatched url
+        $urlRouterProvider.otherwise('/Repositorio/Home');
 });
 
 
