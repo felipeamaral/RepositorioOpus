@@ -102,10 +102,16 @@ textarea {
     color: red;
 }
 
-.fixed-action-btn{
+.fixed-action-btn.top{
     top: 5em;
     right: 2em;
 }
+
+.fixed-action-btn.bottom{
+    bottom: 5em;
+    right: 2em;
+}
+
 
 .ace_editor {
     width:600px;
