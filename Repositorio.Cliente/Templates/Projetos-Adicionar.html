@@ -1,0 +1,57 @@
+﻿<!-- Import de css e imagens-->
+<link type="text/css" rel="stylesheet" href="Content/materialize.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+<!-- Modal Structure -->
+<div>
+        <h1>
+            Adicionar Projeto
+        </h1>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="Nome">Nome</label>
+                        <input id="Nome" type="text" class="validate">
+                        
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="equipe" type="text" class="validate">
+                        <label for="equipe">Equipe</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="cliente" type="text" class="validate">
+                        <label for="cliente">Cliente</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="keyword" type="text" class="validate">
+                        <label for="keyword">Palavras-Chave</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <label>Inicio</label>
+                        <input type="date" class="datepicker">
+                    </div>
+                    <div class="input-field col s4">
+                        <label>Fim</label>
+                        <input type="date" class="datepicker">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="descricao" class="materialize-textarea"></textarea>
+                        <label for="descricao">Descrição</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+</div>
+
+
+<!-- Import de js -->
+<script type="text/javascript" src="~/Scripts/materialize/materialize.js"></script>
