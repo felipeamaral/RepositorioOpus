@@ -43,29 +43,29 @@
         <div class="text-center">
            <ul class="pagination pagination-lg">
                <li>
-                   <a href="#" aria-label="Next" ng-click="goToPage(1)">
+                   <a href="#" aria-label="Next" ng-click="goToPage(1, true, false)">
                        <span aria-hidden="true">Primeira</span>
                    </a>
                </li>
                 <li>
-                    <a href="#" aria-label="Previous">
+                    <a href="#" aria-label="Previous" ng-click="goToPreviousPage()" ng-show="paginaAtual > 1">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag)">{{pag}}</a></li>
+                <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
                 <!--<li><a href="" ng-click="goToPage(2)">2</a></li>
                 <li><a href="" ng-click="goToPage(2)">3</a></li>
                 <li><a href="">4</a></li>
                 <li><a href="">5</a></li>-->
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                <li>
-                   <a href="#" aria-label="Next">
-                       <span aria-hidden="true">Última</span>
+               <li>
+                   <a href="#" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
+                       <span aria-hidden="true">&raquo;</span>
                    </a>
+               </li>
+                <li>
+                    <a href="#" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)">
+                        <span aria-hidden="true">Última</span>
+                    </a>
                 </li>
             </ul>
         </div>
