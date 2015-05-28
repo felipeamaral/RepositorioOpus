@@ -11,30 +11,31 @@
     }
 </style>
 
-<div class="container">
+<div class="container" ng-controller="adicionar-snippet as ctrl">
     <h3>
         Adicionar Snippet
     </h3>
 
-    <md-content layout-padding="" ng-controller="chipsCtrl as ctrl">
+    <md-content layout-padding="">
         <form id="userForm">
             <div layout="" layout-sm="column">
                 <md-input-container flex>
                     <label><b>Titulo</b></label>
                     <input ng-model="snippet.Titulo">
                 </md-input-container>
-                <md-input-container flex>
-                    <label><b>Projeto</b></label>
-                    <input ng-model="snippet.Projeto">
-                </md-input-container>
+
+                <md-select placeholder="Projetos" ng-model="snippet.Projeto" flex>
+                    <md-option value="Projeto 1">Projeto 1</md-option>
+                    <md-option value="Projeto 2">Projeto 2</md-option>
+                </md-select>
             </div>
             <div layout="column">
-                <md-input-container flex>
+                
                     <md-chips ng-model="ctrl.tags"
                               readonly="ctrl.readonly"
                               placeholder="Palavras-Chave"
-                              delete-button-label="Remover Palavra-Chave"></md-chips>
-                </md-input-container>
+                              secondary-placeholder="Palavras-Chave"></md-chips>
+                
             </div>
         </form>
     </md-content>
@@ -42,7 +43,7 @@
     <div ui-view></div>
 
     <!-- Botão de adicionar novo snippet -->
-    <div class="fixed-action-btn bottom">
+    <div class="fixed-action-btn bottom" ng-click="salvaSnippet()">
         <a class="btn-floating btn-large red">
             <i class="mdi-file-file-upload"></i>
         </a>
