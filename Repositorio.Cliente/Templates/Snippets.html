@@ -1,210 +1,33 @@
-﻿<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+﻿<head>
+    <title>Snippets - Repositorio</title>
 
-<div class="container">
-    <h1>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<div class="container" ng-controller="SnippetsCtrl">
+    <h1 class="text-center" style="margin-bottom: 1em;">
         Snippets
     </h1>
 
     <!-- Botão de adicionar novo snippet -->
-    <div class="fixed-action-btn bottom" >
+    <div class="fixed-action-btn bottom">
         <a class="btn-floating btn-large red">
             <i class="mdi-content-add"></i>
         </a>
     </div>
 
-    
+
 
     <div class="row">
         <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
+        <div class="col s12 m4 l4" ng-repeat="snippet in snippets">
             <div class="card">
                 <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
+                <div class="card-title center">{{snippet.nome}}</div>
                 <!-- Insere a imagem no cartão-->
                 <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/HcW4ir" height="175">
-                </div>
-                <!-- Insere as opções -->
-                <div class="card-action action">
-                    <a href="#">Visualização</a>
-                    <a href='#'>Download</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m4 l4">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">Card Title</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img src="https://goo.gl/ndbcVG" height="175">
+                    <img ng-src={{snippet.endImagem}} height="175">
                 </div>
                 <!-- Insere as opções -->
                 <div class="card-action action">
@@ -215,26 +38,29 @@
         </div>
     </div>
 
-    <!-- Paginação -->
-    <div class="text-center">
-        <ul class="pagination pagination-lg">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
+    <div class="row">
+        <!-- Paginação -->
+        <div class="text-center">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="">1</a></li>
+                <li><a href="" ng-click="goToPage(2)">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+
 </div>
 
 

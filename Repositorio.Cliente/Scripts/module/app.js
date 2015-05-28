@@ -1,4 +1,6 @@
-﻿var app = angular.module('app', ['ngMaterial', 'ui.router', 'ui.ace']);
+﻿'use strict';
+
+var app = angular.module('app', ['ngMaterial', 'ui.router', 'ui.ace', 'ngResource']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -16,7 +18,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('snippets', {
             url: "/Repositorio/Snippets",
-            templateUrl: "Templates/Snippets.html"
+            templateUrl: "Templates/Snippets.html",
+            controller: 'SnippetsCtrl'
         })
         .state('adicionarSnippets', {
             url: "/Repositorio/Submeter",
@@ -32,7 +35,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/id",
-            templateUrl: "Templates/Visualiza_Snippet.html"
+            templateUrl: "Templates/Visualiza_Snippet.html",
         })
         .state('visualizaSnippet.editor', {
             url: '/Visualizar',

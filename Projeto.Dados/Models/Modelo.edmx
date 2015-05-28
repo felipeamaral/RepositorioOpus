@@ -356,16 +356,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="componente_kw">
-          <End Type="projetoModel.Componente" Role="Componente" Multiplicity="*" >
-          </End>
-          <End Type="projetoModel.Keyword" Role="Keyword" Multiplicity="*" >
-          </End>
+          <End Type="projetoModel.Componente" Role="Componente" Multiplicity="*" />
+          <End Type="projetoModel.Keyword" Role="Keyword" Multiplicity="*" />
         </Association>
         <Association Name="ProjetoUsuario">
           <End Type="projetoModel.Projeto" Role="Projeto" Multiplicity="*" />
           <End Type="projetoModel.Usuario" Role="Usuario" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

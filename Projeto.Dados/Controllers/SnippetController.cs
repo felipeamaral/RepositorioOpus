@@ -30,23 +30,34 @@ namespace Projeto.Dados.Controllers
         }
 
         // Monta os endereços de um conjunto de imagens
-        private String[] getEndImagens(List<Componente> snippets){
+        private ComponenteImg[] getEndImagens(List<Componente> snippets){
 
-            List<string> retorno = new List<string>();
+            List<ComponenteImg> retorno = new List<ComponenteImg>();
             string caminhoServer = System.Web.HttpContext.Current.Request.Url.Host + ":" + System.Web.HttpContext.Current.Request.Url.Port + "/Arquivos/Imagens/";
 
             foreach (Componente snippet in snippets)
             {
-                retorno.Add(caminhoServer + snippet.idComponente.ToString() + ".png");
+                string endImg = "http://" + caminhoServer + snippet.idComponente.ToString() + ".png";
+                retorno.Add(new ComponenteImg(snippet.idComponente, endImg, snippet.nome));
             }
 
             return retorno.ToArray();
 
         }
 
+        //Retorna quantidade de snippets contidos no banco
+        [Route("api/snippet")]
+        public List<int> Get()
+        {
+            List<int> retorno = new List<int>();
+            retorno.Add(this.snippetRepository.GetComponentes().Count());
+
+            return retorno;
+        }
+
         // Retorna a url das imagens dos snippets de (pageNumber-1)*qntd até (pageNumber-1)*qntd + qntd
         [Route("api/snippet/{qntd:int}/{pageNumber:int}")]
-        public String[] Get(int qntd, int pageNumber)
+        public ComponenteImg[] Get(int qntd, int pageNumber)
         {
             List<Componente> snippets = this.snippetRepository.GetComponentes().OrderBy(c => c.idComponente).ToList();
 
@@ -69,7 +80,7 @@ namespace Projeto.Dados.Controllers
             }
  
             /*Não tem componentes suficientes pra chegar nessa página*/
-            return new String[0];;
+            return new ComponenteImg[0];
         }
 
         // Adiciona um novo snippet -- OK
@@ -158,7 +169,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo e keyword -- OK
         [Route("api/snippet/busca/{nome}")]
-        public String[] Get(string nome)
+        public ComponenteImg[] Get(string nome)
         {
             string nomeMin = nome.ToLower();
 
@@ -172,7 +183,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo, kw e projeto -- OK
         [Route("api/snippet/busca/{nome}/{idProjeto}")]
-        public String[] GetByProjeto(string nome, int idProjeto)
+        public ComponenteImg[] GetByProjeto(string nome, int idProjeto)
         {
 
             string nomeMin = nome.ToLower();
@@ -187,7 +198,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por projeto -- OK
         [Route("api/snippet/busca/{idProjeto:int}")]
-        public String[] GetByProjeto(int idProjeto)
+        public ComponenteImg[] GetByProjeto(int idProjeto)
         {
 
             List<Componente> snippets = this.snippetRepository.GetComponentes().Where(c => c.projeto == idProjeto).ToList();
