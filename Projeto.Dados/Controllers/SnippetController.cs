@@ -47,12 +47,12 @@ namespace Projeto.Dados.Controllers
 
         //Retorna quantidade de snippets contidos no banco
         [Route("api/snippet")]
-        public List<int> Get()
+        public int[] Get()
         {
             List<int> retorno = new List<int>();
             retorno.Add(this.snippetRepository.GetComponentes().Count());
 
-            return retorno;
+            return retorno.ToArray();
         }
 
         // Retorna a url das imagens dos snippets de (pageNumber-1)*qntd até (pageNumber-1)*qntd + qntd
