@@ -5,129 +5,50 @@
     Novo Projeto
 </button>
 
-<!-- Modal Structure -->
-<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Adicionar Projeto</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <label for="Nome">Nome</label>
-                                <input id="Nome" type="text" class="validate">
-
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="equipe" type="text" class="validate">
-                                <label for="equipe">Equipe</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="cliente" type="text" class="validate">
-                                <label for="cliente">Cliente</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input id="keyword" type="text" class="validate">
-                                <label for="keyword">Palavras-Chave</label>
-                            </div>
-
-                            <div class="input-field col s4">
-
-                                <label for="inicio" class="active">Inicio</label>
-                                <input type="date" ng-model="user.submissionDate">
-
-                            </div>
-
-                            <div class="input-field col s4">
-                                <label for="fim" class="active">Fim</label>
-                                <input type="date" ng-model="user.submissionDate">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id=" textarea1" class="materialize-textarea" length="120"></textarea>
-                                <label for="descricao">Descrição</label>
-                            </div>
-                        </div>
-                    </form>
+<div id="myModal" class="modal modal-content">
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s4">
+                    <label for="Nome">Nome</label>
+                    <input id="Nome" type="text" class="validate">
+                </div>
+                <div class="input-field col s4">
+                    <input id="equipe" type="text" class="validate">
+                    <label for="equipe">Equipe</label>
+                </div>
+                <div class="input-field col s4">
+                    <input id="cliente" type="text" class="validate">
+                    <label for="cliente">Cliente</label>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Adicionar</button>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input id="keyword" type="text" class="validate">
+                    <label for="keyword">Palavras-Chave</label>
+                </div>
+
+                <div class="input-field col s4">
+
+                    <label for="inicio" class="active">Inicio</label>
+                    <input type="date" ng-model="user.submissionDate">
+
+                </div>
+
+                <div class="input-field col s4">
+                    <label for="fim" class="active">Fim</label>
+                    <input type="date" ng-model="user.submissionDate">
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id=" textarea1" class="materialize-textarea" length="120"></textarea>
+                    <label for="descricao">Descrição</label>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
-
-
-<div class="modal fade" role="dialog" aria-hidden="true" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-                
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Adicionar Projeto</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <label for="Nome">Nome</label>
-                                <input id="Nome" type="text" class="validate">
-
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="equipe" type="text" class="validate">
-                                <label for="equipe">Equipe</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="cliente" type="text" class="validate">
-                                <label for="cliente">Cliente</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input id="keyword" type="text" class="validate">
-                                <label for="keyword">Palavras-Chave</label>
-                            </div>
-
-                            <div class="input-field col s4">
-
-                                <label for="inicio" class="active">Inicio</label>
-                                <input type="date" ng-model="user.submissionDate">
-
-                            </div>
-
-                            <div class="input-field col s4">
-                                <label for="fim" class="active">Fim</label>
-                                <input type="date" ng-model="user.submissionDate">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id=" textarea1" class="materialize-textarea" length="120"></textarea>
-                                <label for="descricao">Descrição</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-            <div class="modal-footer">
-                
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Adicionar</button>
-            </div>
-          
-        </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
