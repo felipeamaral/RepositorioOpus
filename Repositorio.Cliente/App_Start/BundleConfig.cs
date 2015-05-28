@@ -26,6 +26,14 @@ namespace Repositorio.Cliente
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular/angular.min.js",
+                      "~/Scripts/angular/angular-animate.min.js",
+                      "~/Scripts/angular/angular-aria.min.js",
+                      "~/Scripts/angular/angular-ui-router.min.js",
+                      "~/Scripts/angular/angular-material.min.js",
+                      "~/Scripts/angular/angular-resource.min.js"));
         }
     }
 }
