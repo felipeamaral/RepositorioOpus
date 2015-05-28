@@ -30,3 +30,13 @@
         fill: white; }
       .chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container button.vegetablechip:hover, .chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container button.vegetablechip:focus {
         background: rgba(255, 0, 0, 0.8); }
+
+
+      .selectdemoBasicUsage p {
+  padding: 0 20px;
+  text-align: center; }
+.selectdemoBasicUsage p.md-caption {
+  margin-top: -7px;
+  color: #777; }
+.selectdemoBasicUsage .demo-content {
+  min-height: 348px; }
