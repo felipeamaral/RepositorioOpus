@@ -44,12 +44,32 @@ namespace Projeto.Dados.Controllers
 
         }
 
-        // Retorna a url das imagens de todos os snippets contidos no banco -- OK
-        public String[] Get()
+        // Retorna a url das imagens dos snippets de (pageNumber-1)*qntd até (pageNumber-1)*qntd + qntd
+        [Route("api/snippet/{qntd:int}/{pageNumber:int}")]
+        public String[] Get(int qntd, int pageNumber)
         {
-            List<Componente> snippets = this.snippetRepository.GetComponentes().ToList();
+            List<Componente> snippets = this.snippetRepository.GetComponentes().OrderBy(c => c.idComponente).ToList();
 
-            return getEndImagens(snippets);
+            /*Verifica se tem elementos suficientes pra essa pagina*/
+            int qntdPagesCheias = snippets.Count() / qntd;
+
+            /*Tem componentes pra encher uma página*/
+            if (qntdPagesCheias >= pageNumber)
+            {
+                return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntd));
+            }
+            /*Tem componentes pra colocar na página*/
+            else if (qntdPagesCheias == pageNumber - 1)
+            {
+                int qntdPage = snippets.Count() % qntd;
+                if (qntdPage > 0)
+                {
+                    return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntdPage));
+                }
+            }
+ 
+            /*Não tem componentes suficientes pra chegar nessa página*/
+            return new String[0];;
         }
 
         // Adiciona um novo snippet -- OK

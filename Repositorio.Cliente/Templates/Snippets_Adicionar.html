@@ -12,28 +12,29 @@
 </style>
 
 <div class="container">
-    <h1>
+    <h3>
         Adicionar Snippet
-    </h1>
+    </h3>
 
     <md-content layout-padding="" ng-controller="chipsCtrl as ctrl">
         <form id="userForm">
             <div layout="" layout-sm="column">
-                <md-input-container flex="">
+                <md-input-container flex>
                     <label><b>Titulo</b></label>
                     <input ng-model="snippet.Titulo">
                 </md-input-container>
-                <md-input-container flex="">
+                <md-input-container flex>
                     <label><b>Projeto</b></label>
                     <input ng-model="snippet.Projeto">
                 </md-input-container>
-                <md-input-container flex="">
+            </div>
+            <div layout="column">
+                <md-input-container flex>
                     <md-chips ng-model="ctrl.tags"
                               readonly="ctrl.readonly"
                               placeholder="Palavras-Chave"
                               delete-button-label="Remover Palavra-Chave"></md-chips>
                 </md-input-container>
-
             </div>
         </form>
     </md-content>
@@ -41,16 +42,10 @@
     <div ui-view></div>
 
     <!-- Botão de adicionar novo snippet -->
-    <div class="action-btn center">
+    <div class="fixed-action-btn bottom">
         <a class="btn-floating btn-large red">
             <i class="mdi-file-file-upload"></i>
         </a>
-        <ul>
-            <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-insert-chart"></i></a></li>
-            <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-format-quote"></i></a></li>
-            <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-publish"></i></a></li>
-            <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large mdi-editor-attach-file"></i></a></li>
-        </ul>
     </div>
 </div>
 
