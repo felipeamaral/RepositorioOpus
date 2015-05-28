@@ -23,9 +23,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s4">
-                    <input id="keyword" type="text" class="validate">
-                    <label for="keyword">Palavras-Chave</label>
+                <div class="input-field col s4" ng-controller="chipsCtrl as ctrl">
+                    <md-chips ng-model="ctrl.tags"
+                              readonly="ctrl.readonly"
+                              placeholder="Palavras-Chave"
+                              delete-button-label="Remover Palavra-Chave">
+                    </md-chips>
+
                 </div>
 
                 <div class="input-field col s4">

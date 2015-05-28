@@ -16,7 +16,7 @@
         Adicionar Snippet
     </h1>
 
-    <md-content layout-padding="">
+    <md-content layout-padding="" ng-controller="chipsCtrl as ctrl">
         <form id="userForm">
             <div layout="" layout-sm="column">
                 <md-input-container flex="">
@@ -28,10 +28,12 @@
                     <input ng-model="snippet.Projeto">
                 </md-input-container>
                 <md-input-container flex="">
-                     <label>Palavra-Chave</label>
-                    <input type="text" name="cities" class="form-control"
-                           value="Hanoi" data-role="tagsinput" />
+                    <md-chips ng-model="ctrl.tags"
+                              readonly="ctrl.readonly"
+                              placeholder="Palavras-Chave"
+                              delete-button-label="Remover Palavra-Chave"></md-chips>
                 </md-input-container>
+
             </div>
         </form>
     </md-content>
