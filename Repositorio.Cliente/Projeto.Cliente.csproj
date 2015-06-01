@@ -135,9 +135,9 @@
     <Content Include="img\plus-circle.svg" />
     <Content Include="img\star.svg" />
     <Content Include="Content\angular-material.min.css" />
+    <Content Include="repositorio\appConfig.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
-    <Content Include="repositorio\services\EditorIdService.js" />
-    <Content Include="Scripts\angular\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular\angular-ui-router.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\material-design-icons\Material-Design-Icons.eot" />
@@ -179,7 +179,6 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\select.min.js" />
-    <Content Include="Scripts\ui-ace.js" />
     <Content Include="repositorio\templates\Projetos-Adicionar.html" />
     <Content Include="repositorio\templates\Projetos.html" />
     <Content Include="repositorio\templates\Snippets.html" />
@@ -193,7 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="repositorio\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -7,15 +7,17 @@ namespace Projeto.Dados.Models
 {
     public class ComponenteImg
     {
-        public ComponenteImg(int idComponente, string endImagem, string nome)
+        public ComponenteImg(int idComponente, string endImagem, string nome, int qntdPages)
         {
             this.endImagem = endImagem;
             this.idComponente = idComponente;
             this.nome = nome;
+            this.qntdPages = qntdPages;
         }
 
         public string endImagem { get; set; }
         public int idComponente { get; set; }
         public string nome { get; set; }
+        public int qntdPages { get; set; }
     }
 }

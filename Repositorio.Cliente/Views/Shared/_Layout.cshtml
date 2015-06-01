@@ -17,7 +17,7 @@
     <body>
         <div ng-controller="appCtrl" class="menuBar" layout="column" style="height:95%; width: 100%">
             <!-- Toolbar -->
-            <md-content ng-controller="searchCtrl">
+            <md-content>
                 <md-toolbar>
                     <div id="menuToolBar">
                         <div class="md-toolbar-tools">
@@ -36,15 +36,16 @@
                             </md-button>
                         </div>
                     </div>
+
+                    <!-- Barra de pesquisa no topo da página -->
                     <div id="searchToolBar" class="hidden">
-                        <!-- Top Search Content -->
                         <div id="top-search-wrap">
                             <md-icon md-svg-src="img/magnify.svg" style="color: white;"></md-icon>
-                            <input type="text">
+                            <input ng-model="valorBusca" type="text" placeholder="{{placeholder}}" style="color: white"
+                                   ng-keypress="keyPress($event)">
                             <md-button class="md-icon-button" ng-click="closeSearch()">
                                 <i id="top-search-close">&times;</i>
                             </md-button>
-
                         </div>
                     </div>
                 </md-toolbar>
@@ -137,6 +138,7 @@
         @Scripts.Render("~/bundles/repositorio")
         @Scripts.Render("~/bundles/repositorioServices")
         @Scripts.Render("~/bundles/repositorioControllers")
+        @Scripts.Render("~/bundles/repositorioConfig")
         @RenderSection("scripts", required: false)
 
         <!-- Import de js materialize-->

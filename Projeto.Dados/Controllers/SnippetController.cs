@@ -32,7 +32,7 @@ namespace Projeto.Dados.Controllers
         }
 
         // Monta os endereços de um conjunto de imagens
-        private ComponenteImg[] getEndImagens(List<Componente> snippets){
+        private ComponenteImg[] getEndImagens(List<Componente> snippets, int qntdPages){
 
             List<ComponenteImg> retorno = new List<ComponenteImg>();
             string caminhoServer = System.Web.HttpContext.Current.Request.Url.Host + ":" + System.Web.HttpContext.Current.Request.Url.Port + "/Arquivos/Imagens/";
@@ -40,7 +40,7 @@ namespace Projeto.Dados.Controllers
             foreach (Componente snippet in snippets)
             {
                 string endImg = "http://" + caminhoServer + snippet.idComponente.ToString() + ".png";
-                retorno.Add(new ComponenteImg(snippet.idComponente, endImg, snippet.nome));
+                retorno.Add(new ComponenteImg(snippet.idComponente, endImg, snippet.nome, qntdPages));
             }
 
             return retorno.ToArray();
@@ -65,19 +65,24 @@ namespace Projeto.Dados.Controllers
 
             /*Verifica se tem elementos suficientes pra essa pagina*/
             int qntdPagesCheias = snippets.Count() / qntd;
+            int qntdThisPage = snippets.Count() % qntd;
+            int qntdPage = qntdPagesCheias;
+            if (qntdThisPage > 0)
+            {
+                qntdPage += 1;
+            }
 
             /*Tem componentes pra encher uma página*/
             if (qntdPagesCheias >= pageNumber)
             {
-                return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntd));
+                return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntd), qntdPage);
             }
             /*Tem componentes pra colocar na página*/
             else if (qntdPagesCheias == pageNumber - 1)
             {
-                int qntdPage = snippets.Count() % qntd;
-                if (qntdPage > 0)
+                if (qntdThisPage > 0)
                 {
-                    return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntdPage));
+                    return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntdThisPage), qntdPage);
                 }
             }
  
@@ -170,17 +175,43 @@ namespace Projeto.Dados.Controllers
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo e keyword -- OK
-        [Route("api/snippet/busca/{nome}")]
-        public ComponenteImg[] Get(string nome)
+        [Route("api/snippet/busca/{nome}/{qntd:int}/{pageNumber:int}")]
+        public ComponenteImg[] Get(string nome, int qntd, int pageNumber)
         {
+
             string nomeMin = nome.ToLower();
 
             // Busca pelos snippets que possuem a string informada no nome ou nas kws
             List<Componente> snippets = this.snippetRepository.GetComponentes()
-                .Where(c => c.nome.ToLower().Contains(nomeMin) || 
+                .Where(c => c.nome.ToLower().Contains(nomeMin) ||
                     c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
 
-            return getEndImagens(snippets);
+            /*Verifica se tem elementos suficientes pra essa pagina*/
+            int qntdPagesCheias = snippets.Count() / qntd;
+            int qntdThisPage = snippets.Count() % qntd;
+            int qntdPage = qntdPagesCheias;
+            if (qntdThisPage > 0)
+            {
+                qntdPage += 1;
+            }
+
+            /*Tem componentes pra encher a página*/
+            if (qntdPagesCheias >= pageNumber)
+            {
+                return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntd), qntdPage);
+            }
+
+            /*Tem componentes pra colocar na página mas não enche-la*/
+            else if (qntdPagesCheias == pageNumber - 1)
+            {
+                if (qntdThisPage > 0)
+                {
+                    return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntdThisPage), qntdPage);
+                }
+            }
+
+            /*Não tem componentes suficientes pra chegar nessa página*/
+            return new ComponenteImg[0];
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo, kw e projeto -- OK
@@ -195,7 +226,7 @@ namespace Projeto.Dados.Controllers
                 .Where(c => c.projeto == idProjeto && (c.nome.ToLower().Contains(nomeMin)) ||
                     c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
 
-            return getEndImagens(snippets);
+            return getEndImagens(snippets, 1);
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por projeto -- OK
@@ -205,7 +236,7 @@ namespace Projeto.Dados.Controllers
 
             List<Componente> snippets = this.snippetRepository.GetComponentes().Where(c => c.projeto == idProjeto).ToList();
 
-            return getEndImagens(snippets);
+            return getEndImagens(snippets, 1);
         }
 
         // Pega todas as informações de um snippet específico -- OK

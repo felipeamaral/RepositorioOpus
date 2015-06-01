@@ -30,8 +30,8 @@
 
                 <md-chips ng-model="tags"
                           readonly="readonly"
-                          placeholder="Palavras-Chave"
-                          secondary-placeholder="Palavras-Chave"></md-chips>
+                          placeholder="Tags"
+                          secondary-placeholder="Tags"></md-chips>
 
             </div>
         </form>
@@ -46,33 +46,3 @@
         </a>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#userForm')
-            .find('[name="cities"]')
-                // Revalidate the cities field when it is changed
-                .change(function (e) {
-                    $('#userForm').formValidation('revalidateField', 'cities');
-                })
-                .end()
-            .formValidation({
-                framework: 'bootstrap',
-                excluded: ':disabled',
-                icon: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    cities: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter at least one city you like the most.'
-                            }
-                        }
-                    }
-                }
-            });
-    });
-</script>

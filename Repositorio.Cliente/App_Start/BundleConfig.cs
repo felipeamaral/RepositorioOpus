@@ -31,7 +31,7 @@ namespace Repositorio.Cliente
                       "~/Scripts/angular/angular.min.js",
                       "~/Scripts/angular/angular-animate.min.js",
                       "~/Scripts/angular/angular-aria.min.js",
-                      "~/Scripts/angular/angular-ui-router.min.js",
+                      "~/Scripts/angular/angular-ui-router.js",
                       "~/Scripts/angular/angular-material.min.js",
                       "~/Scripts/angular/angular-resource.min.js"));
 
@@ -46,14 +46,18 @@ namespace Repositorio.Cliente
             bundles.Add(new ScriptBundle("~/bundles/repositorio").Include(
                       "~/repositorio/app.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/repositorioConfig").Include(
+                      "~/repositorio/appConfig.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/repositorioServices").Include(
                       "~/repositorio/services/apiService.js",
-                      "~/repositorio/services/EditorIdService.js"));
+                      "~/repositorio/services/EditorIdService.js",
+                      "~/repositorio/services/searchService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
                       "~/repositorio/controllers/AddSnippetCtrl.js",
                       "~/repositorio/controllers/listaMenu-controller.js",
-                      "~/repositorio/controllers/search-controller.js",
+                      "~/repositorio/controllers/searchCtrl.js",
                       "~/repositorio/controllers/sideBar-controller.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",

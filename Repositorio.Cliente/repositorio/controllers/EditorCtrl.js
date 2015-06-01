@@ -1,10 +1,10 @@
 ﻿'use strict';
 
-app.controller('EditorCtrl', function ($scope, apiService, EditorIdService) {
+app.controller('EditorCtrl', function ($scope, apiService) {
 
-    if (EditorIdService.getID() != -1) {
+    if ($scope.idSnippet != -1) {
         // Pega os arquivos a serem exibidos no editor no formato .zip
-        JSZipUtils.getBinaryContent("http://localhost:53412/api/snippet/" + EditorIdService.getID() + "/files/download", function (err, data) {
+        JSZipUtils.getBinaryContent("http://localhost:53412/api/snippet/" + $scope.idSnippet + "/files/download", function (err, data) {
             if (err) {
                 throw err; // or handle err
             }
