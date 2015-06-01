@@ -8,28 +8,28 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
         .state('home', {
             url: "/Repositorio/Home",
-            templateUrl: "Templates/Snippets.html"
+            templateUrl: "repositorio/templates/Snippets.html"
         })
         .state('projetos', {
             url: "/Repositorio/Projetos",
-            templateUrl: "Templates/Projetos.html"
+            templateUrl: "repositorio/templates/Projetos.html"
         })
         .state('snippets', {
             url: "/Repositorio/Snippets",
-            templateUrl: "Templates/Snippets.html",
+            templateUrl: "repositorio/templates/Snippets.html",
             controller: 'SnippetsCtrl'
         })
         .state('adicionarSnippets', {
             url: "/Repositorio/Submeter",
-            templateUrl: "Templates/Snippets_Adicionar.html"
+            templateUrl: "repositorio/templates/Snippets_Adicionar.html"
         })
         .state('adicionaProjetos', {
             url: "/Repositorio/Projeto/Submeter",
-            templateUrl: "Templates/Projetos-Adicionar.html"
+            templateUrl: "repositorio/templates/Projetos-Adicionar.html"
         })
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/{id:int}/Visualizar",
-            templateUrl: "Templates/Visualiza_Snippet.html",
+            templateUrl: "repositorio/templates/Visualiza_Snippet.html",
             resolve:{
                 id: ['$stateParams', function($stateParams){
                     return $stateParams.id;

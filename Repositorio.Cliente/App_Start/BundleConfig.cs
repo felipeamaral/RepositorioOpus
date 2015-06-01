@@ -34,6 +34,25 @@ namespace Repositorio.Cliente
                       "~/Scripts/angular/angular-ui-router.min.js",
                       "~/Scripts/angular/angular-material.min.js",
                       "~/Scripts/angular/angular-resource.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ace").Include(
+                      "~/Scripts/ace/src-noconflict/ace.js",
+                      "~/Scripts/ace/ui-ace.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/repositorio").Include(
+                      "~/repositorio/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/repositorioServices").Include(
+                      "~/repositorio/services/apiService.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
+                      "~/repositorio/controllers/adicionar-snippet.js",
+                      "~/repositorio/controllers/listaMenu-controller.js",
+                      "~/repositorio/controllers/search-controller.js",
+                      "~/repositorio/controllers/sideBar-controller.js",
+                      "~/repositorio/controllers/SnippetsCtrl.js",
+                      "~/repositorio/controllers/VisualizarSnippetCtrl.js"));
+
         }
     }
 }
