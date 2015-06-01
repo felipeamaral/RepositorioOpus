@@ -134,7 +134,6 @@
     <Content Include="img\menu.svg" />
     <Content Include="img\plus-circle.svg" />
     <Content Include="img\star.svg" />
-    <Content Include="Scripts\ace.js" />
     <Content Include="Scripts\angular\angular-ui-router.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -158,6 +157,7 @@
     <Content Include="fonts\roboto\Roboto-Thin.woff" />
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controller\VisualizarSnippetCtrl.js" />
     <Content Include="Scripts\ext-language_tools.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -189,7 +189,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\controller\" />
     <Folder Include="Scripts\service\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,8 @@ using Projeto.Dados.DAL;
 using System.IO;
 using System.Text;
 using System.Web;
+using Ionic.Zip;
+using System.Net.Http.Headers;
 
 namespace Projeto.Dados.Controllers
 {
@@ -212,50 +214,84 @@ namespace Projeto.Dados.Controllers
             return this.snippetRepository.GetComponenteByID(id);
         }
 
-        // Retorna os arquivos -- OK
+        // Retorna os arquivos em um .zip
         [Route("api/snippet/{id}/files/download")]
-        public string[] GetFiles(int id)
+        //public string[] GetFiles(int id)
+        public HttpResponseMessage GetFiles(int id)
         {
 
-            List<string> result = new List<string>();
+            ZipFile zip = new ZipFile();
+
+            //List<string> result = new List<string>();
+            Componente snippet = this.snippetRepository.GetComponenteByID(id);
 
             //Verifica se existe um snippet com esse id
-            if (this.snippetRepository.GetComponenteByID(id) != null)
+            if (snippet != null)
             {
                 string path = System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos/" + id.ToString());
+                string path1 = Path.GetTempPath();
 
                 // Verifica se o arquivo html existe
                 if (File.Exists(path + "\\arq.html"))
                 {
-                    result.Add(File.ReadAllText(path + "\\arq.html"));
+                    zip.AddFile(path + "\\arq.html", snippet.nome);
+                    //result.Add(File.ReadAllText(path + "\\arq.html"));
                 }
                 else
                 {
-                    result.Add(null);
+                    //result.Add(null);
                 }
 
                 // Verifica se o arquivo css existe
                 if (File.Exists(path + "\\arq.css"))
                 {
-                    result.Add(File.ReadAllText(path + "\\arq.css"));
+                    zip.AddFile(path + "\\arq.css", snippet.nome);
+                    //result.Add(File.ReadAllText(path + "\\arq.css"));
                 }
                 else
                 {
-                    result.Add(null);
+                    //result.Add(null);
                 }
 
                 // Verifica se o arquivo js existe
                 if (File.Exists(path + "\\arq.js"))
                 {
-                    result.Add(File.ReadAllText(path + "\\arq.js"));
+                    zip.AddFile(path + "\\arq.js", snippet.nome);
+                    //result.Add(File.ReadAllText(path + "\\arq.js"));
                 }
                 else
                 {
-                    result.Add(null);
+                    //result.Add(null);
                 }
             }
+            else
+            {
+                return null;
+            }
 
-            return result.ToArray();
+            //Salva o arquivo num diretório temporário
+            zip.Save(Path.GetTempPath() + snippet.nome + ".zip");
+
+            FileStream arquivo = File.OpenRead(Path.GetTempPath() + snippet.nome + ".zip");
+
+            MemoryStream file = new MemoryStream();
+            arquivo.CopyTo(file);
+
+            //Monta a resposta
+            HttpResponseMessage result = null;
+            result = Request.CreateResponse(HttpStatusCode.OK);
+
+            result.Content = new ByteArrayContent(file.ToArray());
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            result.Content.Headers.ContentDisposition.FileName = snippet.nome + ".zip";
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
+
+            //Fecha os arquivos
+            arquivo.Close();
+            file.Close();
+
+            return result;
+            //return result.ToArray();
         }
 
         /*Faz upload dos arquivos de um snippet*/

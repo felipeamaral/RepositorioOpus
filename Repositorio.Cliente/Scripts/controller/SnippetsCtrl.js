@@ -37,8 +37,10 @@
     /*Vetor com numeração das páginas a serem mostradas*/
     $scope.paginas = [];
 
-    /*Função que faz o download dos códigos do componente*/
-    $scope.download = function () { };
+    /*Função que faz o download dos códigos do componente, em formato zip*/
+    $scope.download = function (snippet) {
+        window.open("http://localhost:53412/api/snippet/" + snippet.idComponente + "/files/download/", '_self', '');
+    };
     
 
     /*Inicializa as páginas a serem mostradas*/
