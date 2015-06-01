@@ -11,14 +11,14 @@
         var aux = apiService.getImagens.query({ qntd: qntd, pageNumber: pageNumber }, function () {
 
             /*Verifica se clicou pra ir direto pra primeira página*/
-            if (primeira) {
+            if (primeira || $scope.paginaAtual != pageNumber) {
                 for (i = 0; i < qntdPaginasMostra && i < $scope.qntdPaginas; i++) {
                     $scope.paginas[i] = i+1;
                 }
             }
 
             /*Verifica se clicou pra ir direto pra ultima pagina*/
-            if (last) {
+            if (last && $scope.paginaAtual != pageNumber) {
                 cont = 0;
                 for (i = $scope.qntdPaginas - qntdPaginasMostra >= 0 ? $scope.qntdPaginas - qntdPaginasMostra + 1 : 1; i <= $scope.qntdPaginas; i++) {
                     $scope.paginas[cont] = i;

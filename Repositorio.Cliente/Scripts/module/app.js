@@ -28,8 +28,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "Templates/Projetos-Adicionar.html"
         })
         .state('visualizaSnippet', {
-            url: "/Repositorio/Snippet/id/Visualizar",
+            url: "/Repositorio/Snippet/{id:int}/Visualizar",
             templateUrl: "Templates/Visualiza_Snippet.html",
+            resolve:{
+                id: ['$stateParams', function($stateParams){
+                    return $stateParams.id;
+                }]
+            }
         })
 
         // Unmatched url
