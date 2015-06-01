@@ -1,7 +1,7 @@
-﻿app.controller('adicionar-snippet', function ($timeout, $q, $scope) {
-    var self = this;
-    self.readonly = false;
-    self.tags = [];
+﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope) {
+    
+    $scope.readonly = false;
+    $scope.tags = [];
 
     $scope.snippet = {
         Titulo: '',
@@ -12,7 +12,7 @@
     $scope.salvaSnippet = function () {
         console.log($scope.snippet.Titulo);
         console.log($scope.snippet.Projeto);
-        console.log(self.tags);   
+        console.log($scope.tags);   
     }
 
     //Função que pega os dados do editor e manda em um arquivo pro servidor

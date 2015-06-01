@@ -39,19 +39,25 @@ namespace Repositorio.Cliente
                       "~/Scripts/ace/src-noconflict/ace.js",
                       "~/Scripts/ace/ui-ace.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/zip").Include(
+                      "~/Scripts/jszip/jszip-utils.js",
+                      "~/Scripts/jszip/jszip.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/repositorio").Include(
                       "~/repositorio/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioServices").Include(
-                      "~/repositorio/services/apiService.js"));
+                      "~/repositorio/services/apiService.js",
+                      "~/repositorio/services/EditorIdService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
-                      "~/repositorio/controllers/adicionar-snippet.js",
+                      "~/repositorio/controllers/AddSnippetCtrl.js",
                       "~/repositorio/controllers/listaMenu-controller.js",
                       "~/repositorio/controllers/search-controller.js",
                       "~/repositorio/controllers/sideBar-controller.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
-                      "~/repositorio/controllers/VisualizarSnippetCtrl.js"));
+                      "~/repositorio/controllers/VisualizarSnippetCtrl.js",
+                      "~/repositorio/controllers/EditorCtrl.js"));
 
         }
     }

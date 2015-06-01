@@ -2,14 +2,14 @@
 
     <h3 class="text-center"> Titulo Snippet</h3>
     <div class="text-center">
-        <a class="btn-sm waves-effect waves-light small red">tag1</a>
+        <a class="btn-sm waves-effect waves-light small red" ng-click="downloadFiles()">tag1</a>
         <a class="btn-sm waves-effect waves-light small red">tag2</a>
         <a class="btn-sm waves-effect waves-light small red">tag3</a>
         <a class="btn-sm waves-effect waves-light small red">tag4</a>
     </div>
 
 
-    <div ng-include="'repositorio/templates/editor.html'"></div>
+    <div ng-include="'repositorio/templates/editor.html'" ng-controller="EditorCtrl"></div>
 
     <!-- Botão de fazer download do código -->
     <div class="fixed-action-btn bottom">

@@ -234,7 +234,7 @@ namespace Projeto.Dados.Controllers
                 // Verifica se o arquivo html existe
                 if (File.Exists(path + "\\arq.html"))
                 {
-                    zip.AddFile(path + "\\arq.html", snippet.nome);
+                    zip.AddFile(path + "\\arq.html", "/");
                     //result.Add(File.ReadAllText(path + "\\arq.html"));
                 }
                 else
@@ -245,7 +245,7 @@ namespace Projeto.Dados.Controllers
                 // Verifica se o arquivo css existe
                 if (File.Exists(path + "\\arq.css"))
                 {
-                    zip.AddFile(path + "\\arq.css", snippet.nome);
+                    zip.AddFile(path + "\\arq.css", "/");
                     //result.Add(File.ReadAllText(path + "\\arq.css"));
                 }
                 else
@@ -256,7 +256,7 @@ namespace Projeto.Dados.Controllers
                 // Verifica se o arquivo js existe
                 if (File.Exists(path + "\\arq.js"))
                 {
-                    zip.AddFile(path + "\\arq.js", snippet.nome);
+                    zip.AddFile(path + "\\arq.js", "/");
                     //result.Add(File.ReadAllText(path + "\\arq.js"));
                 }
                 else

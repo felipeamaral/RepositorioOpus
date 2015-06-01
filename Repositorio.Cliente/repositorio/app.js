@@ -21,7 +21,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('adicionarSnippets', {
             url: "/Repositorio/Submeter",
-            templateUrl: "repositorio/templates/Snippets_Adicionar.html"
+            templateUrl: "repositorio/templates/Snippets_Adicionar.html",
+            controller: 'AddSnippetCtrl'
         })
         .state('adicionaProjetos', {
             url: "/Repositorio/Projeto/Submeter",
@@ -30,6 +31,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/{id:int}/Visualizar",
             templateUrl: "repositorio/templates/Visualiza_Snippet.html",
+            controller: 'VisualizarSnippetCtrl',
             resolve:{
                 id: ['$stateParams', function($stateParams){
                     return $stateParams.id;

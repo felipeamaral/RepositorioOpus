@@ -39,7 +39,7 @@
 
     /*Função que faz o download dos códigos do componente, em formato zip*/
     $scope.download = function (snippet) {
-        window.open("http://localhost:53412/api/snippet/" + snippet.idComponente + "/files/download/", '_self', '');
+        window.open("http://localhost:53412/api/snippet/" + snippet.idComponente + "/files/download", '_self', '');
     };
     
 

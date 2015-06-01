@@ -2,7 +2,8 @@
 <html ng-app="app">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -130,6 +131,7 @@
 
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/ace")
+        @Scripts.Render("~/bundles/zip")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/repositorio")

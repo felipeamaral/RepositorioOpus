@@ -29,7 +29,7 @@
                 <div class="card-image">
                     <img ng-src={{snippet.endImagem}} height="175">
                 </div>
-                <!-- Insere as opções -->
+                <!-- Exibe as opções -->
                 <div class="card-action action">
                     <a ui-sref="visualizaSnippet({id: snippet.idComponente})">Visualização</a>
                     <a href='' ng-click="download(snippet)">Download</a>
@@ -38,8 +38,8 @@
         </div>
     </div>
 
+    <!-- Paginação -->
     <div class="row">
-        <!-- Paginação -->
         <div class="text-center">
            <ul class="pagination pagination-lg">
                <li>

@@ -14,8 +14,9 @@
                     <div ui-ace="{
                          theme:'monokai',
                          mode: 'html',
-                         rendererOptions: { fontSize: 13 }
-                     }"></div>
+                         rendererOptions: { fontSize: 14 },
+                         blockScrolling: 'Infinity'
+                     }" ng-model="htmlFile"></div>
                 </md-content>
             </md-tab>
             <md-tab label="CSS">
@@ -23,8 +24,9 @@
                     <div ui-ace="{
                          theme:'monokai',
                          mode: 'css',
-                         rendererOptions: { fontSize: 14 }
-                     }"></div>
+                         rendererOptions: { fontSize: 14 },
+                         blockScrolling: 'Infinity'
+                     }" ng-model="cssFile"></div>
                 </md-content>
             </md-tab>
             <md-tab label="JS">
@@ -32,8 +34,9 @@
                     <div ui-ace="{
                          theme:'monokai',
                          mode: 'javascript',
-                         rendererOptions: { fontSize: 14 }
-                     }"></div>
+                         rendererOptions: { fontSize: 14 },
+                         blockScrolling: 'Infinity'
+                     }" ng-model="jsFile"></div>
                 </md-content>
             </md-tab>
             <md-tab label="Visualização">
