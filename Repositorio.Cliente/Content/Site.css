@@ -150,3 +150,14 @@ md-list-item:hover{
     cursor: pointer;
     text-decoration: none;
 }
+
+#filtroProjSnippet{
+    margin-top: -1.5em;
+    margin-right: -1em;
+}
+
+#filtroProjSnippet:focus, #filtroProjSnippet:visited, #filtroProjSnippet:hover, #filtroProjSnippet:after{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
