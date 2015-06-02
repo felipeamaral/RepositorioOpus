@@ -93,7 +93,7 @@ textarea {
     background-color: #1F1F1F;
 }
 
-#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap{
+#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap, .md-theme-light.md-default-theme{
     background-color: #1F1F1F;
     border-top: 0.2em solid red;
 }
@@ -126,5 +126,27 @@ textarea {
 }
 
 .btn-sm.red:hover{
+    text-decoration: none;
+}
+
+md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-active {
+ min-width: 250px !important;
+ width: 50vw !important;
+ max-width: 250px !important;
+}
+
+/*ng-md-icon{
+    cursor:pointer;
+    transition: 240ms;
+}
+
+ng-md-icon:after{
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+    position: absolute;
+}*/
+
+md-list-item:hover{
+    cursor: pointer;
     text-decoration: none;
 }

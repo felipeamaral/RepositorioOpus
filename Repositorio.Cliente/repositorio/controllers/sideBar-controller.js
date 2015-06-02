@@ -1,7 +1,6 @@
 ﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
 
-    $scope.toggleLeft = buildToggler('left');
-    $scope.toggleRight = buildToggler('right');
+    $scope.toggleLeft = buildToggler('left');    
     $scope.demo = {};
 
     var valorBusca = "";
@@ -18,7 +17,7 @@
         }
     }
 
-    function buildToggler(navID) {
+    function buildToggler(navID) {       
         var debounceFn = $mdUtil.debounce(function () {
             $mdSidenav(navID)
               .toggle()
@@ -44,24 +43,5 @@
 
         $("#menuToolBar").addClass("hidden");
         $("#searchToolBar").removeClass("hidden");
-    };
-});
-
-
-app.controller('leftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-        $mdSidenav('left').close()
-          .then(function () {
-              $log.debug("close LEFT is done");
-          });
-    };
-});
-
-app.controller('rightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-        $mdSidenav('right').close()
-          .then(function () {
-              $log.debug("close RIGHT is done");
-          });
     };
 });

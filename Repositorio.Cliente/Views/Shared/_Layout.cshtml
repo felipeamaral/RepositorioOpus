@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-   
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -12,137 +12,105 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="~/Content/search.css" />
     <link type="text/css" rel="stylesheet" href="Content/materialize.css" media="screen,projection" />
-    
+
 </head>
-    <body>
-        <div ng-controller="appCtrl" class="menuBar" layout="column" style="height:95%; width: 100%">
-            <!-- Toolbar -->
-            <md-content>
-                <md-toolbar>
-                    <div id="menuToolBar">
-                        <div class="md-toolbar-tools">
-                            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
-                                <md-icon md-svg-icon="img/menu.svg" style="color: #FF0000"></md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Snippets" ui-sref="home">
-                                <span>Home</span>
-                            </md-button>
-                            <span flex=""></span>
-                            <md-button class="md-icon-button" aria-label="Login" ng-click="openSearch()">
-                                <md-icon md-svg-src="img/magnify.svg" style="color: white;"></md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Login">
-                                <span>Login</span>
-                            </md-button>
-                        </div>
-                    </div>
-
-                    <!-- Barra de pesquisa no topo da página -->
-                    <div id="searchToolBar" class="hidden">
-                        <div id="top-search-wrap">
+<body> 
+    <div ng-controller="appCtrl" layout="column">
+        <!-- Menu Superior-->
+        <md-content>
+            <md-toolbar>
+                <div id="menuToolBar" class="navbar-fixed-top">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button" style="padding-top: 0.6em;" aria-label="Settings" ng-click="toggleLeft()">
+                            <ng-md-icon icon="menu" style="fill: red" size="32"></ng-md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Snippets" ui-sref="home">
+                            <span>Home</span>
+                        </md-button>
+                        <span flex=""></span>
+                        <md-button class="md-icon-button" aria-label="Login" ng-click="openSearch()">
                             <md-icon md-svg-src="img/magnify.svg" style="color: white;"></md-icon>
-                            <input ng-model="valorBusca" type="text" placeholder="{{placeholder}}" style="color: white"
-                                   ng-keypress="keyPress($event)">
-                            <md-button class="md-icon-button" ng-click="closeSearch()">
-                                <i id="top-search-close">&times;</i>
-                            </md-button>
-                        </div>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Login">
+                            <span>Login</span>
+                        </md-button>
                     </div>
-                </md-toolbar>
-            </md-content>
-           
-             <!-- COLOCAR NA PÁGINA DE BUSCA -->
-            @*<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-                <div ng-controller="rightCtrl" layout-padding="">
-                    <md-toolbar class="md-theme-light" ng-click="close()">
-                        <h1 class="md-toolbar-tools">Projetos</h1>
-                    </md-toolbar>
-                    <md-content>
-                        <md-list ng-controller="ListCtrl" class="listdemoListControls" ng-app="MyApp">
-                            <md-list-item ng-repeat="proj in project">
-                                <p>{{ proj.name }}</p>
-                                <md-checkbox class="md-secondary" ng-model="proj.wanted"></md-checkbox>
-                            </md-list-item>
-                    </md-content>
                 </div>
-            </md-sidenav>*@
 
-            @*<div class="container body-content"></div>*@
-
-            @RenderBody()
-            <md-toolbar class="navbar-fixed-bottom">
-                <div layout="row" layout-align="center center" flex>
-                    <p><span>&copy;</span> @DateTime.Now.Year - Repositório</p>
+                <!-- Barra de pesquisa no topo da página -->
+                <div id="searchToolBar" class="hidden">
+                    <div id="top-search-wrap">
+                        <md-icon md-svg-src="img/magnify.svg" style="color: white;"></md-icon>
+                        <input ng-model="valorBusca" type="text" placeholder="{{placeholder}}" style="color: white"
+                               ng-keypress="keyPress($event)">
+                        <md-button class="md-icon-button" ng-click="closeSearch()">
+                            <i id="top-search-close">&times;</i>
+                        </md-button>
+                    </div>
                 </div>
             </md-toolbar>
-            
-           
-            <!-- Sidenav -->
-            <md-content flex="" layout-padding="">
-                <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-                    <div ng-controller="leftCtrl" layout-padding="">
-                        <md-toolbar class="md-theme-light" ng-click="close()">
-                            <h1 class="md-toolbar-tools">Repositório</h1>
-                        </md-toolbar>
-                        <md-content>
-                            <!-- Lista do sidebar -->
-                            <md-list>
-                                <md-list-item class="md-3-line">
-                                    <div class="md-list-item">
-                                        <h3>Snippets</h3>
-                                        <div class="md-list-item">
-                                            <md-button class="md-icon-button" aria-label="Snippets" ui-sref="snippets">
-                                                <md-icon>Buscar</md-icon>
-                                                <span>Buscar</span>
-                                            </md-button>
-                                            </br>
-                                            <md-button class="md-icon-button" aria-label="Snippets" ui-sref="adicionarSnippets.editor">
-                                                <md-icon>Adicionar</md-icon>
-                                                <span>Adicionar</span>
-                                            </md-button>
-                                        </div>
-                                    </div>
-                                    <div class="md-list-item-text">
-                                        <h3>Projetos</h3>
-                                        <div class="md-list-item">
-                                            <md-button class="md-icon-button" aria-label="Projetos" ui-sref="projetos">
-                                                <md-icon>Buscar</md-icon>
-                                                <span>Buscar</span>
-                                            </md-button>
-                                            </br>
-                                            <md-button class="md-icon-button" aria-label="Projetos" ui-sref="adicionaProjetos">
-                                                <md-icon>Buscar</md-icon>
-                                                <span>Adicionar</span>
-                                            </md-button>
-                                        </div>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>
-                    </div>
-                </md-sidenav>
+        </md-content>
 
-                <div layout="column" layout-fill="" layout-align="top center">
-                    <!-- VIEW - UI-ROUTER -->
-                    <div ui-view></div>
+                <!-- Sidenav esquerda-->
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2 fixed-action-btn top" md-component-id="left">
+            <md-toolbar class="md-theme-light">
+                <div layout="row" flex class="ng-binding">
+                    <h1 class="md-toolbar-tools">Menu repositório</h1>
+                    <md-button class="md-icon-button" style="padding-top: 0.6em; margin-top: 0.6em;"
+                               aria-label="Settings" ng-click="toggleLeft()">
+                        <ng-md-icon icon="arrow_back" style="fill: red" size="32"></ng-md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-content layout-padding="" ng-controller="LeftCtrl">
+                <!-- Lista do sidebar -->
+                <md-list>
+                    <md-list-item ng-click="toggleSnippets()">
+                        <p> Snippets </p>
+                        <ng-md-icon icon="{{iconSnippets}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                    </md-list-item>
+                    <md-list-item class="md-icon-button" ng-click="toggleTemas()">
+                        <p> Temas </p>
+                        <ng-md-icon icon="{{iconTemas}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                    </md-list-item>
+                    <md-list-item ng-click="toggleProjs()">
+                        <p> Projetos </p>
+                        <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+
+
+                @RenderBody()
+
+
+            <md-content>
+                <!-- Rodapé -->
+                <div style="margin-top: 4em;">
+                    <md-toolbar class="navbar-fixed-bottom">
+                        <div layout="row" layout-align="center center" flex>
+                            <p><span>&copy;</span> @DateTime.Now.Year - Repositório</p>
+                        </div>
+                    </md-toolbar>
                 </div>
             </md-content>
-            
-        </div>
+    </div>
 
-        @Scripts.Render("~/bundles/angular")
-        @Scripts.Render("~/bundles/ace")
-        @Scripts.Render("~/bundles/zip")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/repositorio")
-        @Scripts.Render("~/bundles/repositorioServices")
-        @Scripts.Render("~/bundles/repositorioControllers")
-        @Scripts.Render("~/bundles/repositorioConfig")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/ace")
+    @Scripts.Render("~/bundles/zip")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/repositorio")
+    @Scripts.Render("~/bundles/repositorioServices")
+    @Scripts.Render("~/bundles/repositorioControllers")
+    @Scripts.Render("~/bundles/repositorioConfig")
+    @RenderSection("scripts", required: false)
 
-        <!-- Import de js materialize-->
-        <script type="text/javascript" src="~/Scripts/materialize/materialize.js"></script>
+    <!-- Import de js materialize-->
+    <script type="text/javascript" src="~/Scripts/materialize/materialize.js"></script>
 
-    </body>
+</body>
 </html>

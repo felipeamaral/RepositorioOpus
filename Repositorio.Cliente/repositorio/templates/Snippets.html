@@ -5,69 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
-<div class="container" ng-controller="SnippetsCtrl">
-    <h1 class="text-center" style="margin-bottom: 1em;">
-        Snippets
-    </h1>
+<md-content>
 
-    <!-- Botão de adicionar novo snippet -->
-    <div class="fixed-action-btn bottom">
-        <a class="btn-floating btn-large red">
-            <i class="mdi-content-add"></i>
-        </a>
-    </div>
+    <md-button class="md-icon-button fixed-action-btn top" style="padding-top: 0.6em; margin-top: 0.6em;"
+               aria-label="Settings" ng-click="toggleRight()">
+        <ng-md-icon icon="more_vert" style="fill: red" size="32"></ng-md-icon>
+    </md-button>
+
+    <div class="container">
+
+        <h1 class="text-center" style="margin-bottom: 1em;">
+            Snippets
+        </h1>
+
+        <!-- Botão de adicionar novo snippet -->
+        <div class="fixed-action-btn bottom">
+            <a class="btn-floating btn-large red">
+                <i class="mdi-content-add"></i>
+            </a>
+        </div>
 
 
 
-    <div class="row">
-        <!-- Insere um cartão contendo a imagem do snippet-->
-        <div class="col s12 m4 l4" ng-repeat="snippet in snippets">
-            <div class="card">
-                <!-- Insere título no cartão-->
-                <div class="card-title center">{{snippet.nome}}</div>
-                <!-- Insere a imagem no cartão-->
-                <div class="card-image">
-                    <img ng-src={{snippet.endImagem}} height="175">
-                </div>
-                <!-- Exibe as opções -->
-                <div class="card-action action">
-                    <a ui-sref="visualizaSnippet({id: snippet.idComponente})">Visualização</a>
-                    <a href='' ng-click="download(snippet)">Download</a>
+        <div class="row">
+            <!-- Insere um cartão contendo a imagem do snippet-->
+            <div class="col s12 m4 l4" ng-repeat="snippet in snippets">
+                <div class="card">
+                    <!-- Insere título no cartão-->
+                    <div class="card-title center">{{snippet.nome}}</div>
+                    <!-- Insere a imagem no cartão-->
+                    <div class="card-image">
+                        <img ng-src={{snippet.endImagem}} height="175">
+                    </div>
+                    <!-- Exibe as opções -->
+                    <div class="card-action action">
+                        <a ui-sref="visualizaSnippet({id: snippet.idComponente})">Visualização</a>
+                        <a href='' ng-click="download(snippet)">Download</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Paginação -->
-    <div class="row">
-        <div class="text-center">
-           <ul class="pagination pagination-lg">
-               <li>
-                   <a href="" aria-label="Next" ng-click="goToPage(1, true, false)">
-                       <span aria-hidden="true">Primeira</span>
-                   </a>
-               </li>
-                <li>
-                    <a href="" aria-label="Previous" ng-click="goToPreviousPage()" ng-show="paginaAtual > 1">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
-                <li>
-                   <a href="" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
-                       <span aria-hidden="true">&raquo;</span>
-                   </a>
-                </li>
-                <li>
-                    <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)">
-                        <span aria-hidden="true">Última</span>
-                    </a>
-                </li>
-            </ul>
+        <!-- Paginação -->
+        <div class="row">
+            <div class="text-center">
+                <ul class="pagination pagination-lg">
+                    <li>
+                        <a href="" aria-label="Next" ng-click="goToPage(1, true, false)">
+                            <span aria-hidden="true">Primeira</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" aria-label="Previous" ng-click="goToPreviousPage()" ng-show="paginaAtual > 1">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
+                    <li>
+                        <a href="" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)">
+                            <span aria-hidden="true">Última</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-</div>
+        <!-- Sidenav direita-->
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2 fixed-action-btn top"
+                    md-component-id="right" style="height: 100%">
+            <md-toolbar class="md-theme-light" style="border: none;">
+                <div layout="row" flex class="ng-binding">
+                    <md-button class="md-icon-button" style="padding-top: 0.6em; margin-top: 0.6em;"
+                               aria-label="Settings" ng-click="toggleRight()">
+                        <ng-md-icon icon="arrow_forward" style="fill: red" size="32"></ng-md-icon>
+                    </md-button>
+                    <h1 class="md-toolbar-tools">Projetos</h1>
+                </div>
+            </md-toolbar>
+
+            <md-content layout-padding="">
+                <!-- Lista do sidebar -->
+                <md-list>
+                    <md-list-item>
+                        <p> Projeto1 </p>
+                        <md-checkbox class="md-secondary" ng-model="topping.wanted1"></md-checkbox>
+                    </md-list-item>
+                    <md-list-item class="md-icon-button">
+                        <p> Projeto2 </p>
+                        <md-checkbox class="md-secondary" ng-model="topping.wanted2"></md-checkbox>
+                    </md-list-item>
+                    <md-list-item>
+                        <p> Projeto3 </p>
+                        <md-checkbox class="md-secondary" ng-model="topping.wanted3"></md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+    </div>
+</md-content>
 
 
 <!-- Import de js -->

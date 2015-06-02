@@ -33,7 +33,9 @@ namespace Repositorio.Cliente
                       "~/Scripts/angular/angular-aria.min.js",
                       "~/Scripts/angular/angular-ui-router.js",
                       "~/Scripts/angular/angular-material.min.js",
-                      "~/Scripts/angular/angular-resource.min.js"));
+                      "~/Scripts/angular/angular-resource.min.js",
+                      "~/Scripts/angular/angular-material-icons.min.js",
+                      "~/Scripts/angular/svg-morpheus.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ace").Include(
                       "~/Scripts/ace/src-noconflict/ace.js",
@@ -61,7 +63,8 @@ namespace Repositorio.Cliente
                       "~/repositorio/controllers/sideBar-controller.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",
-                      "~/repositorio/controllers/EditorCtrl.js"));
+                      "~/repositorio/controllers/EditorCtrl.js",
+                      "~/repositorio/controllers/LeftCtrl.js"));
 
         }
     }

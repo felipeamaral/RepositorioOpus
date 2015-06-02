@@ -137,7 +137,10 @@
     <Content Include="Content\angular-material.min.css" />
     <Content Include="repositorio\appConfig.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
+    <Content Include="repositorio\controllers\LeftCtrl.js" />
+    <Content Include="Scripts\angular\angular-material-icons.min.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
+    <Content Include="Scripts\angular\svg-morpheus.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\material-design-icons\Material-Design-Icons.eot" />

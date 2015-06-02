@@ -1,12 +1,26 @@
-﻿app.controller('SnippetsCtrl', function ($scope, apiService) {
+﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil) {
 
-    var qntd = 2;
+    var qntd = 9;
     var qntdPaginasMostra = 5;
     var valorBusca;
 
     $scope.qntdPaginas = 0;
     $scope.paginaAtual = 0;
     $scope.proj = "";
+
+    $scope.toggleRight = buildToggler('right');
+
+    function buildToggler(navID) {
+        var debounceFn = $mdUtil.debounce(function () {
+            $mdSidenav(navID)
+              .toggle()
+              .then(function () {
+                  $log.debug("toggle " + navID + " is done");
+              });
+        }, 300);
+
+        return debounceFn;
+    }
 
     /*Inicializa as páginas a serem mostradas*/
     var setaPaginas = function (qntdPaginas) {

@@ -1,7 +1,7 @@
 ﻿app.controller('VisualizarSnippetCtrl', function ($scope, apiService, id) {
 
     $scope.idSnippet = id;
-    $scope.teste = "repositorio/templates/editor.html";
+    $scope.editor = "repositorio/templates/editor.html";
 
     $scope.$emit('placeholder', { place: "Busque por um snippet" });
 
