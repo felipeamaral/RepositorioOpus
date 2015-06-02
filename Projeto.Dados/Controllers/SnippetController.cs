@@ -47,47 +47,13 @@ namespace Projeto.Dados.Controllers
 
         }
 
-        //Retorna quantidade de snippets contidos no banco
-        [Route("api/snippet")]
-        public int[] Get()
-        {
-            List<int> retorno = new List<int>();
-            retorno.Add(this.snippetRepository.GetComponentes().Count());
-
-            return retorno.ToArray();
-        }
-
         // Retorna a url das imagens dos snippets de (pageNumber-1)*qntd até (pageNumber-1)*qntd + qntd
         [Route("api/snippet/{qntd:int}/{pageNumber:int}")]
         public ComponenteImg[] Get(int qntd, int pageNumber)
         {
             List<Componente> snippets = this.snippetRepository.GetComponentes().OrderBy(c => c.idComponente).ToList();
 
-            /*Verifica se tem elementos suficientes pra essa pagina*/
-            int qntdPagesCheias = snippets.Count() / qntd;
-            int qntdThisPage = snippets.Count() % qntd;
-            int qntdPage = qntdPagesCheias;
-            if (qntdThisPage > 0)
-            {
-                qntdPage += 1;
-            }
-
-            /*Tem componentes pra encher uma página*/
-            if (qntdPagesCheias >= pageNumber)
-            {
-                return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntd), qntdPage);
-            }
-            /*Tem componentes pra colocar na página*/
-            else if (qntdPagesCheias == pageNumber - 1)
-            {
-                if (qntdThisPage > 0)
-                {
-                    return getEndImagens(snippets.GetRange((pageNumber - 1) * qntd, qntdThisPage), qntdPage);
-                }
-            }
- 
-            /*Não tem componentes suficientes pra chegar nessa página*/
-            return new ComponenteImg[0];
+            return setPages(snippets, qntd, pageNumber);
         }
 
         // Adiciona um novo snippet -- OK
@@ -186,6 +152,36 @@ namespace Projeto.Dados.Controllers
                 .Where(c => c.nome.ToLower().Contains(nomeMin) ||
                     c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
 
+            return setPages(snippets, qntd, pageNumber);
+        }
+
+        // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo, kw e projeto -- OK
+        [Route("api/snippet/busca/{nome}/{idProjeto}/{qntd:int}/{pageNumber:int}")]
+        public ComponenteImg[] GetByProjeto(string nome, int idProjeto, int qntd, int pageNumber)
+        {
+
+            string nomeMin = nome.ToLower();
+
+            // Busca pelos snippets que pertencem a um determinado projeto e possuem a string informada no nome ou nas kws
+            List<Componente> snippets = this.snippetRepository.GetComponentes()
+                .Where(c => c.projeto == idProjeto && (c.nome.ToLower().Contains(nomeMin)) ||
+                    c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
+
+            return setPages(snippets, qntd, pageNumber);
+        }
+
+        // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por projeto -- OK
+        [Route("api/snippet/busca/{idProjeto:int}/{qntd:int}/{pageNumber:int}")]
+        public ComponenteImg[] GetByProjeto(int idProjeto, int qntd, int pageNumber)
+        {
+
+            List<Componente> snippets = this.snippetRepository.GetComponentes().Where(c => c.projeto == idProjeto).ToList();
+
+            return setPages(snippets, qntd, pageNumber);
+        }
+
+        private ComponenteImg[] setPages(List<Componente> snippets, int qntd, int pageNumber)
+        {
             /*Verifica se tem elementos suficientes pra essa pagina*/
             int qntdPagesCheias = snippets.Count() / qntd;
             int qntdThisPage = snippets.Count() % qntd;
@@ -212,31 +208,6 @@ namespace Projeto.Dados.Controllers
 
             /*Não tem componentes suficientes pra chegar nessa página*/
             return new ComponenteImg[0];
-        }
-
-        // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo, kw e projeto -- OK
-        [Route("api/snippet/busca/{nome}/{idProjeto}")]
-        public ComponenteImg[] GetByProjeto(string nome, int idProjeto)
-        {
-
-            string nomeMin = nome.ToLower();
-
-            // Busca pelos snippets que pertencem a um determinado projeto e possuem a string informada no nome ou nas kws
-            List<Componente> snippets = this.snippetRepository.GetComponentes()
-                .Where(c => c.projeto == idProjeto && (c.nome.ToLower().Contains(nomeMin)) ||
-                    c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
-
-            return getEndImagens(snippets, 1);
-        }
-
-        // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por projeto -- OK
-        [Route("api/snippet/busca/{idProjeto:int}")]
-        public ComponenteImg[] GetByProjeto(int idProjeto)
-        {
-
-            List<Componente> snippets = this.snippetRepository.GetComponentes().Where(c => c.projeto == idProjeto).ToList();
-
-            return getEndImagens(snippets, 1);
         }
 
         // Pega todas as informações de um snippet específico -- OK

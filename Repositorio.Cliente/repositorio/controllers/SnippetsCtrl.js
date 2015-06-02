@@ -2,6 +2,7 @@
 
     var qntd = 2;
     var qntdPaginasMostra = 5;
+    var valorBusca;
 
     $scope.qntdPaginas = 0;
     $scope.paginaAtual = 0;
@@ -18,8 +19,15 @@
 
     //Fica escutando quando deverá realizar uma busca
     $scope.$on('busca', function (event, args) {
-        $scope.paginaAtual = 0;
-        $scope.goToPage(1, true, false);
+
+        // Verifica se já não é a busca cujo os resultados estão sendo mostrados
+        if ($scope.valorBusca.toLowerCase() !== valorBusca) {
+            $scope.paginaAtual = 0;
+            valorBusca = $scope.valorBusca.toLowerCase();
+            $scope.goToPage(1, true, false);
+        } else {
+            // Exibe mensagem de que essa é a busca atual
+        }
     });
 
     $scope.$emit('placeholder', {place: "Busque por um snippet"});
@@ -29,18 +37,18 @@
         
         var params = {};
         /*Define os parâmetros que serão passados*/
-        if (($scope.valorBusca == "" || $scope.valorBusca == undefined || $scope.valorBusca == null) &&
+        if ((valorBusca == "" || valorBusca == undefined || valorBusca == null) &&
                 ($scope.proj == "" || $scope.proj == undefined || $scope.proj == null)) {
             params = { qntd: qntd, pageNumber: pageNumber };
             url = "getImagens";
         } else if ($scope.proj == "" || $scope.proj == undefined || $scope.proj == null) {
-            params = { nome: $scope.valorBusca, qntd: qntd, pageNumber: pageNumber };
+            params = { nome: valorBusca, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetNome";
-        } else if ($scope.valorBusca == "" || $scope.valorBusca == undefined || $scope.valorBusca == null) {
+        } else if (valorBusca == "" || valorBusca == undefined || valorBusca == null) {
             params = { idProjeto: $scope.proj, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetProjeto";
         } else {
-            params = { nome: $scope.valorBusca, idProjeto: $scope.proj, qntd: qntd, pageNumber: pageNumber };
+            params = { nome: valorBusca, idProjeto: $scope.proj, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetNomeProj";
         }
         

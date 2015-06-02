@@ -4,7 +4,7 @@
     $scope.toggleRight = buildToggler('right');
     $scope.demo = {};
 
-    $scope.valorBusca = "";
+    var valorBusca = "";
 
     //Fica escutando pra saber qual o placeholder da barra de busca
     $scope.$on('placeholder', function (event, args) {
@@ -13,6 +13,7 @@
 
     $scope.keyPress = function (event) {
         if (event.which === 13) {
+            valorBusca = $scope.valorBusca;
             $scope.$broadcast('busca', { valor: $scope.valorBusca });
         }
     }
@@ -39,6 +40,8 @@
 
     // Abre a barra de busca
     $scope.openSearch = function () {
+        $scope.valorBusca = valorBusca;
+
         $("#menuToolBar").addClass("hidden");
         $("#searchToolBar").removeClass("hidden");
     };
