@@ -60,7 +60,7 @@ namespace Repositorio.Cliente
                       "~/repositorio/controllers/AddSnippetCtrl.js",
                       "~/repositorio/controllers/listaMenu-controller.js",
                       "~/repositorio/controllers/searchCtrl.js",
-                      "~/repositorio/controllers/sideBar-controller.js",
+                      "~/repositorio/controllers/appCtrl.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",
                       "~/repositorio/controllers/EditorCtrl.js",

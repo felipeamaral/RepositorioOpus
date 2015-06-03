@@ -1,15 +1,27 @@
-﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil) {
+﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log) {
 
-    var qntd = 9;
+    var qntd = 3;
     var qntdPaginasMostra = 5;
     var valorBusca;
+    var projBusca = "";
 
     $scope.qntdPaginas = 0;
     $scope.paginaAtual = 0;
-    $scope.proj = "";
+
+    //Pega os projetos contidos no banco para o filtro por projeto
+    var projetos = apiService.projetos.query(function () {
+        $scope.projetosCadastrados = projetos;
+        $scope.projSelecionado = [];
+
+        /*seta todos como não selecionados*/
+        projetos.forEach(function (proj, index) {
+            $scope.projSelecionado[index] = false;
+        });
+    });
 
     $scope.toggleRight = buildToggler('right');
 
+    /*Função que realiza a abertura da barra alteral direita*/
     function buildToggler(navID) {
         var debounceFn = $mdUtil.debounce(function () {
             $mdSidenav(navID)
@@ -18,12 +30,12 @@
                   $log.debug("toggle " + navID + " is done");
               });
         }, 300);
-
         return debounceFn;
-    }
+    };
 
     /*Inicializa as páginas a serem mostradas*/
     var setaPaginas = function (qntdPaginas) {
+
         $scope.qntdPaginas = qntdPaginas;
         $scope.paginas = [];
         for (var i = 0; i < qntdPaginasMostra && i < qntdPaginas; i++) {
@@ -48,21 +60,21 @@
 
     /*Pega os snippets da página informada*/
     $scope.goToPage = function (pageNumber, primeira, last) {
-        
+
         var params = {};
         /*Define os parâmetros que serão passados*/
         if ((valorBusca == "" || valorBusca == undefined || valorBusca == null) &&
-                ($scope.proj == "" || $scope.proj == undefined || $scope.proj == null)) {
+                (projBusca.length == 0 || projBusca == undefined || projBusca == null)) {
             params = { qntd: qntd, pageNumber: pageNumber };
             url = "getImagens";
-        } else if ($scope.proj == "" || $scope.proj == undefined || $scope.proj == null) {
+        } else if (projBusca.length == 0 || projBusca == undefined || projBusca == null) {
             params = { nome: valorBusca, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetNome";
         } else if (valorBusca == "" || valorBusca == undefined || valorBusca == null) {
-            params = { idProjeto: $scope.proj, qntd: qntd, pageNumber: pageNumber };
+            params = { projetos: projBusca, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetProjeto";
         } else {
-            params = { nome: valorBusca, idProjeto: $scope.proj, qntd: qntd, pageNumber: pageNumber };
+            params = { nome: valorBusca, projetos: projBusca, qntd: qntd, pageNumber: pageNumber };
             url = "buscaSnippetNomeProj";
         }
         
@@ -80,7 +92,7 @@
             $scope.snippets = aux;
 
             /*Verifica se clicou pra ir direto pra primeira página*/
-            if (primeira && $scope.paginaAtual != pageNumber) {
+            if (primeira) {
                 setaPaginas($scope.snippets[0].qntdPages);
             }
 
@@ -131,5 +143,29 @@
                 }
             }
         }
+    }
+
+    // Faz o filtro pelos projetos
+    $scope.filtrar = function () {
+
+        //Limpa a variavel que contera os projetos a serem filtrados
+        projBusca = "";
+
+        /*Monta o parâmetro de busca de projetos e chama a função de busca*/
+        $scope.projSelecionado.forEach(function (projeto, index) {
+            if (projeto) {
+                if (projBusca === "") {
+                    projBusca = projBusca + $scope.projetosCadastrados[index].idProjeto;
+                } else {
+                    projBusca = projBusca + "0" + $scope.projetosCadastrados[index].idProjeto;
+                }
+            }
+        });
+
+        //Chama a busca
+        $scope.goToPage(1, true, false);
+
+        //Fecha o menu lateral
+        $scope.toggleRight();
     }
 });

@@ -176,3 +176,7 @@ md-toolbar.side-nav-toolbar{
     border-bottom: 1px solid red;
     border-top: 1px solid red;
 }
+
+md-sidenav{
+    height: 90%;
+}

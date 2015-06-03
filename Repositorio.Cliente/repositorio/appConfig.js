@@ -28,7 +28,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
             }*/
         })
         .state('adicionarSnippets', {
-            url: "/Repositorio/Submeter",
+            url: "/Repositorio/Snippet/Adicionar",
             templateUrl: "repositorio/templates/Snippets_Adicionar.html",
             controller: 'AddSnippetCtrl'
         })
