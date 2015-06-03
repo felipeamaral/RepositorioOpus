@@ -8,10 +8,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    <link rel="stylesheet" href="~/Content/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="~/Content/angular-material.min.css">
     <link rel="stylesheet" href="~/Content/search.css" />
     <link type="text/css" rel="stylesheet" href="Content/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css"/>
 
 </head>
 <body> 
@@ -51,36 +52,38 @@
             </md-toolbar>
         </md-content>
 
-                <!-- Sidenav esquerda-->
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2 fixed-action-btn top" md-component-id="left">
-            <md-toolbar class="md-theme-light">
-                <div layout="row" flex class="ng-binding">
-                    <h1 class="md-toolbar-tools">Menu repositório</h1>
-                    <md-button class="md-icon-button" style="padding-top: 0.6em; margin-top: 0.6em;"
-                               aria-label="Settings" ng-click="toggleLeft()">
-                        <ng-md-icon icon="arrow_back" style="fill: red" size="32"></ng-md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
+        <div>
+        <!-- Sidenav esquerda-->
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2 fixed-action-btn top" md-component-id="left"
+                        id="menuLateral" style="height: 100%">
+                <md-toolbar class="md-theme-light">
+                    <div layout="row" flex class="ng-binding">
+                        <h1 class="md-toolbar-tools">Menu repositório</h1>
+                        <md-button class="md-icon-button" style="padding-top: 0.6em; margin-top: 0.6em;"
+                                   aria-label="Settings" ng-click="toggleLeft()">
+                            <ng-md-icon icon="arrow_back" style="fill: red" size="32"></ng-md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
 
-            <md-content layout-padding="" ng-controller="LeftCtrl">
-                <!-- Lista do sidebar -->
-                <md-list>
-                    <md-list-item ng-click="toggleSnippets()">
-                        <p> Snippets </p>
-                        <ng-md-icon icon="{{iconSnippets}}" style="fill: black" class="md-icon-button"></ng-md-icon>
-                    </md-list-item>
-                    <md-list-item class="md-icon-button" ng-click="toggleTemas()">
-                        <p> Temas </p>
-                        <ng-md-icon icon="{{iconTemas}}" style="fill: black" class="md-icon-button"></ng-md-icon>
-                    </md-list-item>
-                    <md-list-item ng-click="toggleProjs()">
-                        <p> Projetos </p>
-                        <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
-                    </md-list-item>
-                </md-list>
-            </md-content>
-        </md-sidenav>
+                <md-content layout-padding="" ng-controller="LeftCtrl">
+                    <!-- Lista do sidebar -->
+                    <md-list>
+                        <md-list-item ng-click="toggleSnippets()">
+                            <p> Snippets </p>
+                            <ng-md-icon icon="{{iconSnippets}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                        </md-list-item>
+                        <md-list-item class="md-icon-button" ng-click="toggleTemas()">
+                            <p> Temas </p>
+                            <ng-md-icon icon="{{iconTemas}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                        </md-list-item>
+                        <md-list-item ng-click="toggleProjs()">
+                            <p> Projetos </p>
+                            <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-sidenav>
 
 
                 @RenderBody()
