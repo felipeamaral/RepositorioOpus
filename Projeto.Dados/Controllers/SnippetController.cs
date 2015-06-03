@@ -40,7 +40,7 @@ namespace Projeto.Dados.Controllers
             foreach (Componente snippet in snippets)
             {
                 string endImg = "http://" + caminhoServer + snippet.idComponente.ToString() + ".png";
-                retorno.Add(new ComponenteImg(snippet.idComponente, endImg, snippet.nome, qntdPages));
+                retorno.Add(new ComponenteImg(snippet.idComponente, endImg, snippet.nome, snippet.projeto, qntdPages));
             }
 
             return retorno.ToArray();
@@ -156,26 +156,32 @@ namespace Projeto.Dados.Controllers
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por titulo, kw e projeto -- OK
-        [Route("api/snippet/busca/{nome}/{idProjeto}/{qntd:int}/{pageNumber:int}")]
-        public ComponenteImg[] GetByProjeto(string nome, int idProjeto, int qntd, int pageNumber)
+        [Route("api/snippet/busca/{nome}/{projetos}/{qntd:int}/{pageNumber:int}")]
+        public ComponenteImg[] GetByProjeto(string nome, string projetos, int qntd, int pageNumber)
         {
+
+            string[] projs = projetos.Split(new Char [] {'0'});
+            
 
             string nomeMin = nome.ToLower();
 
             // Busca pelos snippets que pertencem a um determinado projeto e possuem a string informada no nome ou nas kws
             List<Componente> snippets = this.snippetRepository.GetComponentes()
-                .Where(c => c.projeto == idProjeto && (c.nome.ToLower().Contains(nomeMin)) ||
+                .Where(c => projs.Any(p => Convert.ToInt32(p) == c.projeto) && (c.nome.ToLower().Contains(nomeMin)) ||
                     c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
 
             return setPages(snippets, qntd, pageNumber);
         }
 
         // Retorna a url das imagens de todos os snippets contidos no banco, filtrados por projeto -- OK
-        [Route("api/snippet/busca/{idProjeto:int}/{qntd:int}/{pageNumber:int}")]
-        public ComponenteImg[] GetByProjeto(int idProjeto, int qntd, int pageNumber)
+        [Route("api/snippet/busca/{qntd:int}/{pageNumber:int}/{projetos}")]
+        public ComponenteImg[] GetByProjeto(int qntd, int pageNumber, string projetos)
         {
 
-            List<Componente> snippets = this.snippetRepository.GetComponentes().Where(c => c.projeto == idProjeto).ToList();
+            string[] projs = projetos.Split(new Char[] {'0'});
+
+            List<Componente> snippets = this.snippetRepository.GetComponentes().Where(
+                c => projs.Any(p => Convert.ToInt32(p) == c.projeto)).ToList();
 
             return setPages(snippets, qntd, pageNumber);
         }
