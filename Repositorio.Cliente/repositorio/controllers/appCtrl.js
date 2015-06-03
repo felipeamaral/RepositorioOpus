@@ -2,6 +2,7 @@
 
     $scope.toggleLeft = buildToggler('left');    
     $scope.demo = {};
+    $scope.iconMenu = "menu";
 
     var valorBusca = "";
 
@@ -10,6 +11,16 @@
         $scope.placeholder = args.place;
     });
 
+    $scope.changeIcon = function () {
+        if ($scope.iconMenu === "menu") {
+            $scope.iconMenu = "arrow_back";
+        } else {
+            $scope.iconMenu = "menu";
+        }
+
+        $scope.toggleLeft();
+    };
+
     $scope.keyPress = function (event) {
         if (event.which === 13) {
             valorBusca = $scope.valorBusca;
@@ -17,7 +28,7 @@
         }
     }
 
-    function buildToggler(navID) {       
+    function buildToggler(navID) {
         var debounceFn = $mdUtil.debounce(function () {
             $mdSidenav(navID)
               .toggle()

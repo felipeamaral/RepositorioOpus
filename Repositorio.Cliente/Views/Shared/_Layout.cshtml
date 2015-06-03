@@ -23,8 +23,9 @@
             <md-toolbar style="background-color: white" class="navbar-fixed-top">
                 <div id="menuToolBar">
                     <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" style="padding-top: 0.6em;" aria-label="Settings" ng-click="toggleLeft()">
-                            <ng-md-icon icon="menu" style="fill: red" size="32"></ng-md-icon>
+                        <md-button class="md-icon-button" style="padding-top: 0.6em;" aria-label="Settings"
+                                   ng-click="changeIcon()">
+                            <ng-md-icon icon={{iconMenu}} style="fill: red" size="32"></ng-md-icon>
                         </md-button>
                         <md-button class="md-icon-button" aria-label="Snippets" ui-sref="home">
                             <span>Home</span>
