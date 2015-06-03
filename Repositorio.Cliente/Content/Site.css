@@ -93,7 +93,7 @@ textarea {
     background-color: #1F1F1F;
 }
 
-#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap, .md-theme-light.md-default-theme{
+#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap{
     background-color: #1F1F1F;
     border-top: 0.2em solid red;
 }
@@ -152,7 +152,6 @@ md-list-item:hover{
 }
 
 #filtroProjSnippet{
-    margin-top: -1.5em;
     margin-right: -1em;
 }
 
@@ -160,4 +159,20 @@ md-list-item:hover{
     outline: none;
     border: none;
     background-color: transparent;
+}
+
+#menuLateral{
+    margin-top: -0.15em;
+}
+
+.card.small{
+    height: 7em;
+    margin: 0em;
+}
+
+md-toolbar.side-nav-toolbar{
+    background-color: #1F1F1F;
+    padding: 0em;
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
 }
