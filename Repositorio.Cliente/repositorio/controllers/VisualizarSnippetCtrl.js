@@ -18,5 +18,6 @@
     // Pega o nome do snippet
     var snippet = apiService.getImagens.get({ id: id }, function () {
         $scope.nomeSnippet = snippet.nome;
+        $scope.kws = snippet.keyword;
     });
 });

@@ -8,33 +8,34 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
             url: "/Repositorio/Home",
             templateUrl: "repositorio/templates/Snippets.html",
             controller: 'SnippetsCtrl',
+            resolve: {
+                valorBusca: function () {
+                    return null;
+                }
+            }
         })
         .state('projetos', {
             url: "/Repositorio/Projetos",
             templateUrl: "repositorio/templates/Projetos.html"
         })
         .state('snippets', {
-            url: "/Repositorio/Snippets",
+            url: "/Repositorio/Snippets/{valorBusca}",
             templateUrl: "repositorio/templates/Snippets.html",
             controller: 'SnippetsCtrl',
-            /*resolve: {
-                busca: ['$stateParams', function ($stateParams) {
-                    if ($stateParams) {
-                        return $stateParams.busca;
+            resolve: {
+                valorBusca: ['$stateParams', function ($stateParams) {
+                    if ($stateParams.valorBusca) {
+                        return $stateParams.valorBusca;
                     } else {
                         return "";
                     }
                 }]
-            }*/
+            }
         })
         .state('adicionarSnippets', {
             url: "/Repositorio/Snippet/Adicionar",
             templateUrl: "repositorio/templates/Snippets_Adicionar.html",
             controller: 'AddSnippetCtrl'
-        })
-        .state('adicionaProjetos', {
-            url: "/Repositorio/Projeto/Submeter",
-            templateUrl: "repositorio/templates/Projetos-Adicionar.html"
         })
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/{id:int}/Visualizar",

@@ -24,7 +24,7 @@ namespace Projeto.Dados.DAL
         //Retorna um componente através do seu id
         public Componente GetComponenteByID(int componenteID)
         {
-            return this.context.Componente.Find(componenteID);
+            return this.GetComponentes().Where(c => c.idComponente == componenteID).FirstOrDefault();
         }
 
         //Insere um novo componente no banco

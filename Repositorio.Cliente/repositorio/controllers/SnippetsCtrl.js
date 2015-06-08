@@ -1,8 +1,7 @@
-﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log) {
+﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, valorBusca) {
 
     var qntd = 3;
     var qntdPaginasMostra = 5;
-    var valorBusca;
     var projBusca = "";
 
     $scope.qntdPaginas = 0;
@@ -92,7 +91,7 @@
             $scope.snippets = aux;
 
             /*Verifica se clicou pra ir direto pra primeira página*/
-            if (primeira) {
+            if (primeira && $scope.snippets.length > 0) {
                 setaPaginas($scope.snippets[0].qntdPages);
             }
 
@@ -150,7 +149,7 @@
 
         //Limpa a variavel que contera os projetos a serem filtrados
         projBusca = "";
-
+        
         /*Monta o parâmetro de busca de projetos e chama a função de busca*/
         $scope.projSelecionado.forEach(function (projeto, index) {
             if (projeto) {

@@ -182,7 +182,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Scripts\select.min.js" />
     <Content Include="repositorio\templates\Projetos-Adicionar.html" />
     <Content Include="repositorio\templates\Projetos.html" />
     <Content Include="repositorio\templates\Snippets.html" />

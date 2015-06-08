@@ -172,8 +172,8 @@ namespace Projeto.Dados.Controllers
 
             // Busca pelos snippets que pertencem a um determinado projeto e possuem a string informada no nome ou nas kws
             List<Componente> snippets = this.snippetRepository.GetComponentes()
-                .Where(c => projs.Any(p => Convert.ToInt32(p) == c.projeto) && (c.nome.ToLower().Contains(nomeMin)) ||
-                    c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin))).ToList();
+                .Where(c => projs.Any(p => Convert.ToInt32(p) == c.projeto) && ((c.nome.ToLower().Contains(nomeMin)) ||
+                    c.Keyword.Any(k => k.kw.ToLower().Contains(nomeMin)))).ToList();
 
             return setPages(snippets, qntd, pageNumber);
         }
