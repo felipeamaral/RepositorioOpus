@@ -1,4 +1,4 @@
-﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, valorBusca) {
+﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca) {
 
     var qntd = 3;
     var qntdPaginasMostra = 5;
@@ -6,11 +6,12 @@
 
     $scope.qntdPaginas = 0;
     $scope.paginaAtual = 0;
+    $scope.valoresBusca = [];
+    $scope.projSelecionado = [];
 
     //Pega os projetos contidos no banco para o filtro por projeto
     var projetos = apiService.projetos.query(function () {
         $scope.projetosCadastrados = projetos;
-        $scope.projSelecionado = [];
 
         /*seta todos como não selecionados*/
         projetos.forEach(function (proj, index) {
@@ -48,10 +49,7 @@
         // Verifica se já não é a busca cujo os resultados estão sendo mostrados
         if ($scope.valorBusca.toLowerCase() !== valorBusca) {
             $scope.paginaAtual = 0;
-            valorBusca = $scope.valorBusca.toLowerCase();
-            $scope.goToPage(1, true, false);
-        } else {
-            // Exibe mensagem de que essa é a busca atual
+            $state.go('snippets', { valorBusca: $scope.valorBusca });
         }
     });
 
@@ -96,6 +94,19 @@
             }
 
             $scope.paginaAtual = pageNumber;
+
+            //Seta os valores da busca na váriavel pra exibir como tags
+            cont = 0;
+            if (valorBusca && valorBusca != "") {
+                $scope.valoresBusca[cont] = valorBusca;
+                cont++;
+            }
+            $scope.projSelecionado.forEach(function (projeto, index) {
+                if (projeto) {
+                    $scope.valoresBusca[cont] = $scope.projetosCadastrados[index].nome;
+                    cont++;
+                }
+            });
         });
     };
 

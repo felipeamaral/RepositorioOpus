@@ -16,13 +16,13 @@
         <h2 class="text-center" style="margin-top: 1em;">
             Snippets
         </h2>
-
-        <!--<div class="text-center" style="margin-bottom: 3em;">
-            <a class="btn-sm waves-effect waves-light small red" ng-repeat="proj in projSelecionado"
-               ng-show="proj">{{projetosCadastrados[$index].nome}} 
-                <ng-md-icon icon="local_offer" style="fill: white;" size="16"></ng-md-icon>
+        <div class="text-center" style="margin-bottom: 3em; margin-top: -1em;">
+            <a class="btn-sm waves-effect waves-light small red" ng-repeat="tag in valoresBusca">
+                {{tag}}
+                <ng-md-icon icon="local_offer" style="fill: white;" size="14"></ng-md-icon>
             </a>
-        </div>-->
+        </div>
+
 
         <!-- Botão de adicionar novo snippet -->
         <div class="fixed-action-btn bottom" ui-sref="adicionarSnippets">
