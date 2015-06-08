@@ -31,14 +31,11 @@ app.controller('EditorCtrl', function ($scope, apiService) {
         });
     }
 
+    // Inicializa a sessão de cada um dos editores
     $scope.aceLoaded = function (_editor, tipo) {
         _editor.$blockScrolling = Infinity;
         $scope.aceSessions[cont] = _editor.getSession();
         cont++;
-    };
-
-    $scope.aceChangedHtml = function (_editor) {
-        $scope.htmlFile = $scope.aceSessions[0].getValue();
     };
 
     // Faz download dos arquivos

@@ -47,6 +47,11 @@ namespace Projeto.Dados.Controllers
 
         }
 
+        // Retorn um snippet através do seu id
+        public Componente Get(int id){
+            return this.snippetRepository.GetComponenteByID(id);
+        }
+
         // Retorna a url das imagens dos snippets de (pageNumber-1)*qntd até (pageNumber-1)*qntd + qntd
         [Route("api/snippet/{qntd:int}/{pageNumber:int}")]
         public ComponenteImg[] Get(int qntd, int pageNumber)
@@ -214,12 +219,6 @@ namespace Projeto.Dados.Controllers
 
             /*Não tem componentes suficientes pra chegar nessa página*/
             return new ComponenteImg[0];
-        }
-
-        // Pega todas as informações de um snippet específico -- OK
-        public Componente Get(int id)
-        {
-            return this.snippetRepository.GetComponenteByID(id);
         }
 
         // Retorna os arquivos em um .zip
