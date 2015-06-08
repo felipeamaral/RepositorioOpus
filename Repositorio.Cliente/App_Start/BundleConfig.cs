@@ -43,7 +43,8 @@ namespace Repositorio.Cliente
 
             bundles.Add(new ScriptBundle("~/bundles/zip").Include(
                       "~/Scripts/jszip/jszip-utils.js",
-                      "~/Scripts/jszip/jszip.js"));
+                      "~/Scripts/jszip/jszip.js",
+                      "~/Scripts/jszip/FileSaver.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorio").Include(
                       "~/repositorio/app.js"));

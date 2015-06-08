@@ -9,4 +9,10 @@
     $scope.$on('busca', function (event, args) {
         // realiza a busca
     });
+
+
+    // Função que seta que deve fazer um download
+    $scope.download = function () {
+        $scope.$broadcast('download', { valor: true });
+    };
 });

@@ -15,8 +15,9 @@
                          theme:'monokai',
                          mode: 'html',
                          rendererOptions: { fontSize: 14 },
-                         blockScrolling: 'Infinity'
-                     }" ng-model="htmlFile"></div>
+                         onLoad: aceLoaded,
+                         onChange: aceChangedHtml
+                     }"></div>
                 </md-content>
             </md-tab>
             <md-tab label="CSS">
@@ -25,8 +26,9 @@
                          theme:'monokai',
                          mode: 'css',
                          rendererOptions: { fontSize: 14 },
-                         blockScrolling: 'Infinity'
-                     }" ng-model="cssFile"></div>
+                         onLoad: aceLoaded,
+                         onChange: aceChangedCss
+                     }"></div>
                 </md-content>
             </md-tab>
             <md-tab label="JS">
@@ -35,8 +37,9 @@
                          theme:'monokai',
                          mode: 'javascript',
                          rendererOptions: { fontSize: 14 },
-                         blockScrolling: 'Infinity'
-                     }" ng-model="jsFile"></div>
+                         onLoad: aceLoaded,
+                         onChange: aceChangedJs
+                     }"></div>
                 </md-content>
             </md-tab>
             <md-tab label="Visualização">
