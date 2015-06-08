@@ -4,6 +4,7 @@
     var qntdPaginasMostra = 5;
     var projBusca = "";
 
+    $scope.encontrado = true;
     $scope.qntdPaginas = 0;
     $scope.paginaAtual = 0;
     $scope.valoresBusca = [];
@@ -77,36 +78,43 @@
         
         var aux = apiService[url].query(params, function () {
 
-            /*Verifica se clicou pra ir direto pra ultima pagina*/
-            if (last && $scope.paginaAtual != pageNumber) {
+            if (aux.length > 0) {
+                /*Verifica se clicou pra ir direto pra ultima pagina*/
+                if (last && $scope.paginaAtual != pageNumber) {
+                    cont = 0;
+                    for (i = $scope.qntdPaginas - qntdPaginasMostra >= 0 ? $scope.qntdPaginas - qntdPaginasMostra + 1 : 1; i <= $scope.qntdPaginas; i++) {
+                        $scope.paginas[cont] = i;
+                        cont++;
+                    }
+                }
+
+                $scope.snippets = aux;
+
+                /*Verifica se clicou pra ir direto pra primeira página*/
+                if (primeira && $scope.snippets.length > 0) {
+                    setaPaginas($scope.snippets[0].qntdPages);
+                }
+
+                $scope.paginaAtual = pageNumber;
+
+                //Seta os valores da busca na váriavel pra exibir como tags
                 cont = 0;
-                for (i = $scope.qntdPaginas - qntdPaginasMostra >= 0 ? $scope.qntdPaginas - qntdPaginasMostra + 1 : 1; i <= $scope.qntdPaginas; i++) {
-                    $scope.paginas[cont] = i;
+                if (valorBusca && valorBusca != "") {
+                    $scope.valoresBusca[cont] = valorBusca;
                     cont++;
                 }
+                $scope.projSelecionado.forEach(function (projeto, index) {
+                    if (projeto) {
+                        $scope.valoresBusca[cont] = $scope.projetosCadastrados[index].nome;
+                        cont++;
+                    }
+                });
+
+                $scope.encontradp = true;
+            } else {
+                console.log("aqui");
+                $scope.encontrado = false;
             }
-
-            $scope.snippets = aux;
-
-            /*Verifica se clicou pra ir direto pra primeira página*/
-            if (primeira && $scope.snippets.length > 0) {
-                setaPaginas($scope.snippets[0].qntdPages);
-            }
-
-            $scope.paginaAtual = pageNumber;
-
-            //Seta os valores da busca na váriavel pra exibir como tags
-            cont = 0;
-            if (valorBusca && valorBusca != "") {
-                $scope.valoresBusca[cont] = valorBusca;
-                cont++;
-            }
-            $scope.projSelecionado.forEach(function (projeto, index) {
-                if (projeto) {
-                    $scope.valoresBusca[cont] = $scope.projetosCadastrados[index].nome;
-                    cont++;
-                }
-            });
         });
     };
 

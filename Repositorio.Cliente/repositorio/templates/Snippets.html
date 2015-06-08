@@ -13,14 +13,24 @@
 
     <div class="container">
 
-        <h2 class="text-center" style="margin-top: 1em;">
-            Snippets
-        </h2>
-        <div class="text-center" style="margin-bottom: 3em; margin-top: -1em;">
-            <a class="btn-sm waves-effect waves-light small red" ng-repeat="tag in valoresBusca">
-                {{tag}}
-                <ng-md-icon icon="local_offer" style="fill: white;" size="14"></ng-md-icon>
-            </a>
+        <div>
+            <h4 style="margin-top: 3em;" ng-show="!encontrado">
+                Nenhum snippet corresponde a busca efetuada ...
+            </h4>
+        </div>
+
+
+        <div ng-show="snippets.length">
+            <h2 class="text-center" style="margin-top: 1em;">
+                Snippets
+            </h2>
+            <div class="text-center" style="margin-bottom: 3em; margin-top: -1em;">
+                <a class="btn-sm small red" ng-repeat="tag in valoresBusca">
+                    {{tag}}
+                    <ng-md-icon icon=" local_offer" style="fill: white;" size="10">
+                    </ng-md-icon>
+                </a>
+            </div>
         </div>
 
 
@@ -52,32 +62,34 @@
             </div>
         </div>
 
-        <!-- Paginação -->
-        <div class="row">
-            <div class="text-center">
-                <ul class="pagination pagination-lg">
-                    <li>
-                        <a href="" aria-label="Next" ng-click="goToPage(1, true, false)" ng-show="qntdPaginas">
-                            <span aria-hidden="true">Primeira</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" aria-label="Previous" ng-click="goToPreviousPage()" ng-show="paginaAtual > 1">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
-                    <li>
-                        <a href="" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)" ng-show="qntdPaginas">
-                            <span aria-hidden="true">Última</span>
-                        </a>
-                    </li>
-                </ul>
+        <div ng-show="snippets.length">
+            <!-- Paginação -->
+            <div class="row">
+                <div class="text-center">
+                    <ul class="pagination pagination-lg">
+                        <li>
+                            <a href="" aria-label="Next" ng-click="goToPage(1, true, false)" ng-show="qntdPaginas">
+                                <span aria-hidden="true">Primeira</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" aria-label="Previous" ng-click="goToPreviousPage()" ng-show="paginaAtual > 1">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
+                        <li>
+                            <a href="" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)" ng-show="qntdPaginas">
+                                <span aria-hidden="true">Última</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
