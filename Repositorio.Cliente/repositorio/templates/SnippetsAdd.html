@@ -9,7 +9,7 @@
 </style>
 
 <div class="container">
-    <h3>
+    <h3 ng-click="addProjeto($event)">
         Adicionar Snippet
     </h3>
     
@@ -36,6 +36,7 @@
             </div>
         </form>
     </md-content>
+
 
     <div ng-include="editor" ng-controller="EditorCtrl"></div>
 

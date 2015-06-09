@@ -1,13 +1,32 @@
-﻿ <!-- Modal Trigger -->
-<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+﻿<md-dialog aria-label="addProjeto">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Novo Projeto</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="hide()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content flex>
+                <div>
+                    <md-input-container>
+                        <label>Nome Projeto</label>
+                        <input ng-model="projeto.nome">
+                    </md-input-container>
+                </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" class="md-primary">
+                Cancelar
+            </md-button>
+            <md-button ng-click="" class="md-primary">
+                Adicionar
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
-</div>
+

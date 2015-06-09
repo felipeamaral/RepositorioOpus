@@ -1,4 +1,4 @@
-﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope, projetosService) {
+﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope, projetosService, $scope, $mdDialog) {
 
     $scope.editor = "repositorio/templates/editor.html";
 
@@ -32,5 +32,18 @@
 
         // Envia snippet pro controller do editor
         $scope.$broadcast('upload', { snippet: snippetEnviar });
-    }
+    };
+
+    // Chama o modal de adição de um novo projeto
+    $scope.addProjeto = function (ev) {
+        $mdDialog.show({
+            controller: 'AddProjetoCtrl',
+            templateUrl: 'repositorio/templates/AddProjetoModal.html',
+            targetEvent: ev,
+        }).then(function (nomeProj) {
+            // Adiciona projeto a lista e seta como o selecionado
+        }, function () {
+            // Fechou o modal
+        });
+    };
 });

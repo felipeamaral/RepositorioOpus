@@ -130,12 +130,14 @@
     <Content Include="fonts\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\folder.svg" />
+    <Content Include="img\ic_close_24px.svg" />
     <Content Include="img\magnify.svg" />
     <Content Include="img\menu.svg" />
     <Content Include="img\plus-circle.svg" />
     <Content Include="img\star.svg" />
     <Content Include="Content\angular-material.min.css" />
     <Content Include="repositorio\appConfig.js" />
+    <Content Include="repositorio\controllers\AddProjetoCtrl.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
     <Content Include="repositorio\services\projetosService.js" />

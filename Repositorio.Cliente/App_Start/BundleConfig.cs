@@ -9,7 +9,8 @@ namespace Repositorio.Cliente
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/materialize/materialize.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -57,9 +58,8 @@ namespace Repositorio.Cliente
                       "~/repositorio/services/projetosService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
+                      "~/repositorio/controllers/AddProjetoCtrl.js",
                       "~/repositorio/controllers/AddSnippetCtrl.js",
-                      "~/repositorio/controllers/listaMenu-controller.js",
-                      "~/repositorio/controllers/searchCtrl.js",
                       "~/repositorio/controllers/appCtrl.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",
