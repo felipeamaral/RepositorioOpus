@@ -48,7 +48,6 @@
         if ($scope.aceSessions[1].getValue() != undefined) {
             zipDownload.file('arq.css', $scope.aceSessions[1].getValue());
         }
-        console.log($scope.jsFile);
         if ($scope.aceSessions[2].getValue() != undefined) {
             zipDownload.file('arq.js', $scope.aceSessions[2].getValue());
         }
@@ -70,14 +69,31 @@
         if ($scope.aceSessions[1].getValue() != undefined) {
             zipUpload.file('arq.css', $scope.aceSessions[1].getValue());
         }
-        console.log($scope.jsFile);
         if ($scope.aceSessions[2].getValue() != undefined) {
             zipUpload.file('arq.js', $scope.aceSessions[2].getValue());
         }
 
-        apiService.getImagens.save(args.snippet);
+        apiService.getImagens.save(args.snippet, function (data) {
 
-        console.log(args.snippet);
+            // Se conseguiu salvar no banco, faz o upload dos arquivos
+            var content = zipUpload.generate({
+                type: "blob",
+                compression: "DEFLATE"
+            });
+
+            var fd = new FormData();
+            fd.append('zip', content);
+
+           $.ajax({
+                type: 'POST',
+                url: 'http://localhost:53412/api/snippet/' + data.idComponente + '/files/upload',
+                data: fd,
+                processData: false,
+                contentType: false
+            }).done(function (data) {
+                console.log(data);
+            });
+        });
     });
 
 });

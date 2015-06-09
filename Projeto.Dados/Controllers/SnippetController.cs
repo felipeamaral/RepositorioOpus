@@ -223,82 +223,23 @@ namespace Projeto.Dados.Controllers
 
         // Retorna os arquivos em um .zip
         [Route("api/snippet/{id}/files/download")]
-        //public string[] GetFiles(int id)
         public HttpResponseMessage GetFiles(int id)
         {
-
-            ZipFile zip = new ZipFile();
-
-            //List<string> result = new List<string>();
-            Componente snippet = this.snippetRepository.GetComponenteByID(id);
-
-            //Verifica se existe um snippet com esse id
-            if (snippet != null)
-            {
-                string path = System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos/" + id.ToString());
-                string path1 = Path.GetTempPath();
-
-                // Verifica se o arquivo html existe
-                if (File.Exists(path + "\\arq.html"))
-                {
-                    zip.AddFile(path + "\\arq.html", "/");
-                    //result.Add(File.ReadAllText(path + "\\arq.html"));
-                }
-                else
-                {
-                    //result.Add(null);
-                }
-
-                // Verifica se o arquivo css existe
-                if (File.Exists(path + "\\arq.css"))
-                {
-                    zip.AddFile(path + "\\arq.css", "/");
-                    //result.Add(File.ReadAllText(path + "\\arq.css"));
-                }
-                else
-                {
-                    //result.Add(null);
-                }
-
-                // Verifica se o arquivo js existe
-                if (File.Exists(path + "\\arq.js"))
-                {
-                    zip.AddFile(path + "\\arq.js", "/");
-                    //result.Add(File.ReadAllText(path + "\\arq.js"));
-                }
-                else
-                {
-                    //result.Add(null);
-                }
-            }
-            else
-            {
-                return null;
-            }
-
-            //Salva o arquivo num diretório temporário
-            zip.Save(Path.GetTempPath() + snippet.nome + ".zip");
-
-            FileStream arquivo = File.OpenRead(Path.GetTempPath() + snippet.nome + ".zip");
-
+            // Abre arquivo zip pra leitura
+            FileStream arquivo = File.OpenRead(Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos"), id.ToString() + ".zip"));
             MemoryStream file = new MemoryStream();
             arquivo.CopyTo(file);
 
-            //Monta a resposta
+            // Inseri o arquivo na resposta
             HttpResponseMessage result = null;
             result = Request.CreateResponse(HttpStatusCode.OK);
 
             result.Content = new ByteArrayContent(file.ToArray());
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-            result.Content.Headers.ContentDisposition.FileName = snippet.nome + ".zip";
+            result.Content.Headers.ContentDisposition.FileName = id.ToString() + ".zip";
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
 
-            //Fecha os arquivos
-            arquivo.Close();
-            file.Close();
-
             return result;
-            //return result.ToArray();
         }
 
         /*Faz upload dos arquivos de um snippet*/
@@ -306,26 +247,14 @@ namespace Projeto.Dados.Controllers
         public void UploadFiles(int id)
         {
             var request = HttpContext.Current.Request;
-            string nomeArquivo, caminho, extensaoArquivo;
-            int ponto;
 
-            // Verifica se não foram enviados mais de 3 arquivos
-            if (request.Files.Count <= 3)
+            // Verifica se foi enviado um único zip
+            if (request.Files.Count == 1)
             {
-                // Pra cada arquivo pega a sua extensão e salva no diretório de códigos, na pasta do snippet
-                for (int i = 0; i < request.Files.Count; i++)
-                {
-                    //Seta o nome do arquivo sem a extensão
-                    nomeArquivo = request.Files[i].FileName;
-                    ponto = nomeArquivo.IndexOf('.');
-                    extensaoArquivo = nomeArquivo.Substring(ponto + 1);
-                    nomeArquivo = nomeArquivo.Substring(0, ponto);
 
-                    //Seta o nome do arquivo a ser salvo
-                    caminho = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos/" + id),
-                        ("arq." + extensaoArquivo));
-                    request.Files[i].SaveAs(caminho);
-                }
+                string caminho = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos"),
+                        (id + ".zip"));
+                request.Files[0].SaveAs(caminho);
             }
         }
     }
