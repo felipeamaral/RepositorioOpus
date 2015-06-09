@@ -1,11 +1,9 @@
-﻿'use strict';
-
-app.controller('EditorCtrl', function ($scope, apiService) {
+﻿app.controller('EditorCtrl', function ($scope, apiService) {
 
     $scope.aceSessions = [];
     var cont = 0;
 
-    if ($scope.idSnippet != -1) {
+    if ($scope.idSnippet != -1 && $scope.idSnippet != null && $scope.idSnippet != undefined) {
         // Pega os arquivos a serem exibidos no editor no formato .zip
         JSZipUtils.getBinaryContent("http://localhost:53412/api/snippet/" + $scope.idSnippet + "/files/download", function (err, data) {
             if (err) {
@@ -58,6 +56,28 @@ app.controller('EditorCtrl', function ($scope, apiService) {
         // Faz o download do arquivo
         var blob = zipDownload.generate({ type: "blob" });
         saveAs(blob, "teste.zip");
+    });
+
+    // Faz o upload dos arquivos de código que estão no editor
+    $scope.$on('upload', function (event, args) {
+
+        // Cria o arquivo zip a ser enviado para upload
+        var zipUpload = new JSZip();
+
+        if ($scope.aceSessions[0].getValue() != undefined) {
+            zipUpload.file('arq.html', $scope.aceSessions[0].getValue());
+        }
+        if ($scope.aceSessions[1].getValue() != undefined) {
+            zipUpload.file('arq.css', $scope.aceSessions[1].getValue());
+        }
+        console.log($scope.jsFile);
+        if ($scope.aceSessions[2].getValue() != undefined) {
+            zipUpload.file('arq.js', $scope.aceSessions[2].getValue());
+        }
+
+        apiService.getImagens.save(args.snippet);
+
+        console.log(args.snippet);
     });
 
 });

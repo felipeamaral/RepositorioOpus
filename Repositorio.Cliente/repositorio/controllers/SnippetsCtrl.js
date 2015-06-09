@@ -1,4 +1,5 @@
-﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca) {
+﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca,
+                                            projetosService) {
 
     var qntd = 3;
     var qntdPaginasMostra = 5;
@@ -11,11 +12,10 @@
     $scope.projSelecionado = [];
 
     //Pega os projetos contidos no banco para o filtro por projeto
-    var projetos = apiService.projetos.query(function () {
-        $scope.projetosCadastrados = projetos;
-
+    $scope.projetosCadastrados = projetosService.getProjetos();
+    $scope.projetosCadastrados.$promise.then(function (data) {
         /*seta todos como não selecionados*/
-        projetos.forEach(function (proj, index) {
+        data.forEach(function (proj, index) {
             $scope.projSelecionado[index] = false;
         });
     });
@@ -99,6 +99,7 @@
 
                 //Seta os valores da busca na váriavel pra exibir como tags
                 cont = 0;
+                $scope.valoresBusca = [];
                 if (valorBusca && valorBusca != "") {
                     $scope.valoresBusca[cont] = valorBusca;
                     cont++;

@@ -1,4 +1,4 @@
-﻿app.controller('VisualizarSnippetCtrl', function ($scope, apiService, id) {
+﻿app.controller('VisualizarSnippetCtrl', function ($scope, apiService, $state, id) {
 
     $scope.idSnippet = id;
     $scope.editor = "repositorio/templates/editor.html";
@@ -7,12 +7,12 @@
 
     //Fica escutando quando deverá realizar uma busca
     $scope.$on('busca', function (event, args) {
-        // realiza a busca
+        $state.go('snippets', { valorBusca: $scope.valorBusca });
     });
 
     // Função que seta que deve fazer um download
     $scope.download = function () {
-        $scope.$broadcast('download', { valor: true });
+        $scope.$broadcast('download');
     };
 
     // Pega o nome do snippet

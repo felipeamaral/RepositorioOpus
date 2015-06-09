@@ -138,6 +138,8 @@
     <Content Include="repositorio\appConfig.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
+    <Content Include="repositorio\services\projetosService.js" />
+    <Content Include="repositorio\templates\SnippetsAdd.html" />
     <Content Include="Scripts\angular\angular-material-icons.min.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
     <Content Include="Scripts\angular\svg-morpheus.js" />
@@ -195,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="repositorio\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

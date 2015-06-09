@@ -17,18 +17,17 @@
         <form id="userForm">
             <div layout="" layout-sm="column">
                 <md-input-container flex>
-                    <label><b>Titulo</b></label>
-                    <input ng-model="snippet.Titulo">
+                    <label><b>Nome</b></label>
+                    <input ng-model="snippet.nome">
                 </md-input-container>
 
-                <md-select placeholder="Projetos" ng-model="snippet.Projeto" flex>
-                    <md-option value="Projeto 1">Projeto 1</md-option>
-                    <md-option value="Projeto 2">Projeto 2</md-option>
+                <md-select placeholder="Projetos" ng-model="snippet.projeto" flex>
+                    <md-option ng-repeat="proj in projetosCadastrados" value="{{proj.idProjeto}}">{{proj.nome}}</md-option>
                 </md-select>
             </div>
             <div layout="column">
 
-                <md-chips ng-model="tags"
+                <md-chips ng-model="snippet.Keyword"
                           readonly="readonly"
                           placeholder="Tags"
                           secondary-placeholder="Tags"></md-chips>
@@ -37,7 +36,7 @@
         </form>
     </md-content>
 
-    <div ng-include="'repositorio/templates/editor.html'"></div>
+    <div ng-include="editor" ng-controller="EditorCtrl"></div>
 
     <!-- Botão de adicionar novo snippet -->
     <div class="fixed-action-btn bottom" ng-click="salvaSnippet()">

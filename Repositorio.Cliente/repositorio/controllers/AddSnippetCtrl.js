@@ -1,27 +1,36 @@
-﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope) {
-    
-    $scope.readonly = false;
-    $scope.tags = [];
+﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope, projetosService) {
+
+    $scope.editor = "repositorio/templates/editor.html";
 
     $scope.snippet = {
-        Titulo: '',
-        Projeto: '',
-        tags: ''
+        nome: '',
+        usuario: 'camila@gmail.com',
+        projeto: '',
+        Keyword: []
     }
 
+    // Pega os projetos cadastrados no banco
+    $scope.projetosCadastrados = projetosService.getProjetos();
+
+    //Função que salva um novo snippet
     $scope.salvaSnippet = function () {
-        console.log($scope.snippet.Titulo);
-        console.log($scope.snippet.Projeto);
-        console.log($scope.tags);   
-    }
 
-    //Função que pega os dados do editor e manda em um arquivo pro servidor
-    function upload(conteudo) {
-        $.post("http://localhost:53412/api/snippet/3/files/upload", function () {
-            var file = [conteudo];
-            var blob = new Blob(file, { type: 'application/octet-binary' }); // the blob
-            console.log(blob);
+        //Monta o snippet a ser enviado pro servidor
+        var snippetEnviar = {};
+
+        snippetEnviar.nome = $scope.snippet.nome;
+        snippetEnviar.usuario = $scope.snippet.usuario;
+        snippetEnviar.projeto = $scope.snippet.projeto;
+        snippetEnviar.Keyword = [];
+
+        var cont = 0;
+
+        $scope.snippet.Keyword.forEach(function (key, index) {
+            snippetEnviar.Keyword[cont] = { kw: key };
+            cont++;
         });
-    };
 
+        // Envia snippet pro controller do editor
+        $scope.$broadcast('upload', { snippet: snippetEnviar });
+    }
 });
