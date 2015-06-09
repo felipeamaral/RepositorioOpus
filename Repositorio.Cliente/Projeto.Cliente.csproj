@@ -139,6 +139,7 @@
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
     <Content Include="repositorio\services\projetosService.js" />
+    <Content Include="repositorio\templates\AddProjetoModal.html" />
     <Content Include="repositorio\templates\SnippetsAdd.html" />
     <Content Include="Scripts\angular\angular-material-icons.min.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
@@ -184,8 +185,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="repositorio\templates\Projetos-Adicionar.html" />
-    <Content Include="repositorio\templates\Projetos.html" />
     <Content Include="repositorio\templates\Snippets.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

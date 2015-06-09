@@ -14,10 +14,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
                 }
             }
         })
-        .state('projetos', {
-            url: "/Repositorio/Projetos",
-            templateUrl: "repositorio/templates/Projetos.html"
-        })
         .state('snippets', {
             url: "/Repositorio/Snippets/{valorBusca}",
             templateUrl: "repositorio/templates/Snippets.html",
@@ -35,12 +31,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         .state('adicionarSnippets', {
             url: "/Repositorio/Snippet/Adicionar",
             templateUrl: "repositorio/templates/SnippetsAdd.html",
-            controller: 'AddSnippetCtrl',
-            /*resolve: {
-                id: function ($stateParams) {
-                    return 1;
-                }
-            }*/
+            controller: 'AddSnippetCtrl'
         })
         .state('visualizaSnippet', {
             url: "/Repositorio/Snippet/{id:int}/Visualizar",
