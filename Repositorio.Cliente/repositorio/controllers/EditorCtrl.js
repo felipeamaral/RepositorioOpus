@@ -95,5 +95,10 @@
             });
         });
     });
+
+    $scope.AtualizaCode = function () {
+        document.getElementById('visualizacao').contentWindow.atualiza();
+    }
+
    
 });

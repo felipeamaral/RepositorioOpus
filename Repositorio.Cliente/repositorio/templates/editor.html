@@ -41,11 +41,10 @@
                      }"></div>
                 </md-content>
             </md-tab>
-            <md-tab label="Visualização">
+            <md-tab label="Visualização" md-on-select="AtualizaCode()">
                 <md-content class="md-padding">
-                    <iframe src="repositorio/templates/Visualizacao.html"
-                            style="width: 100%; min-height: 500px">
-                    </iframe>
+                    <iframe id="visualizacao" src="repositorio/templates/Visualizacao.html"
+                            style="width: 100%; min-height: 500px"></iframe>
                 </md-content>
             </md-tab>
         </md-tabs>

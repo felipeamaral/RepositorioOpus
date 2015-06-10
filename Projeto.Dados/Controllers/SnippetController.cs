@@ -223,8 +223,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna os arquivos em um .zip
         [Route("api/snippet/{id}/files/download")]
-        public HttpResponseMessage GetFiles(int id)
-        {
+        public HttpResponseMessage GetFiles(int id)        {
             // Abre arquivo zip pra leitura
             FileStream arquivo = File.OpenRead(Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Codigos"), id.ToString() + ".zip"));
             MemoryStream file = new MemoryStream();
