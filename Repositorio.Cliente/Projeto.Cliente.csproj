@@ -140,9 +140,12 @@
     <Content Include="repositorio\controllers\AddProjetoCtrl.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
+    <Content Include="repositorio\controllers\VisualizacaoCtrl.js" />
     <Content Include="repositorio\services\projetosService.js" />
     <Content Include="repositorio\templates\AddProjetoModal.html" />
     <Content Include="repositorio\templates\SnippetsAdd.html" />
+    <Content Include="repositorio\templates\Visualizacao.html" />
+    <Content Include="repositorio\visualizacao.js" />
     <Content Include="Scripts\angular\angular-material-icons.min.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
     <Content Include="Scripts\angular\svg-morpheus.js" />

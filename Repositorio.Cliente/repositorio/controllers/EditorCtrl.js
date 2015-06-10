@@ -1,4 +1,4 @@
-﻿app.controller('EditorCtrl', function ($scope, apiService) {
+﻿app.controller('EditorCtrl', function ($scope, $rootScope, apiService) {
 
     $scope.aceSessions = [];
     var cont = 0;
@@ -84,7 +84,7 @@
             var fd = new FormData();
             fd.append('zip', content);
 
-           $.ajax({
+            $.ajax({
                 type: 'POST',
                 url: 'http://localhost:53412/api/snippet/' + data.idComponente + '/files/upload',
                 data: fd,
@@ -95,5 +95,5 @@
             });
         });
     });
-
+   
 });
