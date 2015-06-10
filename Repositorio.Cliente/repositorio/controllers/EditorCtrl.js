@@ -1,6 +1,7 @@
 ﻿app.controller('EditorCtrl', function ($scope, $rootScope, apiService) {
 
     $scope.aceSessions = [];
+    $scope.frame = "";
     var cont = 0;
 
     if ($scope.idSnippet != -1 && $scope.idSnippet != null && $scope.idSnippet != undefined) {
@@ -54,7 +55,7 @@
 
         // Faz o download do arquivo
         var blob = zipDownload.generate({ type: "blob" });
-        saveAs(blob, "teste.zip");
+        saveAs(blob, $scope.idSnippet + ".zip");
     });
 
     // Faz o upload dos arquivos de código que estão no editor
@@ -95,6 +96,10 @@
             });
         });
     });
+
+    $scope.visualiza = function () {
+
+    }
 
     $scope.AtualizaCode = function () {
         document.getElementById('visualizacao').contentWindow.atualiza();
