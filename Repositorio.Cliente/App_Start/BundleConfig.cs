@@ -66,6 +66,10 @@ namespace Repositorio.Cliente
                       "~/repositorio/controllers/EditorCtrl.js",
                       "~/repositorio/controllers/LeftCtrl.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/canvas").Include(
+                      "~/Scripts/canvas/html2canvas.js",
+                      "~/Scripts/canvas/jquery.plugin.html2canvas"));
+
         }
     }
 }

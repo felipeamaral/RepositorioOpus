@@ -74,6 +74,7 @@
             zipUpload.file('arq.js', $scope.aceSessions[2].getValue());
         }
 
+        // Salva dados do snippet no banco
         apiService.getImagens.save(args.snippet, function (data) {
 
             // Se conseguiu salvar no banco, faz o upload dos arquivos
@@ -85,21 +86,20 @@
             var fd = new FormData();
             fd.append('zip', content);
 
+            //Envia pra upload
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:53412/api/snippet/' + data.idComponente + '/files/upload',
                 data: fd,
                 processData: false,
                 contentType: false
-            }).done(function (data) {
-                console.log(data);
+            }).done(function (x) {
+                //Chama pra upar a imagem, atualizando a visualizaçao antes
+                document.getElementById('visualizacao').contentWindow.atualiza();
+                document.getElementById('visualizacao').contentWindow.sendImage(data.idComponente);
             });
         });
     });
-
-    $scope.visualiza = function () {
-
-    }
 
     $scope.AtualizaCode = function () {
         document.getElementById('visualizacao').contentWindow.atualiza();

@@ -172,6 +172,8 @@
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="repositorio\controllers\VisualizarSnippetCtrl.js" />
+    <Content Include="Scripts\canvas\html2canvas.js" />
+    <Content Include="Scripts\canvas\jquery.plugin.html2canvas.js" />
     <Content Include="Scripts\ext-language_tools.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

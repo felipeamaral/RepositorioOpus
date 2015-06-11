@@ -256,5 +256,26 @@ namespace Projeto.Dados.Controllers
                 request.Files[0].SaveAs(caminho);
             }
         }
+
+        /*Faz upload da imagem de um snippet*/
+        [Route("api/snippet/{id}/imagem/upload")]
+        public void UploaImagem(int id)
+        {
+            var request = HttpContext.Current.Request;
+
+            var imagem = request.Form["img"];
+
+            string caminho = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Arquivos/Imagens"),
+                        (id + ".png"));
+
+            var bytes = Convert.FromBase64String(imagem);
+            using (var imageFile = new FileStream(caminho, FileMode.Create))
+            {
+                imageFile.Write(bytes, 0, bytes.Length);
+                imageFile.Flush();
+            }
+
+            return;
+        }
     }
 }
