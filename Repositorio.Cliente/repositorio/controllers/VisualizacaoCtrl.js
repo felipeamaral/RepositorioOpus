@@ -14,9 +14,12 @@ visualizacao.controller('VisualizacaoCtrl', function ($scope, $rootScope) {
         document.documentElement.appendChild(script);
     };
 
+    
+
     // Envia um screenshot da tela
     window.sendImage = function (idComponente) {
         var screen = $("#body");
+
         html2canvas(screen, {
             onrendered: function (canvas) {
 
