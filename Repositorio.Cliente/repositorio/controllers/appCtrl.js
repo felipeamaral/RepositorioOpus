@@ -6,6 +6,19 @@
 
     var valorBusca = "";
 
+    // Escuta se a barra lateral está aberta
+    $scope.$watch(
+        function () {
+            return $mdSidenav('left').isOpen();
+        },
+        function (newValue, oldValue) {
+            if (newValue == false) {
+                $scope.iconMenu = "menu";
+            }
+        }
+    );
+
+
     //Fica escutando pra saber qual o placeholder da barra de busca
     $scope.$on('placeholder', function (event, args) {
         $scope.placeholder = args.place;
@@ -36,7 +49,7 @@
               .then(function () {
                   $log.debug("toggle " + navID + " is done");
               });
-        }, 10);
+        }, 1);
 
         return debounceFn;
     }
@@ -55,9 +68,5 @@
 
         $("#menuToolBar").addClass("hidden");
         $("#searchToolBar").removeClass("hidden");
-    };
-
-    $scope.home = function () {
-        $state.go('home', {valorBusca: ""}, { reload: true });
     };
 });
