@@ -58,6 +58,6 @@
     };
 
     $scope.home = function () {
-        $state.go($state.current, {valorBusca: ""}, { reload: true });
+        $state.go('home', {valorBusca: ""}, { reload: true });
     };
 });
