@@ -1,4 +1,4 @@
-﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $state) {
 
     $scope.toggleLeft = buildToggler('left');    
     $scope.demo = {};
@@ -55,5 +55,9 @@
 
         $("#menuToolBar").addClass("hidden");
         $("#searchToolBar").removeClass("hidden");
+    };
+
+    $scope.home = function () {
+        $state.go($state.current, {valorBusca: ""}, { reload: true });
     };
 });

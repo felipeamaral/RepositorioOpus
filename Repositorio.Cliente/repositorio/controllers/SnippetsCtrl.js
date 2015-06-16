@@ -1,6 +1,6 @@
 ﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca,
                                             projetosService) {
-        
+
     var qntd = 3;
     var qntdPaginasMostra = 5;
     var projBusca = "";
@@ -111,9 +111,8 @@
                     }
                 });
 
-                $scope.encontradp = true;
+                $scope.encontrado = true;
             } else {
-                console.log("aqui");
                 $scope.encontrado = false;
             }
         });
