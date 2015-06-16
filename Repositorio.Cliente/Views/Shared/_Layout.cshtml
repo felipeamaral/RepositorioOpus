@@ -74,13 +74,25 @@
                             <p> Snippets </p>
                             <ng-md-icon icon="{{iconSnippets}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
+                        <div ng-show="snippetsOptions" class="menu-secundario">
+                            <md-list-item ng-click="goTo('home')">
+                                <p> Visualizar </p>
+                            </md-list-item>
+                            <md-list-item ng-click="goTo('adicionarSnippets')">
+                                <p> Adicionar novo </p>
+                            </md-list-item>
+                        </div>
                         <md-list-item class="md-icon-button" ng-click="toggleTemas()">
                             <p> Temas </p>
                             <ng-md-icon icon="{{iconTemas}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
                         <md-list-item ng-click="toggleProjs()">
-                            <p> Projetos </p>
-                            <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                                <p> Projetos </p>
+                                <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                        </md-list-item>
+                        <md-list-item ng-click="togglePlugins()">
+                            <p> Plugins </p>
+                            <ng-md-icon icon="{{iconPlugins}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
                     </md-list>
                 </md-content>

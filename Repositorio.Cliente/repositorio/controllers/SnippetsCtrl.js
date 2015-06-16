@@ -1,6 +1,6 @@
 ﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca,
                                             projetosService) {
-
+        
     var qntd = 3;
     var qntdPaginasMostra = 5;
     var projBusca = "";
@@ -58,7 +58,7 @@
 
     /*Pega os snippets da página informada*/
     $scope.goToPage = function (pageNumber, primeira, last) {
-
+        
         var params = {};
         /*Define os parâmetros que serão passados*/
         if ((valorBusca == "" || valorBusca == undefined || valorBusca == null) &&

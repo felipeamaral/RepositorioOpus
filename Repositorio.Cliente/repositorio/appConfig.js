@@ -10,7 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
             controller: 'SnippetsCtrl',
             resolve: {
                 valorBusca: function () {
-                    return null;
+                    return "";
                 }
             }
         })

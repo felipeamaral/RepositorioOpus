@@ -180,3 +180,8 @@ md-toolbar.side-nav-toolbar{
 md-sidenav{
     height: 90%;
 }
+
+.menu-secundario p{
+    font-size: 12px;
+    padding-left: 1em;
+}
