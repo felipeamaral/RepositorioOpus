@@ -1,14 +1,4 @@
-﻿<style type="text/css">
-    .bootstrap-tagsinput {
-        width: 100%;
-    }
-
-    .label {
-        line-height: 2 !important;
-    }
-</style>
-
-<div class="container">
+﻿<div class="container">
     <h3 ng-click="addProjeto($event)">
         Adicionar Snippet
     </h3>
@@ -20,11 +10,21 @@
                     <label><b>Nome</b></label>
                     <input ng-model="snippet.nome">
                 </md-input-container>
-
-                <md-select placeholder="Projetos" ng-model="snippet.projeto" flex>
-                    <md-option value="novo" style="font-weight: bold">Add novo projeto</md-option>
-                    <md-option ng-repeat="proj in projetosCadastrados" value="{{proj.idProjeto}}">{{proj.nome}}</md-option>
-                </md-select>
+                <md-autocomplete flex required
+                                 md-input-name="autocompleteField"
+                                 md-no-cache="noCache"
+                                 md-selected-item="snippet.projeto"
+                                 md-search-text="searchText"
+                                 md-items="item in querySearch(searchText)"
+                                 md-item-text="item.display"
+                                 md-floating-label="Projeto">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        Projeto não encontrado
+                    </md-not-found>
+                </md-autocomplete>
             </div>
             <div layout="column">
 

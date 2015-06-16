@@ -20,7 +20,7 @@
 
         snippetEnviar.nome = $scope.snippet.nome;
         snippetEnviar.usuario = $scope.snippet.usuario;
-        snippetEnviar.projeto = $scope.snippet.projeto;
+        snippetEnviar.projeto = $scope.snippet.projeto.value;
         snippetEnviar.Keyword = [];
 
         var cont = 0;
@@ -46,4 +46,32 @@
             // Fechou o modal
         });
     };
+
+
+    // AUTOCOMPLETE
+
+    $scope.projs = [];
+    $scope.projetosCadastrados.$promise.then(function (data) {
+
+        var cont = 0;
+        data.forEach(function (proj) {
+            $scope.projs[cont] = { value: proj.idProjeto, display: proj.nome.toLowerCase() };
+            cont++;
+        });
+    });
+    $scope.searchText = null;
+    $scope.querySearch = querySearch;
+
+    function querySearch(query) {
+        var results = query ? $scope.projs.filter(createFilterFor(query)) : [];
+        console.log(results);
+        return results;
+    }
+    
+    function createFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+        return function filterFn(proj) {
+            return (proj.display.indexOf(lowercaseQuery) === 0);
+        };
+    }
 });
