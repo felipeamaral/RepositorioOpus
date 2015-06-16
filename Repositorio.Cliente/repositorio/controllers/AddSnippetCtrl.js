@@ -64,7 +64,6 @@
 
     function querySearch(query) {
         var results = query ? $scope.projs.filter(createFilterFor(query)) : [];
-        console.log(results);
         return results;
     }
     
