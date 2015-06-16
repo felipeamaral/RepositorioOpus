@@ -69,4 +69,8 @@
         $("#menuToolBar").addClass("hidden");
         $("#searchToolBar").removeClass("hidden");
     };
+
+    $scope.home = function () {
+        $state.go('home', { valorBusca: null }, {reload: true});
+    };
 });
