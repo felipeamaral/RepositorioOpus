@@ -64,41 +64,50 @@
         // Cria o arquivo zip a ser enviado para upload
         var zipUpload = new JSZip();
 
-        if ($scope.aceSessions[0].getValue() != undefined) {
+        var aux = $scope.aceSessions[0].getValue();
+
+        // Verifica se existe código html
+        if (aux != undefined && aux != "") {
             zipUpload.file('arq.html', $scope.aceSessions[0].getValue());
-        }
-        if ($scope.aceSessions[1].getValue() != undefined) {
-            zipUpload.file('arq.css', $scope.aceSessions[1].getValue());
-        }
-        if ($scope.aceSessions[2].getValue() != undefined) {
-            zipUpload.file('arq.js', $scope.aceSessions[2].getValue());
-        }
 
-        // Salva dados do snippet no banco
-        apiService.getImagens.save(args.snippet, function (data) {
+            if ($scope.aceSessions[1].getValue() != undefined) {
+                zipUpload.file('arq.css', $scope.aceSessions[1].getValue());
+            }
+            if ($scope.aceSessions[2].getValue() != undefined) {
+                zipUpload.file('arq.js', $scope.aceSessions[2].getValue());
+            }
 
-            // Se conseguiu salvar no banco, faz o upload dos arquivos
-            var content = zipUpload.generate({
-                type: "blob",
-                compression: "DEFLATE"
+            // Salva dados do snippet no banco
+            apiService.getImagens.save(args.snippet, function (data) {
+
+                // Se conseguiu salvar no banco, faz o upload dos arquivos
+                var content = zipUpload.generate({
+                    type: "blob",
+                    compression: "DEFLATE"
+                });
+
+                var fd = new FormData();
+                fd.append('zip', content);
+
+                //Envia pra upload
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:53412/api/snippet/' + data.idComponente + '/files/upload',
+                    data: fd,
+                    processData: false,
+                    contentType: false
+                }).done(function (x) {
+                    //Chama pra upar a imagem, atualizando a visualizaçao antes
+                    document.getElementById('visualizacao').contentWindow.atualiza();
+                    document.getElementById('visualizacao').contentWindow.sendImage(data.idComponente);
+                });
             });
-
-            var fd = new FormData();
-            fd.append('zip', content);
-
-            //Envia pra upload
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost:53412/api/snippet/' + data.idComponente + '/files/upload',
-                data: fd,
-                processData: false,
-                contentType: false
-            }).done(function (x) {
-                //Chama pra upar a imagem, atualizando a visualizaçao antes
-                document.getElementById('visualizacao').contentWindow.atualiza();
-                document.getElementById('visualizacao').contentWindow.sendImage(data.idComponente);
-            });
-        });
+        } else {
+            /*No caso em que não existe código html, avisa ao parent para que esse informe que ao menos o código html
+                deve ser informado*/
+            $scope.$emit('html', { html: false });
+        }
+        
     });
 
     $scope.AtualizaCode = function () {

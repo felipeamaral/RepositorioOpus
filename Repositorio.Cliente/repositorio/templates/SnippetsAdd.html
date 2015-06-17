@@ -4,13 +4,16 @@
     </h3>
     
     <md-content layout-padding>
-        <form id="userForm">
+        <form name="addSnippetForm" novalidate>
             <div layout-sm="column" layout="row">
-                <md-input-container flex>
+                <md-input-container flex="40" flex-sm="100" offset-gt-sm="5" style="margin-right: 10%">
                     <label><b>Nome</b></label>
-                    <input ng-model="snippet.nome">
+                    <input ng-model="snippet.nome" name="nome" required maxlength="5">
+                    <div ng-messages="addSnippetForm.nome.$error" ng-show="addSnippetForm.nome.$touched">
+                        <div ng-message="required" ng-show="addSnippetForm.nome.$error.required">É necessário informar um nome para o snippet</div>
+                    </div>
                 </md-input-container>
-                <md-autocomplete flex required
+                <md-autocomplete flex="40" flex-sm="100" required
                                  md-input-name="autocompleteField"
                                  md-no-cache="noCache"
                                  md-selected-item="snippet.projeto"
@@ -19,15 +22,19 @@
                                  md-item-text="item.display"
                                  md-floating-label="Projeto">
                     <md-item-template style="height: 26px;">
-                        <span md-highlight-text="searchText">{{item.display}}</span>
+                        <span md-highlight-text=" searchtext">
+                            {{item.display}}
+                        </span>
                     </md-item-template>
+                    <div ng-messages="addSnippetForm.autocompleteField.$touched">
+                        <div ng-message="required">This field is required</div>
+                    </div>
                     <md-not-found>
                         Projeto não encontrado
                     </md-not-found>
                 </md-autocomplete>
             </div>
             <div layout="column">
-
                 <md-chips ng-model="snippet.Keyword"
                           readonly="readonly"
                           placeholder="Tags"

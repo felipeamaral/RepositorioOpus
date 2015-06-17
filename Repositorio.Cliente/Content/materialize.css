@@ -6019,7 +6019,6 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   width: 100%;
   font-size: 1rem;
   margin: 0 0 15px 0;
-  padding: 0;
   box-shadow: none;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;

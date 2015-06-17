@@ -198,3 +198,8 @@ md-dialog .md-actions{
 a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary {
     color: white;
 }
+
+.fixed-action-btn bottom:visited, .fixed-action-btn bottom:after, .fixed-action-btn bottom:focus{
+    outline: none;
+    border: none;
+}

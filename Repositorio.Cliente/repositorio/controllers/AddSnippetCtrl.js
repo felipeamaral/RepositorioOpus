@@ -14,24 +14,37 @@
     //Função que salva um novo snippet
     $scope.salvaSnippet = function () {
 
-        //Monta o snippet a ser enviado pro servidor
-        var snippetEnviar = {};
+        //Verifica se um nome foi informado
+        if ($scope.snippet.nome != "" && $scope.snippet.nome != undefined && $scope.snippet.nome != null) {
 
-        snippetEnviar.nome = $scope.snippet.nome;
-        snippetEnviar.usuario = $scope.snippet.usuario;
-        snippetEnviar.projeto = $scope.snippet.projeto.value;
-        snippetEnviar.Keyword = [];
+            //Monta o snippet a ser enviado pro servidor
+            var snippetEnviar = {};
 
-        var cont = 0;
+            snippetEnviar.nome = $scope.snippet.nome;
+            snippetEnviar.usuario = $scope.snippet.usuario;
+            snippetEnviar.projeto = $scope.snippet.projeto.value;
+            snippetEnviar.Keyword = [];
 
-        $scope.snippet.Keyword.forEach(function (key, index) {
-            snippetEnviar.Keyword[cont] = { kw: key };
-            cont++;
-        });
+            var cont = 0;
 
-        // Envia snippet pro controller do editor
-        $scope.$broadcast('upload', { snippet: snippetEnviar });
+            $scope.snippet.Keyword.forEach(function (key, index) {
+                snippetEnviar.Keyword[cont] = { kw: key };
+                cont++;
+            });
+
+            // Envia snippet pro controller do editor
+            $scope.$broadcast('upload', { snippet: snippetEnviar });
+        } else {
+            //Faz com que o erro de que é obrigatório apareça no campo nome
+            $scope.addSnippetForm.nome.$touched = true;
+        }
     };
+
+    /*Fica escutando pra exibir uma mensagem caso o usuário tenha tentado
+        fazer upload sem informar um código html*/
+    $scope.$on('html', function (event, args) {
+        //Exibe a mensagem de que é necessário informar o código html
+    });
 
     // Chama o modal de adição de um novo projeto
     $scope.addProjeto = function (ev) {
