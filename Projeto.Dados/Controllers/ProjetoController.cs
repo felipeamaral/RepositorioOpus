@@ -13,11 +13,15 @@ namespace Projeto.Dados.Controllers
     {
         private projetoDBContext db = new projetoDBContext();
         private IProjetoRepository projetoRepository;
+        private IClienteRepository clienteRepository;
+        private IAreaRepository areaRepository;
 
         // Construtor
         public ProjetoController()
         {
             this.projetoRepository = new ProjetoRepository(this.db);
+            this.clienteRepository = new ClienteRepository(this.db);
+            this.areaRepository = new AreaRepository(this.db);
         }
 
         // api/projeto
@@ -40,6 +44,43 @@ namespace Projeto.Dados.Controllers
         public Models.Projeto Get(int id)
         {
             return this.projetoRepository.GetProjetoByID(id);
+        }
+
+        // api/projeto
+        //POST
+        public HttpResponseMessage Post([FromBody] Models.Projeto projeto)
+        {
+
+            // Verifica se existe o cliente
+            if (projeto.cliente != null)
+            {
+                Cliente cliente = this.clienteRepository.GetClienteByNome(projeto.cliente);
+                if (cliente == null)
+                {
+                    cliente = new Cliente();
+                    cliente.nome = projeto.cliente;
+                }
+                projeto.Cliente1 = cliente;
+            }
+
+            //Verifica se existe a área
+            if (projeto.area != null)
+            {
+                Area area = this.areaRepository.GetAreaByNome(projeto.area);
+                if (area == null)
+                {
+                    area = new Area();
+                    area.nome = projeto.area;
+                }
+                projeto.Area1 = area;
+            }
+
+            //Salva no banco
+            this.projetoRepository.InsertProjeto(projeto);
+
+            var response = Request.CreateResponse<Models.Projeto>(System.Net.HttpStatusCode.Created, projeto);
+
+            return response;
         }
     }
 }

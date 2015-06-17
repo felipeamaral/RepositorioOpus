@@ -86,11 +86,6 @@
     background-color: #1F1F1F;
 }
 
-#menuToolBar, .navbar-fixed-bottom.md-default-theme, #top-search-wrap{
-    background-color: #1F1F1F;
-    border-top: 0.2em solid red;
-}
-
 .navbar-fixed-bottom.md-default-theme span{
     color: red;
 }
@@ -155,7 +150,7 @@ md-list-item:hover{
 }
 
 #menuLateral{
-    margin-top: -0.15em;
+    margin-top: -0.3em;
 }
 
 .card.small{
@@ -164,7 +159,6 @@ md-list-item:hover{
 }
 
 md-toolbar.side-nav-toolbar{
-    background-color: #1F1F1F;
     padding: 0em;
     border-bottom: 1px solid red;
     border-top: 1px solid red;
@@ -190,4 +184,17 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 
 input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
     height: 26px;
+}
+
+md-toolbar.md-default-theme{
+    background-color: #1F1F1F;
+    border-top: 0.1em solid red;
+}
+
+md-dialog .md-actions{
+    padding-right: 2em;
+}
+
+a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary {
+    color: white;
 }

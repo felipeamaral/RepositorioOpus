@@ -25,12 +25,12 @@
                         <input ng-model="projeto.area">
                     </md-input-container>
                 </div>
-                <div layout="row" layout-sm="column">
-                    <md-input-container flex="20" offset="25" style="margin-right: 5%">
+                <div layout="row" flex>
+                    <md-input-container flex="20" offset-gt-sm="25" style="margin-right: 5%" flex-sm="50">
                         <label>Data Início</label>
                         <input type="date" ng-model="dataIni">
                     </md-input-container>
-                    <md-input-container flex="20" style="margin-left: 5%">
+                    <md-input-container flex="20" style="margin-left: 5%" flex-sm="50">
                         <label>Data Fim</label>
                         <input type="date" ng-model="dataFim">
                     </md-input-container>
@@ -42,10 +42,10 @@
             </div>
         </md-dialog-content>
         <div class="md-actions" layout="row">
-            <md-button ng-click="cancelar()" class="md-primary">
+            <md-button ng-click="cancelar()" class="md-warn md-raised md-hue-2" style="margin-right: 1em">
                 Cancelar
             </md-button>
-            <md-button ng-click="adicionar()" class="md-primary">
+            <md-button ng-click="adicionar()" class="md-warn md-raised md-hue-2">
                 Adicionar
             </md-button>
         </div>

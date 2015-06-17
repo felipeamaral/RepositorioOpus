@@ -153,8 +153,10 @@
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAL\AreaRepository.cs" />
     <Compile Include="DAL\ClienteRepository.cs" />
     <Compile Include="DAL\ComponenteRepository.cs" />
+    <Compile Include="DAL\IAreaRepository.cs" />
     <Compile Include="DAL\IClienteRepository.cs" />
     <Compile Include="DAL\IComponenteRepository.cs" />
     <Compile Include="DAL\IKeywordRepository.cs" />
