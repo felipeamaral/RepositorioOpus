@@ -1,11 +1,11 @@
 ﻿<div class="container">
-    <h3 ng-click="addProjeto($event)">
+    <h3 ng-click="addProjeto($event)" style="margin-top: 1em;">
         Adicionar Snippet
     </h3>
     
-    <md-content layout-padding="">
+    <md-content layout-padding>
         <form id="userForm">
-            <div layout="" layout-sm="column">
+            <div layout-sm="column" layout="row">
                 <md-input-container flex>
                     <label><b>Nome</b></label>
                     <input ng-model="snippet.nome">
@@ -18,8 +18,8 @@
                                  md-items="item in querySearch(searchText)"
                                  md-item-text="item.display"
                                  md-floating-label="Projeto">
-                    <md-item-template>
-                        <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+                    <md-item-template style="height: 26px;">
+                        <span md-highlight-text="searchText">{{item.display}}</span>
                     </md-item-template>
                     <md-not-found>
                         Projeto não encontrado
@@ -31,7 +31,8 @@
                 <md-chips ng-model="snippet.Keyword"
                           readonly="readonly"
                           placeholder="Tags"
-                          secondary-placeholder="Tags"></md-chips>
+                          secondary-placeholder="Tags">
+                </md-chips>
 
             </div>
         </form>

@@ -2,15 +2,14 @@
 
     $scope.editor = "repositorio/templates/editor.html";
 
+    $scope.$emit('placeholder', { place: "Busque por um snippet" });
+
     $scope.snippet = {
         nome: '',
         usuario: 'camila@gmail.com',
         projeto: '',
         Keyword: []
     }
-
-    // Pega os projetos cadastrados no banco
-    $scope.projetosCadastrados = projetosService.getProjetos();
 
     //Função que salva um novo snippet
     $scope.salvaSnippet = function () {
@@ -46,13 +45,14 @@
             // Fechou o modal
         });
     };
+    
+    /* FUNÇÕES REFERENTES AO AUTOCOMPLETE*/
 
-
-    // AUTOCOMPLETE
+    // Pega os projetos cadastrados no banco
+    var projetosCadastrados = projetosService.getProjetos();
 
     $scope.projs = [];
-    $scope.projetosCadastrados.$promise.then(function (data) {
-
+    projetosCadastrados.$promise.then(function (data) {
         var cont = 0;
         data.forEach(function (proj) {
             $scope.projs[cont] = { value: proj.idProjeto, display: proj.nome.toLowerCase() };
@@ -73,4 +73,18 @@
             return (proj.display.indexOf(lowercaseQuery) === 0);
         };
     }
+
+    /* CHAMA O MODAL DE CADASTRAR UM NOVO PROJETO*/
+
+    $scope.addProjeto = function (ev) {
+        $mdDialog.show({
+            controller: 'AddProjetoCtrl',
+            templateUrl: 'repositorio/templates/AddProjetoModal.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+        })
+        .then(function (projeto) {
+            $scope.projs[$scope.projs.length] = { value: projeto.idProjeto, display: projeto.nome.toLowerCase() };
+        });
+    };
 });

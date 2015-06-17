@@ -1,32 +1,53 @@
-﻿<md-dialog aria-label="addProjeto">
+﻿<md-dialog aria-label="addProjeto" flex="60">
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Novo Projeto</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="hide()">
+                <md-button class="md-icon-button" ng-click="cancelar()">
                     <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content flex>
-                <div>
-                    <md-input-container>
-                        <label>Nome Projeto</label>
+        <md-dialog-content>
+            <div class="modal-conteudo">
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>Nome</label>
                         <input ng-model="projeto.nome">
                     </md-input-container>
+                    <md-input-container flex>
+                        <label>Cliente</label>
+                        <input ng-model="projeto.cliente">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Área</label>
+                        <input ng-model="projeto.area">
+                    </md-input-container>
                 </div>
+                <div layout="row" layout-sm="column">
+                    <md-input-container flex="20" offset="25" style="margin-right: 5%">
+                        <label>Data Início</label>
+                        <input type="date" ng-model="dataIni">
+                    </md-input-container>
+                    <md-input-container flex="20" style="margin-left: 5%">
+                        <label>Data Fim</label>
+                        <input type="date" ng-model="dataFim">
+                    </md-input-container>
+                </div>
+                <md-input-container flex="100">
+                    <label>Descrição</label>
+                    <textarea ng-model="projeto.descricao" columns="1" md-maxlength="500"></textarea>
+                </md-input-container>
+            </div>
         </md-dialog-content>
         <div class="md-actions" layout="row">
-            <span flex></span>
-            <md-button ng-click="cancel()" class="md-primary">
+            <md-button ng-click="cancelar()" class="md-primary">
                 Cancelar
             </md-button>
-            <md-button ng-click="" class="md-primary">
+            <md-button ng-click="adicionar()" class="md-primary">
                 Adicionar
             </md-button>
         </div>
     </form>
 </md-dialog>
-
-
