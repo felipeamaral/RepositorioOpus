@@ -1,4 +1,4 @@
-﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope, projetosService, $scope, $mdDialog) {
+﻿app.controller('AddSnippetCtrl', function ($timeout, $q, $scope, projetosService, $scope, $mdDialog, $mdToast) {
 
     $scope.editor = "repositorio/templates/editor.html";
 
@@ -40,11 +40,15 @@
         }
     };
 
-    /*Fica escutando pra exibir uma mensagem caso o usuário tenha tentado
-        fazer upload sem informar um código html*/
-    $scope.$on('html', function (event, args) {
         //Exibe a mensagem de que é necessário informar o código html
-    });
+    $scope.toastHtml = function () {
+        $mdToast.show(
+            $mdToast.simple()
+            .content('É necessário informar ao menos o código HTML!')
+            .position('bottom left')
+            .hideDelay(5000)
+        );
+    };
 
     // Chama o modal de adição de um novo projeto
     $scope.addProjeto = function (ev) {

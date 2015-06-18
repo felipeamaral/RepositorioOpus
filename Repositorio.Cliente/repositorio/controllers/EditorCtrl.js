@@ -1,4 +1,4 @@
-﻿app.controller('EditorCtrl', function ($scope, $rootScope, apiService) {
+﻿app.controller('EditorCtrl', function ($scope, $rootScope, apiService, $mdToast) {
 
     $scope.aceSessions = [];
     $scope.frame = "";
@@ -100,12 +100,31 @@
                     //Chama pra upar a imagem, atualizando a visualizaçao antes
                     document.getElementById('visualizacao').contentWindow.atualiza();
                     document.getElementById('visualizacao').contentWindow.sendImage(data.idComponente);
+
+                    //Limpa os editores
+                    document.getElementById('visualizacao').contentWindow.limpa();
+                    $scope.aceSessions[0].setValue("");
+                    $scope.aceSessions[1].setValue("");
+                    $scope.aceSessions[2].setValue("");
+                    $scope.snippet = {
+                        nome: '',
+                        usuario: 'camila@gmail.com',
+                        projeto: '',
+                        Keyword: []
+                    }
+                    console.log("aqui");
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content('Snippet cadastrado com sucesso!')
+                            .position('bottom left')
+                            .hideDelay(5000)
+                        );
                 });
             });
         } else {
-            /*No caso em que não existe código html, avisa ao parent para que esse informe que ao menos o código html
-                deve ser informado*/
-            $scope.$emit('html', { html: false });
+            /*No caso em que não existe código html, chama a função do parent qe exibe o toast
+                informando que tal código deve ser informado*/
+            $scope.toastHtml();
         }
         
     });

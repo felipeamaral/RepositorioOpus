@@ -14,7 +14,10 @@ visualizacao.controller('VisualizacaoCtrl', function ($scope, $rootScope) {
         document.documentElement.appendChild(script);
     };
 
-    
+    //Limpa visualização
+    window.limpa = function () {
+        document.getElementById("body").innerHTML = "";
+    };
 
     // Envia um screenshot da tela
     window.sendImage = function (idComponente) {
