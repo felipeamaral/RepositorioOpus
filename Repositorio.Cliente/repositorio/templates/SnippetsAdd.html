@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <h3 ng-click="addProjeto($event)" style="margin-top: 1em;">
+    <h3 style="margin-top: 1em;">
         Adicionar Snippet
     </h3>
     
@@ -8,7 +8,7 @@
             <div layout-sm="column" layout="row">
                 <md-input-container flex="40" flex-sm="100" offset-gt-sm="5" style="margin-right: 10%">
                     <label><b>Nome</b></label>
-                    <input ng-model="snippet.nome" name="nome" required maxlength="5">
+                    <input ng-model="snippet.nome" name="nome" required maxlength="100">
                     <div ng-messages="addSnippetForm.nome.$error" ng-show="addSnippetForm.nome.$touched">
                         <div ng-message="required" ng-show="addSnippetForm.nome.$error.required">É necessário informar um nome para o snippet</div>
                     </div>
@@ -30,7 +30,9 @@
                         <div ng-message="required">This field is required</div>
                     </div>
                     <md-not-found>
-                        Projeto não encontrado
+                        <md-button ng-click="addProjeto()" style="font-size:0.8em; margin: 0">
+                            Não encontrado! Clique para adicionar um novo projeto
+                        </md-button>
                     </md-not-found>
                 </md-autocomplete>
             </div>
@@ -49,7 +51,7 @@
     <div ng-include="editor" ng-controller="EditorCtrl"></div>
 
     <!-- Botão de adicionar novo snippet -->
-    <div class="fixed-action-btn bottom" ng-click="salvaSnippet()">
+    <div class="fixed-action-btn bottom" ng-click="salvaSnippet($event)">
         <md-tooltip>
             Fazer upload
         </md-tooltip>

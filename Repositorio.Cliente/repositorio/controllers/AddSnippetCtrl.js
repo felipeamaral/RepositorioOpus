@@ -12,7 +12,7 @@
     }
 
     //Função que salva um novo snippet
-    $scope.salvaSnippet = function () {
+    $scope.salvaSnippet = function (ev) {
 
         //Verifica se um nome foi informado
         if ($scope.snippet.nome != "" && $scope.snippet.nome != undefined && $scope.snippet.nome != null) {
@@ -22,7 +22,27 @@
 
             snippetEnviar.nome = $scope.snippet.nome;
             snippetEnviar.usuario = $scope.snippet.usuario;
-            snippetEnviar.projeto = $scope.snippet.projeto.value;
+
+            if ($scope.snippet.projeto == null) {
+
+                var flag = false;
+
+                //Verifica se algum projeto na lista possui esse nome
+                $scope.projs.forEach(function (val, index) {
+                    if (val.display == $scope.searchText.toLowerCase()) {
+                        $scope.snippet.projeto = val;
+                        flag = true;
+                    }
+                });
+
+                if (!flag) {
+                    $scope.snippet.projeto = undefined;
+                }
+
+            } else {
+                snippetEnviar.projeto = $scope.snippet.projeto.value;
+            }
+
             snippetEnviar.Keyword = [];
 
             var cont = 0;
@@ -34,6 +54,7 @@
 
             // Envia snippet pro controller do editor
             $scope.$broadcast('upload', { snippet: snippetEnviar });
+
         } else {
             //Faz com que o erro de que é obrigatório apareça no campo nome
             $scope.addSnippetForm.nome.$touched = true;
@@ -50,19 +71,6 @@
         );
     };
 
-    // Chama o modal de adição de um novo projeto
-    $scope.addProjeto = function (ev) {
-        $mdDialog.show({
-            controller: 'AddProjetoCtrl',
-            templateUrl: 'repositorio/templates/AddProjetoModal.html',
-            targetEvent: ev,
-        }).then(function (nomeProj) {
-            // Adiciona projeto a lista e seta como o selecionado
-        }, function () {
-            // Fechou o modal
-        });
-    };
-    
     /* FUNÇÕES REFERENTES AO AUTOCOMPLETE*/
 
     // Pega os projetos cadastrados no banco
@@ -77,12 +85,10 @@
         });
     });
     $scope.searchText = null;
-    $scope.querySearch = querySearch;
-
-    function querySearch(query) {
+    $scope.querySearch = function (query) {
         var results = query ? $scope.projs.filter(createFilterFor(query)) : [];
         return results;
-    }
+    };
     
     function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
@@ -99,9 +105,22 @@
             templateUrl: 'repositorio/templates/AddProjetoModal.html',
             parent: angular.element(document.body),
             targetEvent: ev,
+            locals: {
+                nome: $scope.searchText
+            }
         })
         .then(function (projeto) {
+
+            // Adiciona projeto a lista e seta como o selecionado
             $scope.projs[$scope.projs.length] = { value: projeto.idProjeto, display: projeto.nome.toLowerCase() };
+            $scope.searchText = $scope.projs[$scope.projs.length - 1].display;
+            $scope.snippet.projeto = $scope.projs[$scope.projs.length - 1];
+
+        }, function () {
+
+            $scope.searchText = undefined;
+            $scope.snippet.projeto = undefined;
+
         });
     };
 });

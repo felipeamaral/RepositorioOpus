@@ -112,13 +112,14 @@
                         projeto: '',
                         Keyword: []
                     }
-                    console.log("aqui");
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content('Snippet cadastrado com sucesso!')
-                            .position('bottom left')
-                            .hideDelay(5000)
-                        );
+
+                    // Exibe a mensagem de que o snippet foi cadastrado
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('Snippet cadastrado com sucesso!')
+                        .position('bottom left')
+                        .hideDelay(5000)
+                    );
                 });
             });
         } else {

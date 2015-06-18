@@ -1,7 +1,7 @@
-﻿app.controller('AddProjetoCtrl', function ($scope, $mdDialog, apiService) {
+﻿app.controller('AddProjetoCtrl', function ($scope, $mdDialog, apiService, nome) {
 
     $scope.projeto = {
-        nome: "",
+        nome: nome,
         cliente: "",
         dataIni: "0000-00-00",
         dataFim: "0000-00-00",
