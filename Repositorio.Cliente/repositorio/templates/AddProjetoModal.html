@@ -1,5 +1,5 @@
 ﻿<md-dialog aria-label="addProjeto" flex="60">
-    <form>
+    <form name="addProjetoForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Novo Projeto</h2>
@@ -13,8 +13,11 @@
             <div class="modal-conteudo">
                 <div layout layout-sm="column">
                     <md-input-container flex>
-                        <label>Nome</label>
-                        <input ng-model="projeto.nome">
+                        <label>Nome <span class="obrigatorio">*</span></label>
+                        <input ng-model="projeto.nome" required name="nome">
+                        <div ng-messages="addProjetoForm.nome.$error" ng-show="addProjetoForm.nome.$touched">
+                            <div ng-message="required" ng-show="addProjetoForm.nome.$error.required">É necessário informar um nome</div>
+                        </div>
                     </md-input-container>
                     <md-input-container flex>
                         <label>Cliente</label>
@@ -27,8 +30,11 @@
                 </div>
                 <div layout="row" flex>
                     <md-input-container flex="20" offset-gt-sm="25" style="margin-right: 5%" flex-sm="50">
-                        <label>Data Início</label>
-                        <input type="date" ng-model="dataIni">
+                        <label>Data Início <span class="obrigatorio">*</span></label>
+                        <input type="date" ng-model="dataIni" required name="dataIni">
+                        <div ng-messages="addProjetoForm.dataIni.$error" ng-show="addProjetoForm.dataIni.$touched">
+                            <div ng-message="required" ng-show="addProjetoForm.dataIni.$error.required">É necessário informar a data de início do projeto</div>
+                        </div>
                     </md-input-container>
                     <md-input-container flex="20" style="margin-left: 5%" flex-sm="50">
                         <label>Data Fim</label>
@@ -36,8 +42,13 @@
                     </md-input-container>
                 </div>
                 <md-input-container flex="100">
-                    <label>Descrição</label>
-                    <textarea ng-model="projeto.descricao" columns="1" md-maxlength="500"></textarea>
+                    <label>Descrição <span class="obrigatorio">*</span></label>
+                    <textarea ng-model="projeto.descricao" columns="1" md-maxlength="500" required maxlength="500" name="descricao">
+
+                    </textarea>
+                    <div ng-messages="addProjetoForm.descricao.$error" ng-show="addProjetoForm.descricao.$touched">
+                        <div ng-message="required" ng-show="addProjetoForm.descricao.$error.required">É necessário informar uma descrição</div>
+                    </div>
                 </md-input-container>
             </div>
         </md-dialog-content>

@@ -203,3 +203,7 @@ a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary 
     outline: none;
     border: none;
 }
+
+.obrigatorio{
+    color: red;
+}
