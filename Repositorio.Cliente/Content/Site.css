@@ -207,3 +207,18 @@ a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary 
 .obrigatorio{
     color: red;
 }
+
+.pagination.pagination-lg a:focus{
+    border-color: none;
+    text-decoration: none;
+    outline: none;
+    outline-offset: 0;
+}
+
+.pagination.pagination-lg .pagSelected{
+    background-color: #1F1F1F;
+}
+
+.pagination.pagination-lg a.pagExt:focus{
+    background-color: white;
+}

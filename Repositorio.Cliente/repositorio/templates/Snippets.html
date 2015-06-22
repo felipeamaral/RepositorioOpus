@@ -70,7 +70,7 @@
                 <div class="text-center">
                     <ul class="pagination pagination-lg">
                         <li>
-                            <a href="" aria-label="Next" ng-click="goToPage(1, true, false)" ng-show="qntdPaginas">
+                            <a href="" aria-label="Next" ng-click="goToPage(1, true, false)" ng-show="qntdPaginas" class="pagExt">
                                 <span aria-hidden="true">Primeira</span>
                             </a>
                         </li>
@@ -79,14 +79,18 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li ng-repeat="pag in paginas"><a href="" ng-click="goToPage(pag, false, false)">{{pag}}</a></li>
+                        <li ng-repeat="pag in paginas">
+                            <a href="" ng-click="goToPage(pag, false, false)" ng-class="{pagSelected: pag == paginaAtual}">
+                                {{pag}}
+                            </a>
+                        </li>
                         <li>
                             <a href="" aria-label="Next" ng-click="goToNextPage()" ng-show="paginaAtual < qntdPaginas">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)" ng-show="qntdPaginas">
+                            <a href="" aria-label="Next" ng-click="goToPage(qntdPaginas, false, true)" ng-show="qntdPaginas" class="pagExt">
                                 <span aria-hidden="true">Última</span>
                             </a>
                         </li>

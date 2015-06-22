@@ -11,6 +11,8 @@
     $scope.valoresBusca = [];
     $scope.projSelecionado = [];
 
+    $scope.pageSelected = 1;
+
     //Pega os projetos contidos no banco para o filtro por projeto
     $scope.projetosCadastrados = projetosService.getProjetos();
     $scope.projetosCadastrados.$promise.then(function (data) {
