@@ -222,3 +222,7 @@ a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary 
 .pagination.pagination-lg a.pagExt:focus{
     background-color: white;
 }
+
+.md-button:focus{
+    background-color: #1F1F1F;
+}
