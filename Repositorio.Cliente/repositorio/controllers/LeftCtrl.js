@@ -1,4 +1,4 @@
-﻿app.controller('LeftCtrl', function ($scope, $state) {
+﻿app.controller('LeftCtrl', function ($scope, $state, $mdDialog) {
 
     //Controla o icone das opções primarias do menu
     $scope.iconSnippets = "add";
@@ -73,6 +73,23 @@
             $scope.toggleTemas(true);
             $scope.togglePlugins(true);
         }, 200);
+    };
+
+    $scope.addProjeto = function (ev) {
+        $mdDialog.show({
+            controller: 'AddProjetoCtrl',
+            templateUrl: 'repositorio/templates/AddProjetoModal.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            locals: {
+                nome: null
+            }
+        })
+        .then(function (projeto) {
+
+            console.log("Projeto cadastrado com sucesso");
+
+        });
     };
 
 });

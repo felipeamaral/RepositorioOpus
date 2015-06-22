@@ -29,7 +29,7 @@
             $scope.projeto.dataIni = data.getUTCFullYear() + "-" + doisDigitos(1 + data.getUTCMonth()) + "-" + doisDigitos(data.getUTCDate());
 
             // verifica se existe um data fim
-            if (dataFim) {
+            if ($scope.dataFim) {
                 data = $scope.dataFim;
                 $scope.projeto.dataFim = data.getUTCFullYear() + "-" + doisDigitos(1 + data.getUTCMonth()) + "-" + doisDigitos(data.getUTCDate());
             }

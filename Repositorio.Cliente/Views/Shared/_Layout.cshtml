@@ -92,6 +92,11 @@
                                 <p> Projetos </p>
                                 <ng-md-icon icon="{{iconProjs}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
+                        <div ng-show="projsOptions" class="menu-secundario">
+                            <md-list-item ng-click="addProjeto($event)">
+                                <p> Adicionar novo </p>
+                            </md-list-item>
+                        </div>
                         <md-list-item ng-click="togglePlugins()">
                             <p> Plugins </p>
                             <ng-md-icon icon="{{iconPlugins}}" style="fill: black" class="md-icon-button"></ng-md-icon>
