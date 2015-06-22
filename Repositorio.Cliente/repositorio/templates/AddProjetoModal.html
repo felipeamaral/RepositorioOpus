@@ -13,36 +13,62 @@
             <div class="modal-conteudo">
                 <div layout layout-sm="column">
                     <md-input-container flex>
-                        <label>Nome <span class="obrigatorio">*</span></label>
+                        <label><b>Nome <span class="obrigatorio">*</span></b></label>
                         <input ng-model="projeto.nome" required name="nome">
                         <div ng-messages="addProjetoForm.nome.$error" ng-show="addProjetoForm.nome.$touched">
                             <div ng-message="required" ng-show="addProjetoForm.nome.$error.required">É necessário informar um nome</div>
                         </div>
                     </md-input-container>
-                    <md-input-container flex>
-                        <label>Cliente</label>
-                        <input ng-model="projeto.cliente">
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>Área</label>
-                        <input ng-model="projeto.area">
-                    </md-input-container>
+                    <md-autocomplete flex="33" flex-sm="100"
+                                     md-input-name="autocompleteCliente"
+                                     md-no-cache="noCache"
+                                     md-selected-item="projeto.cliente"
+                                     md-search-text="searchTextCliente"
+                                     md-items="item in querySearchCliente(searchTextCliente)"
+                                     md-item-text="item.display"
+                                     md-floating-label="Cliente" style="margin-right: 0.5em">
+                        <md-item-template style="height: 26px;">
+                            <span md-highlight-text="searchtextCliente">
+                                {{item.display}}
+                            </span>
+                        </md-item-template>
+                        <md-not-found>
+                            Cliente não encontrado!
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-autocomplete flex=33" flex-sm="100"
+                                     md-input-name="autocompleteArea"
+                                     md-no-cache="noCache"
+                                     md-selected-item="projeto.area"
+                                     md-search-text="searchTextArea"
+                                     md-items="item in querySearchArea(searchTextArea)"
+                                     md-item-text="item.display"
+                                     md-floating-label="Área">
+                        <md-item-template style="height: 26px;">
+                            <span md-highlight-text="searchtextArea">
+                                {{item.display}}
+                            </span>
+                        </md-item-template>
+                        <md-not-found>
+                            Área não encontrada!
+                        </md-not-found>
+                    </md-autocomplete>
                 </div>
                 <div layout="row" flex>
                     <md-input-container flex="20" offset-gt-sm="25" style="margin-right: 5%" flex-sm="50">
-                        <label>Data Início <span class="obrigatorio">*</span></label>
+                        <label><b>Data Início <span class="obrigatorio">*</span></b></label>
                         <input type="date" ng-model="dataIni" required name="dataIni">
                         <div ng-messages="addProjetoForm.dataIni.$error" ng-show="addProjetoForm.dataIni.$touched">
-                            <div ng-message="required" ng-show="addProjetoForm.dataIni.$error.required">É necessário informar a data de início do projeto</div>
+                            <div ng-message="required" ng-show="addProjetoForm.dataIni.$error.required">Informe a data de início</div>
                         </div>
                     </md-input-container>
                     <md-input-container flex="20" style="margin-left: 5%" flex-sm="50">
-                        <label>Data Fim</label>
+                        <label><b>Data Fim</b></label>
                         <input type="date" ng-model="dataFim">
                     </md-input-container>
                 </div>
                 <md-input-container flex="100">
-                    <label>Descrição <span class="obrigatorio">*</span></label>
+                    <label><b>Descrição <span class="obrigatorio">*</span></b></label>
                     <textarea ng-model="projeto.descricao" columns="1" md-maxlength="500" required maxlength="500" name="descricao">
 
                     </textarea>

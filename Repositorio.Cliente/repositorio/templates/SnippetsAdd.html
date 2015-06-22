@@ -7,13 +7,13 @@
         <form name="addSnippetForm" novalidate>
             <div layout-sm="column" layout="row">
                 <md-input-container flex="40" flex-sm="100" offset-gt-sm="5" style="margin-right: 10%">
-                    <label><b>Nome</b></label>
+                    <label><b>Nome <span class="obrigatorio">*</span></b></label>
                     <input ng-model="snippet.nome" name="nome" required maxlength="100">
                     <div ng-messages="addSnippetForm.nome.$error" ng-show="addSnippetForm.nome.$touched">
                         <div ng-message="required" ng-show="addSnippetForm.nome.$error.required">É necessário informar um nome para o snippet</div>
                     </div>
                 </md-input-container>
-                <md-autocomplete flex="40" flex-sm="100" required
+                <md-autocomplete flex="40" flex-sm="100"
                                  md-input-name="autocompleteField"
                                  md-no-cache="noCache"
                                  md-selected-item="snippet.projeto"

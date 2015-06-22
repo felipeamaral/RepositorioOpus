@@ -145,6 +145,8 @@
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
     <Content Include="repositorio\controllers\VisualizacaoCtrl.js" />
+    <Content Include="repositorio\services\areasService.js" />
+    <Content Include="repositorio\services\clientesService.js" />
     <Content Include="repositorio\services\projetosService.js" />
     <Content Include="repositorio\templates\AddProjetoModal.html" />
     <Content Include="repositorio\templates\SnippetsAdd.html" />

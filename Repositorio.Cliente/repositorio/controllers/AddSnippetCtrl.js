@@ -58,10 +58,18 @@
         } else {
             //Faz com que o erro de que é obrigatório apareça no campo nome
             $scope.addSnippetForm.nome.$touched = true;
+
+            // Exibe mensagem de que existem erros no formulário
+            $mdToast.show(
+                $mdToast.simple()
+                .content('Existem erros no preenchimento dos dados!')
+                .position('bottom left')
+                .hideDelay(5000)
+            );
         }
     };
 
-        //Exibe a mensagem de que é necessário informar o código html
+    //Exibe a mensagem de que é necessário informar o código html
     $scope.toastHtml = function () {
         $mdToast.show(
             $mdToast.simple()

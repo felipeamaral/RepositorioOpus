@@ -55,7 +55,9 @@ namespace Repositorio.Cliente
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioServices").Include(
                       "~/repositorio/services/apiService.js",
-                      "~/repositorio/services/projetosService.js"));
+                      "~/repositorio/services/projetosService.js",
+                      "~/repositorio/services/clientesService.js",
+                      "~/repositorio/services/areasService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
                       "~/repositorio/controllers/AddProjetoCtrl.js",
