@@ -33,7 +33,7 @@
                             </span>
                         </md-item-template>
                         <md-not-found>
-                            Cliente não encontrado!
+                            Cliente não encontrado! Para inserir novo, basta inserir o nome.
                         </md-not-found>
                     </md-autocomplete>
                     <md-autocomplete flex=33" flex-sm="100"
@@ -50,7 +50,7 @@
                             </span>
                         </md-item-template>
                         <md-not-found>
-                            Área não encontrada!
+                            Área não encontrada! Para inserir nova, basta inserir o nome.
                         </md-not-found>
                     </md-autocomplete>
                 </div>
@@ -70,7 +70,6 @@
                 <md-input-container flex="100">
                     <label><b>Descrição <span class="obrigatorio">*</span></b></label>
                     <textarea ng-model="projeto.descricao" columns="1" md-maxlength="500" required maxlength="500" name="descricao">
-
                     </textarea>
                     <div ng-messages="addProjetoForm.descricao.$error" ng-show="addProjetoForm.descricao.$touched">
                         <div ng-message="required" ng-show="addProjetoForm.descricao.$error.required">É necessário informar uma descrição</div>

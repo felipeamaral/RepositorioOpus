@@ -20,7 +20,7 @@
             //Monta o snippet a ser enviado pro servidor
             var snippetEnviar = {};
 
-            snippetEnviar.nome = $scope.snippet.nome;
+            snippetEnviar.nome = $scope.snippet.nome.replace(/\s{2,}/g, ' ');
             snippetEnviar.usuario = $scope.snippet.usuario;
 
             if ($scope.snippet.projeto == null) {
