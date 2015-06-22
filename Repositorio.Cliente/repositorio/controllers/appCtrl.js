@@ -1,4 +1,4 @@
-﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $state) {
+﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog) {
 
     $scope.toggleLeft = buildToggler('left');    
     $scope.demo = {};
@@ -72,5 +72,23 @@
 
     $scope.home = function () {
         $state.go('home', { valorBusca: null }, {reload: true});
+    };
+
+    //Chama o modal de login
+    $scope.entrar = function () {
+        $mdDialog.show({
+            controller: 'LoginCtrl',
+            templateUrl: 'repositorio/templates/LoginModal.html',
+            parent: angular.element(document.body),
+        })
+        .then(function (projeto) {
+
+            // ok
+
+        }, function () {
+
+            // deu ruim
+
+        });
     };
 });

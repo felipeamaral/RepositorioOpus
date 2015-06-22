@@ -62,6 +62,7 @@ namespace Repositorio.Cliente
             bundles.Add(new ScriptBundle("~/bundles/repositorioControllers").Include(
                       "~/repositorio/controllers/AddProjetoCtrl.js",
                       "~/repositorio/controllers/AddSnippetCtrl.js",
+                      "~/repositorio/controllers/LoginCtrl.js",
                       "~/repositorio/controllers/appCtrl.js",
                       "~/repositorio/controllers/SnippetsCtrl.js",
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",

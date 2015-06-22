@@ -226,3 +226,12 @@ a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary 
 .md-button:focus{
     background-color: #1F1F1F;
 }
+
+.md-toolbar-tools.login {
+    background-color: rgb(184, 41, 30);
+    border: none;
+}
+
+md-toolbar.md-default-theme.md-toolbar-tools.login{
+    border-top: none;
+}

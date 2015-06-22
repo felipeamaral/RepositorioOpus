@@ -1,0 +1,36 @@
+﻿<md-dialog aria-label="login" flex="30">
+    <form name="loginForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools login">
+                <h2>Fazer Login</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelar()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="container" style="margin-right: 4.5em">
+                <md-input-container class="md-icon-float">
+                    <md-icon md-svg-src="img/ic_person_24px.svg" class="name"></md-icon>
+                    <input ng-model="user.name" type="text" name="userName" placeholder="Nome de Usuário (obrigatório)" required>
+                    <div ng-messages="loginForm.userName.$error" ng-show="loginForm.userName.$touched" style="margin-left: 3em;">
+                        <div ng-message="required" ng-show="loginForm.userName.$error.required">Informe o nome de usuário</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <md-icon md-svg-src="img/ic_password_24px.svg"></md-icon>
+                    <input ng-model="user.password" type="password" placeholder="Senha (obrigatório)" name="senha" required>
+                    <div ng-messages="loginForm.senha.$error" ng-show="loginForm.senha.$touched" style="margin-left: 3em;">
+                        <div ng-message="required" ng-show="loginForm.senha.$error.required">Informe a senha</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button flex ng-click="entrar()" class="md-warn md-raised md-primary" style="margin-right: 1em">
+                Entrar
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
