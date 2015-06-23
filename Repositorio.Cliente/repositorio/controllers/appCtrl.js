@@ -1,7 +1,6 @@
 ﻿app.controller('appCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog) {
 
-    $scope.toggleLeft = buildToggler('left');    
-    $scope.demo = {};
+    $scope.toggleLeft = buildToggler('left');
     $scope.iconMenu = "menu";
 
     var valorBusca = "";
