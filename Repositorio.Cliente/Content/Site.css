@@ -51,12 +51,12 @@
  /* Cards */
 .card-action.action > a:first-child{
     margin-right:3em;
-    color: red;
+    color: #F44336;
 }
 
 .card-action.action > a:nth-child(2){
     margin-right: 0em;
-    color: red;
+    color: #F44336;
 }
 
 .card-action.action > a:nth-child(2):hover, .card-action.action > a:first-child:hover{
@@ -79,7 +79,7 @@
 }
 
 .pagination > li > a{
-    color: red;
+    color: #F44336;
 }
 
 .pagination > li > a:hover{
@@ -87,7 +87,7 @@
 }
 
 .navbar-fixed-bottom.md-default-theme span{
-    color: red;
+    color: #F44336;
 }
 
 .fixed-action-btn.top{
@@ -160,8 +160,8 @@ md-list-item:hover{
 
 md-toolbar.side-nav-toolbar{
     padding: 0em;
-    border-bottom: 1px solid red;
-    border-top: 1px solid red;
+    border-bottom: 1px solid #F44336;
+    border-top: 1px solid #F44336;
 }
 
 md-sidenav{
@@ -188,7 +188,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 
 md-toolbar.md-default-theme{
     background-color: #1F1F1F;
-    border-top: 0.1em solid red;
+    border-top: 0.1em solid #F44336;
 }
 
 md-dialog .md-actions{
