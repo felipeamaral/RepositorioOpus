@@ -5,14 +5,12 @@
     $scope.iconTemas = "add";
     $scope.iconProjs = "add";
     $scope.iconPlugins = "add";
-    $scope.iconTemplates = "add";
 
     //Controla se mostra as opções secundárias de um menu
     $scope.snippetsOptions = false;
     $scope.temasOptions = false;
     $scope.projsOptions = false;
     $scope.pluginsOptions = false;
-    $scope.templatesOptions = false;
 
     $scope.toggleTemas = function (esconde) {
         if (esconde) {
@@ -24,7 +22,6 @@
             $scope.togglePlugins(true);
             $scope.toggleProjs(true);
             $scope.toggleSnippets(true);
-            $scope.toggleTemplates(true);
         }
     };
     
@@ -38,7 +35,6 @@
             $scope.togglePlugins(true);
             $scope.toggleProjs(true);
             $scope.toggleTemas(true);
-            $scope.toggleTemplates(true);
         }
     };
 
@@ -52,7 +48,6 @@
             $scope.togglePlugins(true);
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
-            $scope.toggleTemplates(true);
         }
     };
 
@@ -66,23 +61,8 @@
             $scope.toggleProjs(true);
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
-            $scope.toggleTemplates(true);
         }
     };
-
-    $scope.toggleTemplates = function (esconde) {
-        if (esconde) {
-            $scope.iconTemplates = "add";
-            $scope.templatesOptions = false;
-        } else {
-            $scope.iconTemplates = $scope.iconTemplates == "add" ? "remove" : "add";
-            $scope.templatesOptions = $scope.templatesOptions == true ? false : true;
-            $scope.toggleProjs(true);
-            $scope.toggleSnippets(true);
-            $scope.toggleTemas(true);
-            $scope.togglePlugins(true);
-        }
-    }
 
     $scope.goTo = function (status) {
         $state.go(status);
@@ -92,7 +72,24 @@
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
             $scope.togglePlugins(true);
-            $scope.toggleTemplates(true);
         }, 200);
     };
+
+    $scope.addProjeto = function (ev) {
+        $mdDialog.show({
+            controller: 'AddProjetoCtrl',
+            templateUrl: 'repositorio/templates/AddProjetoModal.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            locals: {
+                nome: null
+            }
+        })
+        .then(function (projeto) {
+
+            console.log("Projeto cadastrado com sucesso");
+
+        });
+    };
+
 });

@@ -5,12 +5,14 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="~/Content/angular-material.min.css">
     <link type="text/css" rel="stylesheet" href="Content/materialize.css" media="screen,projection" />
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/search.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
     
 
 </head>
@@ -23,7 +25,7 @@
                     <div class="md-toolbar-tools">
                         <md-button class="md-icon-button" style="padding-top: 0.6em;" aria-label="Settings"
                                    ng-click="changeIcon()">
-                            <ng-md-icon icon={{iconMenu}} style="fill: #F44336" size="32"></ng-md-icon>
+                            <ng-md-icon icon={{iconMenu}} style="fill: red" size="32"></ng-md-icon>
                         </md-button>
                         <md-button class="md-icon-button" aria-label="Snippets" ng-click="home()">
                             <span>Home</span>
@@ -99,15 +101,6 @@
                             <p> Plugins </p>
                             <ng-md-icon icon="{{iconPlugins}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
-                        <md-list-item ng-click="toggleTemplates()">
-                            <p> Templates </p>
-                            <ng-md-icon icon="{{iconTemplates}}" style="fill: black" class="md-icon-button"></ng-md-icon>
-                        </md-list-item>
-                        <div ng-show="templatesOptions" class="menu-secundario">
-                            <md-list-item ng-click="">
-                                <p> Gerar novo </p>
-                            </md-list-item>
-                        </div>
                     </md-list>
                 </md-content>
             </md-sidenav>

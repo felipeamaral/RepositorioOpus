@@ -142,19 +142,28 @@
     <Content Include="Content\angular-material.min.css" />
     <Content Include="img\white_arrow_left.svg" />
     <Content Include="img\white_arrow_right.svg" />
+    <Content Include="repositorio\app.js" />
     <Content Include="repositorio\appConfig.js" />
     <Content Include="repositorio\controllers\AddProjetoCtrl.js" />
+    <Content Include="repositorio\controllers\AddSnippetCtrl.js" />
+    <Content Include="repositorio\controllers\appCtrl.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
     <Content Include="repositorio\controllers\LoginCtrl.js" />
+    <Content Include="repositorio\controllers\SnippetsCtrl.js" />
     <Content Include="repositorio\controllers\VisualizacaoCtrl.js" />
+    <Content Include="repositorio\controllers\VisualizarSnippetCtrl.js" />
+    <Content Include="repositorio\services\apiService.js" />
     <Content Include="repositorio\services\areasService.js" />
     <Content Include="repositorio\services\clientesService.js" />
     <Content Include="repositorio\services\projetosService.js" />
     <Content Include="repositorio\templates\AddProjetoModal.html" />
+    <Content Include="repositorio\templates\editor.html" />
     <Content Include="repositorio\templates\LoginModal.html" />
+    <Content Include="repositorio\templates\Snippets.html" />
     <Content Include="repositorio\templates\SnippetsAdd.html" />
     <Content Include="repositorio\templates\Visualizacao.html" />
+    <Content Include="repositorio\templates\Visualiza_Snippet.html" />
     <Content Include="repositorio\visualizacao.js" />
     <Content Include="Scripts\angular\angular-material-icons.min.js" />
     <Content Include="Scripts\angular\angular-ui-router.js" />
@@ -181,7 +190,6 @@
     <Content Include="fonts\roboto\Roboto-Thin.woff" />
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="repositorio\controllers\VisualizarSnippetCtrl.js" />
     <Content Include="Scripts\canvas\html2canvas.js" />
     <Content Include="Scripts\canvas\jquery.plugin.html2canvas.js" />
     <Content Include="Scripts\ext-language_tools.js" />
@@ -198,11 +206,9 @@
     <Content Include="Scripts\materialize\materialize.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="repositorio\app.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="repositorio\templates\Snippets.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -210,6 +216,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -223,7 +230,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
