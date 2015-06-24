@@ -1,5 +1,5 @@
 ﻿app.controller('SnippetsCtrl', function ($scope, apiService, $timeout, $mdSidenav, $mdUtil, $log, $state, valorBusca,
-                                            projetosService, $http) {
+                                            projetosService) {
 
     var qntd = 9;
     var qntdPaginasMostra = 5;
@@ -190,29 +190,8 @@
     };
 
 
-
+    // Teste para verificar se consigo gerar o template com menu e cores personalizados
     $scope.teste = function () {
-        /*$http({
-            url: 'http://localhost:53412/api/template/material',
-            method: "GET",
-            encoding: null
-            //params: { cor: "red", ItemMenu: null }
-        }).success(function (data) {
-            JSZipUtils.getBinaryContent(data, function (err, dt) {
-                if (err) {
-                    throw err; // or handle err
-                }
-
-                // Cria o objeto do tipo JSZip com os dados do arquivo zip obtido
-                var zip = new JSZip(dt);
-                console.log(zip);
-                // Gera o arquivo pra download
-                //var blob = zip.generate({ type: "blob" });
-                //saveAs(blob, "materialDesignTemplate.zip");
-            });
-            //window.open(data, '_self');
-        });*/
-
-        window.open('http://localhost:53412/api/template/material/' + "red", '_self');
+        window.open('http://localhost:53412/api/template/material/' + "red" + "?itens=Snippets&itens=Projetos", '_self');
     };
 });
