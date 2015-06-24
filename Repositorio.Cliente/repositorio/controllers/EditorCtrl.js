@@ -52,7 +52,7 @@
         if ($scope.aceSessions[2].getValue() != undefined) {
             zipDownload.file('arq.js', $scope.aceSessions[2].getValue());
         }
-
+        
         // Faz o download do arquivo
         var blob = zipDownload.generate({ type: "blob" });
         saveAs(blob, $scope.idSnippet + ".zip");

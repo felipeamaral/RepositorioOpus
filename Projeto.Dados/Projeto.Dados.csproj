@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Arquivos\Codigos\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Controllers\KeywordController.cs" />
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\SnippetController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DAL\AreaRepository.cs" />
     <Compile Include="DAL\ClienteRepository.cs" />
@@ -200,19 +202,13 @@
     <Compile Include="Models\Projeto.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arquivos\Codigos\1\arq.css" />
-    <Content Include="Arquivos\Codigos\1\arq.html" />
-    <Content Include="Arquivos\Codigos\1\arq.js" />
-    <Content Include="Arquivos\Codigos\2\arq.css" />
-    <Content Include="Arquivos\Codigos\2\arq.html" />
-    <Content Include="Arquivos\Codigos\3\arq.css" />
-    <Content Include="Arquivos\Codigos\3\arq.html" />
     <Content Include="Arquivos\Imagens\3.png" />
     <Content Include="Arquivos\Imagens\4.png" />
     <Content Include="Arquivos\Imagens\5.png" />
@@ -242,6 +238,7 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
       <LastGenOutput>Modelo.cs</LastGenOutput>
     </Content>
+    <Content Include="Arquivos\Templates\materialDesign.zip" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

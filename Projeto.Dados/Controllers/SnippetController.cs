@@ -9,7 +9,6 @@ using Projeto.Dados.DAL;
 using System.IO;
 using System.Text;
 using System.Web;
-using Ionic.Zip;
 using System.Net.Http.Headers;
 
 namespace Projeto.Dados.Controllers
