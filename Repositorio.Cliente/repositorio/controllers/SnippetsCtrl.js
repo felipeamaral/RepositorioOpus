@@ -188,10 +188,4 @@
         //Fecha o menu lateral
         $scope.toggleRight();
     };
-
-
-    // Teste para verificar se consigo gerar o template com menu e cores personalizados
-    $scope.teste = function () {
-        window.open('http://localhost:53412/api/template/material/' + "red" + "?itens=Snippets&itens=Projetos", '_self');
-    };
 });

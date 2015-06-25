@@ -5,12 +5,28 @@
     $scope.iconTemas = "add";
     $scope.iconProjs = "add";
     $scope.iconPlugins = "add";
+    $scope.iconTemplates = "add";
 
     //Controla se mostra as opções secundárias de um menu
     $scope.snippetsOptions = false;
     $scope.temasOptions = false;
     $scope.projsOptions = false;
     $scope.pluginsOptions = false;
+    $scope.templatesOptions = false;
+
+    $scope.toggleTemplates = function (esconde) {
+        if (esconde) {
+            $scope.iconTemplates = "add";
+            $scope.templatesOptions = false;
+        } else {
+            $scope.iconTemplates = $scope.iconTemplates == "add" ? "remove" : "add";
+            $scope.templatesOptions = $scope.templatesOptions == true ? false : true;
+            $scope.togglePlugins(true);
+            $scope.toggleProjs(true);
+            $scope.toggleSnippets(true);
+            $scope.toggleTemas(true);
+        }
+    };
 
     $scope.toggleTemas = function (esconde) {
         if (esconde) {
@@ -22,6 +38,7 @@
             $scope.togglePlugins(true);
             $scope.toggleProjs(true);
             $scope.toggleSnippets(true);
+            $scope.toggleTemplates(true);
         }
     };
     
@@ -35,6 +52,7 @@
             $scope.togglePlugins(true);
             $scope.toggleProjs(true);
             $scope.toggleTemas(true);
+            $scope.toggleTemplates(true);
         }
     };
 
@@ -48,6 +66,7 @@
             $scope.togglePlugins(true);
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
+            $scope.toggleTemplates(true);
         }
     };
 
@@ -61,6 +80,7 @@
             $scope.toggleProjs(true);
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
+            $scope.toggleTemplates(true);
         }
     };
 
@@ -72,6 +92,7 @@
             $scope.toggleSnippets(true);
             $scope.toggleTemas(true);
             $scope.togglePlugins(true);
+            $scope.toggleTemplates(true);
         }, 200);
     };
 
@@ -89,6 +110,15 @@
 
             console.log("Projeto cadastrado com sucesso");
 
+        });
+    };
+
+    $scope.gerarMaterialTemplate = function (ev) {
+        $mdDialog.show({
+            controller: 'materialTemplateCtrl',
+            templateUrl: 'repositorio/templates/MaterialDesignModal.html',
+            parent: angular.element(document.body),
+            targetEvent: ev
         });
     };
 

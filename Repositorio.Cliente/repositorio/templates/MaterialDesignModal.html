@@ -1,0 +1,34 @@
+﻿<md-dialog aria-label="materialTemplate" flex="60">
+    <form name="materialTemplateForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Gerar Template Material Design</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelar()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="modal-conteudo" layout="row">
+                <md-list>
+                    <md-list-item>
+                        <p> Rodapé </p>
+                        <md-checkbox class="md-warn" ng-model="topping.wanted"></md-checkbox>
+                    </md-list-item>
+                </md-list>
+                <!--<md-select ng-model="topping" placeholder="Cor">
+                    <md-option ng-value="default" style="background-color: blue"></md-option>
+                </md-select>-->
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button ng-click="cancelar()" class="md-warn md-raised md-hue-2" style="margin-right: 1em">
+                Cancelar
+            </md-button>
+            <md-button ng-click="downloadTemplate()" class="md-warn md-raised md-hue-2">
+                Gerar
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

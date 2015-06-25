@@ -14,7 +14,7 @@
         function (newValue, oldValue) {
             if (newValue == false) {
                 $scope.iconMenu = "menu";
-            }
+            }   
         }
     );
 

@@ -99,24 +99,22 @@
                             <p> Plugins </p>
                             <ng-md-icon icon="{{iconPlugins}}" style="fill: black" class="md-icon-button"></ng-md-icon>
                         </md-list-item>
+                        <md-list-item ng-click="toggleTemplates()">
+                            <p> Templates </p>
+                            <ng-md-icon icon="{{iconTemplates}}" style="fill: black" class="md-icon-button"></ng-md-icon>
+                        </md-list-item>
+                        <div ng-show="templatesOptions" class="menu-secundario">
+                            <md-list-item ng-click="gerarMaterialTemplate($event)">
+                                <p> .NET + Angular Material </p>
+                            </md-list-item>
+                        </div>
                     </md-list>
                 </md-content>
             </md-sidenav>
 
 
             @RenderBody()
-
-
-            <md-content>
-                <!-- Rodapé -->
-                <div style="margin-top: 4em;">
-                    <md-toolbar class="navbar-fixed-bottom">
-                        <div layout="row" layout-align="center center" flex>
-                            <p><span>&copy;</span> @DateTime.Now.Year - Repositório</p>
-                        </div>
-                    </md-toolbar>
-                </div>
-            </md-content>
+            
         </md-content>
 
     @Scripts.Render("~/bundles/angular")
