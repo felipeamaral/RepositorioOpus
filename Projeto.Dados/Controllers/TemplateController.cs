@@ -14,6 +14,24 @@ namespace Projeto.Dados.Controllers
     public class TemplateController : ApiController
     {
 
+        private string firstLettersUpper(string str)
+        {
+            string aux = str;
+            string firstUpper = "";
+
+            //Verifica se é um nome composto e transforma num nome só
+            int espaco = aux.IndexOf(' ');
+            while (espaco >= 0)
+            {
+                firstUpper += char.ToUpper(aux[0]) + aux.Substring(1, espaco - 1);
+                aux = str.Substring(espaco + 1);
+                espaco = aux.IndexOf(' ');
+            }
+            firstUpper += char.ToUpper(aux[0]) + aux.Substring(1);
+
+            return firstUpper;
+        }
+
         // Retorna o template básico de .net com angular material
         [Route("api/template/material/{cor}/{rodape}")]
         public HttpResponseMessage GetTemplate(string cor, bool rodape, [FromUri] List<string> itens)
@@ -70,23 +88,27 @@ namespace Projeto.Dados.Controllers
                 foreach(string item in itens){
 
                     // Seta o que será colocado no layout
-                    string firstUpper = char.ToUpper(item[0]) + item.Substring(1);
+                    string firstUpper = firstLettersUpper(item);
+
+                    // Coloca a primeira letra do firstUpper como minuscula
+                    string firstLower = char.ToLower(firstUpper[0]) + firstUpper.Substring(1);
+
                     string options1 = "";
                     string options2 = "";
 
                     itensMenu = itensMenu + "<md-list-item ng-click=\"toggle" + firstUpper + "()\">\r\n" +
-                            "<p> " + firstUpper + " </p>\r\n" +
+                            "<p> " + char.ToUpper(item[0]) + item.Substring(1) + " </p>\r\n" +
                             "<ng-md-icon icon=\"{{icon" + firstUpper + "}}\" style=\"fill: black\" class=\"md-icon-button\"></ng-md-icon>\r\n" +
                             "</md-list-item>\r\n";
 
                     if (item.Equals(itens[0])){
-                        itensMenu = itensMenu + "<div ng-show=\"" + item.ToLower() + "Options\" class=\"menu-secundario\">\r\n" +
+                        itensMenu = itensMenu + "<div ng-show=\"" + firstLower + "Options\" class=\"menu-secundario\">\r\n" +
                                         "<md-list-item ng-click=\"nothing()\">\r\n" +
                                         "<p> Menu secundario </p>\r\n" +
                                         "</md-list-item>\r\n" +
                                         "</div>\r\n";
-                        options1 = "$scope." + item.ToLower() + "Options = false;\r\n";
-                        options2 = "$scope." + item.ToLower() + "Options = $scope." + item.ToLower() + "Options == true ? false : true;\r\n";
+                        options1 = "$scope." + firstLower + "Options = false;\r\n";
+                        options2 = "$scope." + firstLower + "Options = $scope." + firstLower + "Options == true ? false : true;\r\n";
                     }
 
                     // Seta o que será colocado no controller
@@ -101,7 +123,7 @@ namespace Projeto.Dados.Controllers
 
                     foreach (string it in itens){
                         if (!it.Equals(item)){
-                            ctrl = ctrl + "$scope.toggle" + char.ToUpper(it[0]) + it.Substring(1) + "(true);\r\n";
+                            ctrl = ctrl + "$scope.toggle" + firstLettersUpper(it) + "(true);\r\n";
                         }
                     }
                     ctrl = ctrl + "}\r\n};\r\n"; 
