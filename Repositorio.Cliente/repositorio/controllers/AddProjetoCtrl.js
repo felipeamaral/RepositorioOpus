@@ -10,7 +10,7 @@
     };
 
     $scope.cancelar = function () {
-        $mdDialog.cancel();
+        $mdDialog.hide();
     };
 
     function doisDigitos(valor) {

@@ -18,6 +18,12 @@
         }
     );
 
+    //Fica escutando pra saber quando abre um modal
+    $scope.$on('modal', function (event, args) {
+        if ($mdSidenav('left').isOpen()){
+            $scope.toggleLeft();
+        }
+    });
 
     //Fica escutando pra saber qual o placeholder da barra de busca
     $scope.$on('placeholder', function (event, args) {

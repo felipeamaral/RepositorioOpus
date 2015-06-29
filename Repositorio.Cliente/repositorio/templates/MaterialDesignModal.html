@@ -10,16 +10,34 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="modal-conteudo" layout="row">
-                <md-list>
-                    <md-list-item>
-                        <p> Rodapé </p>
-                        <md-checkbox class="md-warn" ng-model="topping.wanted"></md-checkbox>
-                    </md-list-item>
-                </md-list>
+            <div class="modal-conteudo" layout="column">
+                <div layout="row">
+                    <md-list>
+                        <md-list-item>
+                            <p> Inserir Rodapé </p>
+                            <md-checkbox class="md-warn" ng-model="topping.wanted"></md-checkbox>
+                        </md-list-item>
+                    </md-list>
+                </div>
                 <!--<md-select ng-model="topping" placeholder="Cor">
                     <md-option ng-value="default" style="background-color: blue"></md-option>
+                    <md-option ng-value="default" style="background-color: orange"></md-option>
                 </md-select>-->
+                <div flex="100">
+                    <label>Selecione a cor do template</label>
+                    <table>
+                        <tbody>
+                            <tr role="row">
+                                <td ng-repeat="plt in palette" role="gridcell" ng-style="{'background-color': '{{plt}}'}"
+                                    ng-click="selectColor(plt)" ng-class="{selected: plt == colorSelected }"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </br>
+                <div flex="100">
+                    <label>Itens menu principal</label>
+                </div>
             </div>
         </md-dialog-content>
         <div class="md-actions" layout="row">

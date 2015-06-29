@@ -97,6 +97,9 @@
     };
 
     $scope.addProjeto = function (ev) {
+
+        $scope.$emit('modal', null);
+
         $mdDialog.show({
             controller: 'AddProjetoCtrl',
             templateUrl: 'repositorio/templates/AddProjetoModal.html',
@@ -107,18 +110,22 @@
             }
         })
         .then(function (projeto) {
-
-            console.log("Projeto cadastrado com sucesso");
-
+            $scope.toggleProjs(true);
+            //ok
         });
     };
 
     $scope.gerarMaterialTemplate = function (ev) {
+
+        $scope.$emit('modal', null);
+
         $mdDialog.show({
             controller: 'materialTemplateCtrl',
             templateUrl: 'repositorio/templates/MaterialDesignModal.html',
             parent: angular.element(document.body),
             targetEvent: ev
+        }).then(function () {
+            $scope.toggleTemplates(true);
         });
     };
 

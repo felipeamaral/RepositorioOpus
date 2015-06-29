@@ -260,3 +260,11 @@ md-toolbar.md-default-theme.md-toolbar-tools.login{
 .md-button:focus{
     background-color: transparent;
 }
+
+td:hover{
+    cursor: pointer;
+}
+
+td.selected{
+    box-shadow: 0 1px 4px #000,inset 0 0 3px #fff;
+}
