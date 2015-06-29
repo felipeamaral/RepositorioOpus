@@ -15,10 +15,9 @@ namespace Projeto.Dados.Controllers
     {
 
         // Retorna o template básico de .net com angular material
-        [Route("api/template/material/{cor}")]
-        public HttpResponseMessage GetTemplate(string cor, [FromUri] List<string> itens)
+        [Route("api/template/material/{cor}/{rodape}")]
+        public HttpResponseMessage GetTemplate(string cor, bool rodape, [FromUri] List<string> itens)
         {
-
             //Pega o arquivo zip que contem o template a ser utilizado
             ZipFile template = ZipFile.Read(System.Web.HttpContext.Current.Server.MapPath(
                 "~/Arquivos/Templates/materialDesign.zip"));
@@ -113,6 +112,24 @@ namespace Projeto.Dados.Controllers
 
                 file1 = file1.Replace("<!-- Lista de itens do menu lateral -->\r\n", itensMenu);
 
+                // Verifica se o rodapé deve ser retirado
+                if (rodape)
+                {
+                    string rod = "@RenderBody()\r\n\r\n" +
+                                    "<!-- Rodapé -->\r\n" +
+                                    "<md-content>\r\n" +
+                                        "<div style=\"margin-top: 4em;\">\r\n" +
+                                            "<md-toolbar class=\"navbar-fixed-bottom\">\r\n" +
+                                                "<div layout=\"row\" layout-align=\"center center\" flex>\r\n" +
+                                                    "<p><span>&copy;</span> @DateTime.Now.Year - footer</p>\r\n" +
+                                                "</div>\r\n" +
+                                            "</md-toolbar>\r\n" +
+                                        "</div>\r\n" +
+                                    "</md-content>\r\n";
+
+                    file1 = file1.Replace("@RenderBody()", rod);
+                }
+
                 // Converte a string em stream pra poder salvar no arquivo zip
                 aux1 = new MemoryStream();
                 StreamWriter writer = new StreamWriter(aux1);
@@ -151,10 +168,6 @@ namespace Projeto.Dados.Controllers
 
             //Salva o zip com as mudanças realizadas numa stream para ser retornada
             template.Save(tmpRetorno);
-
-
-            // Verifica se o rodapé deve ser retirado
-
 
             //Retorno
             HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.OK);
