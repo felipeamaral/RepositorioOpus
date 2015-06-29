@@ -1,7 +1,6 @@
 ﻿app.controller('materialTemplateCtrl', function ($scope, $mdDialog) {
 
-    $scope.itensMenu = ['Projetos', 'Snippets'];
-    $scope.cor = 'green';
+    $scope.itensMenu = [];
 
     // Paletta de cores possíveis
     $scope.palette = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
@@ -34,6 +33,6 @@
         }
 
         // Faço o download do template, enviando pra web api os parâmetros com os quais ele deve ser gerado
-        window.open('http://localhost:53412/api/template/material/' + $scope.cor + itens, '_self');
+        window.open('http://localhost:53412/api/template/material/' + $scope.colorSelected.substring(1) + itens, '_self');
     }
 });

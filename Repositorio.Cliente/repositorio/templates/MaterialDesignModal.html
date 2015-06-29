@@ -11,6 +11,8 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="modal-conteudo" layout="column">
+
+                <!-- Opção de inserir rodapé -->
                 <div layout="row">
                     <md-list>
                         <md-list-item>
@@ -19,10 +21,8 @@
                         </md-list-item>
                     </md-list>
                 </div>
-                <!--<md-select ng-model="topping" placeholder="Cor">
-                    <md-option ng-value="default" style="background-color: blue"></md-option>
-                    <md-option ng-value="default" style="background-color: orange"></md-option>
-                </md-select>-->
+
+                <!-- Paletta de cores -->
                 <div flex="100">
                     <label>Selecione a cor do template</label>
                     <table>
@@ -35,8 +35,15 @@
                     </table>
                 </div>
                 </br>
+
+                <!-- Itens a serem inseridos no menu -->
                 <div flex="100">
                     <label>Itens menu principal</label>
+                        <md-chips ng-model="itensMenu"
+                                  readonly="readonly"
+                                  placeholder="Item"
+                                  secondary-placeholder="Item">
+                        </md-chips>
                 </div>
             </div>
         </md-dialog-content>

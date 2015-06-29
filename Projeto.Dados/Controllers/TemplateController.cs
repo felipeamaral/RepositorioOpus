@@ -37,7 +37,7 @@ namespace Projeto.Dados.Controllers
                 var sr = new StreamReader(aux);
                 file = sr.ReadToEnd();
 
-                file = file + "\n\n/* Altera o layout das navs*/\r\nmd-toolbar.md-default-theme{\r\nbackground-color: " + cor + ";\r\n}";
+                file = file + "\n\n/* Altera o layout das navs*/\r\nmd-toolbar.md-default-theme{\r\nbackground-color: #" + cor + ";\r\n}";
 
                 // Converte a string em stream pra poder salvar no arquivo zip
                 aux = new MemoryStream();
@@ -71,13 +71,12 @@ namespace Projeto.Dados.Controllers
                 foreach(string item in itens){
 
                     // Seta o que será colocado no layout
-
                     string firstUpper = char.ToUpper(item[0]) + item.Substring(1);
                     string options1 = "";
                     string options2 = "";
 
                     itensMenu = itensMenu + "<md-list-item ng-click=\"toggle" + firstUpper + "()\">\r\n" +
-                            "<p> " + item + " </p>\r\n" +
+                            "<p> " + firstUpper + " </p>\r\n" +
                             "<ng-md-icon icon=\"{{icon" + firstUpper + "}}\" style=\"fill: black\" class=\"md-icon-button\"></ng-md-icon>\r\n" +
                             "</md-list-item>\r\n";
 
@@ -92,7 +91,6 @@ namespace Projeto.Dados.Controllers
                     }
 
                     // Seta o que será colocado no controller
-
                     ctrl = ctrl + "\r\n// Funções relacionadas ao item '" + firstUpper + "' do menu\r\n";
                     ctrl = ctrl + "$scope.icon" + firstUpper +" = \"add\";\r\n" + 
                          "$scope.toggle" + firstUpper +" = function (esconde) {\r\n" +
@@ -153,6 +151,10 @@ namespace Projeto.Dados.Controllers
 
             //Salva o zip com as mudanças realizadas numa stream para ser retornada
             template.Save(tmpRetorno);
+
+
+            // Verifica se o rodapé deve ser retirado
+
 
             //Retorno
             HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.OK);
