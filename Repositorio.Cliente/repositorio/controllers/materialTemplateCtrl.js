@@ -27,10 +27,11 @@
         // Inicia a montagem da string contendo os itens do menu a ser gerador
         if ($scope.itensMenu.length) {
             itens = "?itens=" + $scope.itensMenu[0];
-        }
-        // Insere os demais itens na string
-        for (var i = 1; i < $scope.itensMenu.length; i++) {
-            itens += "&itens=" + $scope.itensMenu[i];
+
+            // Insere os demais itens na string
+            for (var i = 1; i < $scope.itensMenu.length; i++) {
+                itens += "&itens=" + $scope.itensMenu[i];
+            }
         }
 
         // Faço o download do template, enviando pra web api os parâmetros com os quais ele deve ser gerado

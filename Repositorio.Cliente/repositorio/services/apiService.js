@@ -7,7 +7,6 @@
         buscaSnippetNomeProj: $resource('http://localhost:53412/api/snippet/busca/:nome/:projetos/:qntd/:pageNumber'),
         projetos: $resource('http://localhost:53412/api/projeto'),
         clientes: $resource('http://localhost:53412/api/cliente'),
-        areas: $resource('http://localhost:53412/api/area'),
-        templates: $resource('http://localhost:53412/api/template/material')
+        areas: $resource('http://localhost:53412/api/area')
     };
 });

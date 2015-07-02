@@ -67,7 +67,8 @@ namespace Repositorio.Cliente
                       "~/repositorio/controllers/VisualizarSnippetCtrl.js",
                       "~/repositorio/controllers/EditorCtrl.js",
                       "~/repositorio/controllers/LeftCtrl.js",
-                      "~/repositorio/controllers/materialTemplateCtrl.js"));
+                      "~/repositorio/controllers/materialTemplateCtrl.js",
+                      "~/repositorio/controllers/angularTemplateCtrl.js"));
         }
     }
 }

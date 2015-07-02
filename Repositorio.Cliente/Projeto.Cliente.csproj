@@ -146,6 +146,7 @@
     <Content Include="repositorio\appConfig.js" />
     <Content Include="repositorio\controllers\AddProjetoCtrl.js" />
     <Content Include="repositorio\controllers\AddSnippetCtrl.js" />
+    <Content Include="repositorio\controllers\angularTemplateCtrl.js" />
     <Content Include="repositorio\controllers\appCtrl.js" />
     <Content Include="repositorio\controllers\EditorCtrl.js" />
     <Content Include="repositorio\controllers\LeftCtrl.js" />
@@ -159,6 +160,7 @@
     <Content Include="repositorio\services\clientesService.js" />
     <Content Include="repositorio\services\projetosService.js" />
     <Content Include="repositorio\templates\AddProjetoModal.html" />
+    <Content Include="repositorio\templates\AngularModal.html" />
     <Content Include="repositorio\templates\editor.html" />
     <Content Include="repositorio\templates\LoginModal.html" />
     <Content Include="repositorio\templates\MaterialDesignModal.html" />

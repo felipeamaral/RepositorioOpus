@@ -24,7 +24,7 @@ namespace Projeto.Dados.Controllers
             while (espaco >= 0)
             {
                 firstUpper += char.ToUpper(aux[0]) + aux.Substring(1, espaco - 1);
-                aux = str.Substring(espaco + 1);
+                aux = aux.Substring(espaco + 1);
                 espaco = aux.IndexOf(' ');
             }
             firstUpper += char.ToUpper(aux[0]) + aux.Substring(1);
@@ -34,7 +34,7 @@ namespace Projeto.Dados.Controllers
 
         // Retorna o template básico de .net com angular material
         [Route("api/template/material/{cor}/{rodape}")]
-        public HttpResponseMessage GetTemplate(string cor, bool rodape, [FromUri] List<string> itens)
+        public HttpResponseMessage GetMaterial(string cor, bool rodape, [FromUri] List<string> itens)
         {
             //Pega o arquivo zip que contem o template a ser utilizado
             ZipFile template = ZipFile.Read(System.Web.HttpContext.Current.Server.MapPath(
@@ -56,16 +56,9 @@ namespace Projeto.Dados.Controllers
 
                 file = file + "\n\n/* Altera o layout das navs*/\r\nmd-toolbar.md-default-theme{\r\nbackground-color: #" + cor + ";\r\n}";
 
-                // Converte a string em stream pra poder salvar no arquivo zip
-                aux = new MemoryStream();
-                StreamWriter writer = new StreamWriter(aux);
-                writer.Write(file);
-                writer.Flush();
-                aux.Position = 0;
-
                 // Exclui a entrada anterior e adiciona a nova
                 template.RemoveEntry("materialDesign/Content/Site.css");
-                template.AddEntry("materialDesign/Content/Site.css", aux);
+                template.AddEntry("materialDesign/Content/Site.css", file);
             }
 
             //Verifica se foram informados itens para o menu
@@ -96,13 +89,13 @@ namespace Projeto.Dados.Controllers
                     string options1 = "";
                     string options2 = "";
 
-                    itensMenu = itensMenu + "<md-list-item ng-click=\"toggle" + firstUpper + "()\">\r\n" +
+                    itensMenu += "<md-list-item ng-click=\"toggle" + firstUpper + "()\">\r\n" +
                             "<p> " + char.ToUpper(item[0]) + item.Substring(1) + " </p>\r\n" +
                             "<ng-md-icon icon=\"{{icon" + firstUpper + "}}\" style=\"fill: black\" class=\"md-icon-button\"></ng-md-icon>\r\n" +
                             "</md-list-item>\r\n";
 
                     if (item.Equals(itens[0])){
-                        itensMenu = itensMenu + "<div ng-show=\"" + firstLower + "Options\" class=\"menu-secundario\">\r\n" +
+                        itensMenu += "<div ng-show=\"" + firstLower + "Options\" class=\"menu-secundario\">\r\n" +
                                         "<md-list-item ng-click=\"nothing()\">\r\n" +
                                         "<p> Menu secundario </p>\r\n" +
                                         "</md-list-item>\r\n" +
@@ -112,8 +105,8 @@ namespace Projeto.Dados.Controllers
                     }
 
                     // Seta o que será colocado no controller
-                    ctrl = ctrl + "\r\n// Funções relacionadas ao item '" + firstUpper + "' do menu\r\n";
-                    ctrl = ctrl + "$scope.icon" + firstUpper +" = \"add\";\r\n" + 
+                    ctrl += "\r\n// Funções relacionadas ao item '" + firstUpper + "' do menu\r\n";
+                    ctrl += "$scope.icon" + firstUpper +" = \"add\";\r\n" + 
                          "$scope.toggle" + firstUpper +" = function (esconde) {\r\n" +
                                 "if (esconde) {\r\n" +
                                     "$scope.icon" + firstUpper +" = \"add\";\r\n" + options1 +
@@ -123,13 +116,13 @@ namespace Projeto.Dados.Controllers
 
                     foreach (string it in itens){
                         if (!it.Equals(item)){
-                            ctrl = ctrl + "$scope.toggle" + firstLettersUpper(it) + "(true);\r\n";
+                            ctrl+= "$scope.toggle" + firstLettersUpper(it) + "(true);\r\n";
                         }
                     }
-                    ctrl = ctrl + "}\r\n};\r\n"; 
+                    ctrl += "}\r\n};\r\n"; 
                 }
 
-                itensMenu = itensMenu + "</md-list>\r\n";
+                itensMenu += "</md-list>\r\n";
 
 
                 file1 = file1.Replace("<!-- Lista de itens do menu lateral -->\r\n", itensMenu);
@@ -152,16 +145,9 @@ namespace Projeto.Dados.Controllers
                     file1 = file1.Replace("@RenderBody()", rod);
                 }
 
-                // Converte a string em stream pra poder salvar no arquivo zip
-                aux1 = new MemoryStream();
-                StreamWriter writer = new StreamWriter(aux1);
-                writer.Write(file1);
-                writer.Flush();
-                aux1.Position = 0;
-
                 // Exclui a entrada anterior e adiciona a nova
                 template.RemoveEntry("materialDesign/Views/Shared/_Layout.cshtml");
-                template.AddEntry("materialDesign/Views/Shared/_Layout.cshtml", aux1);
+                template.AddEntry("materialDesign/Views/Shared/_Layout.cshtml", file1);
 
                 /************************ FAZ AS MUDANÇAS NO CONTROLLER ****************************/
 
@@ -176,16 +162,9 @@ namespace Projeto.Dados.Controllers
 
                 file2 = file2.Replace("//Controla o icone das opções primarias do menu\r\n", ctrl);
 
-                // Converte a string em stream pra poder salvar no arquivo zip
-                aux2 = new MemoryStream();
-                writer = new StreamWriter(aux2);
-                writer.Write(file2);
-                writer.Flush();
-                aux2.Position = 0;
-
                 // Exclui a entrada anterior e adiciona a nova
                 template.RemoveEntry("materialDesign/app/controllers/LeftCtrl.js");
-                template.AddEntry("materialDesign/app/controllers/LeftCtrl.js", aux2);
+                template.AddEntry("materialDesign/app/controllers/LeftCtrl.js", file2);
             }
 
             //Salva o zip com as mudanças realizadas numa stream para ser retornada
@@ -197,6 +176,119 @@ namespace Projeto.Dados.Controllers
             result.Content = new ByteArrayContent(tmpRetorno.ToArray());
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
             result.Content.Headers.ContentDisposition.FileName = "materialDesignTemplate.zip";
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
+
+            return result;
+        }
+
+        // Retorna o template básico de .net com angular
+        [Route("api/template/angular/{nome}")]
+        public HttpResponseMessage GetAngular(string nome, [FromUri] List<string> controllers, [FromUri] List<string> services){
+
+            //Pega o arquivo zip que contem o template a ser utilizado
+            ZipFile template = ZipFile.Read(System.Web.HttpContext.Current.Server.MapPath(
+                "~/Arquivos/Templates/angular.zip"));
+            MemoryStream aux;
+
+            // Cria o arquivo que declara o module do angular a ser utilizado
+            string fileContent = "'use strict';\r\n\r\n" +
+                            "var " + nome.ToLower() + " = angular.module('" + nome.ToLower() + "', ['ui.router']);";
+
+
+            // Salva o arquivo contendo o module do app no zip
+            template.AddEntry("angularTemplate/app/" + nome + ".js", fileContent);
+
+            //modifica o nome do app no config
+            aux = new MemoryStream();
+            template["angularTemplate/app/appConfig.js"].Extract(aux);
+            aux.Position = 0;
+            var sr = new StreamReader(aux);
+            string file = sr.ReadToEnd();
+
+            // Faz a mudança e salva de volta no template
+            file = file.Replace("app.config",
+                nome + ".config");
+            template.RemoveEntry("angularTemplate/app/appConfig.js");
+            template.AddEntry("angularTemplate/app/" + nome + "Config.js", file);
+
+            // Modifica o nome do controller principal
+            aux = new MemoryStream();
+            template["angularTemplate/app/controllers/HomeCtrl.js"].Extract(aux);
+            aux.Position = 0;
+            sr = new StreamReader(aux);
+            file = sr.ReadToEnd();
+            file = file.Replace("app.", nome + ".");
+            template.RemoveEntry("angularTemplate/app/controllers/HomeCtrl.js");
+            template.AddEntry("angularTemplate/app/controllers/HomeCtrl.js", file);
+
+            //Insere o nome do app no layout
+            aux = new MemoryStream();
+            template["angularTemplate/Views/Shared/_Layout.cshtml"].Extract(aux);
+            aux.Position = 0;
+            file = new StreamReader(aux).ReadToEnd();
+
+            //adiciona o nome
+            file = file.Replace("ng-app=\"\"", "ng-app=\"" + nome + "\"");
+            template.RemoveEntry("angularTemplate/Views/Shared/_Layout.cshtml");
+            template.AddEntry("angularTemplate/Views/Shared/_Layout.cshtml", file);
+
+
+            // Cria a string a ser adicionada no BundleConfig pra importação dos .js referentes ao app
+            string bundle = "bundles.Add(new ScriptBundle(\"~/bundles/app\")" +
+                                        ".Include(" +
+                                            "\"~/app/" + nome + ".js\",\r\n" +
+                                            "\"~/app/" + nome + "Config.js\",\r\n" +
+                                            "\"~/app/controllers/HomeCtrl.js\"";
+
+            //Cria o arquivo pra cada controller
+            foreach (string controller in controllers)
+            {
+                fileContent = nome + ".controller('" + controller + "Ctrl', function ($scope) {});";
+
+                //Salva o arquivo contendo o controller no zip
+                template.AddEntry("angularTemplate/app/controllers/" + controller + "Ctrl.js", fileContent);
+
+                //Adiciona o arquivo do controller no bundleConfig
+                bundle += ",\r\n" +
+                            "\"~/app/controllers/" + controller + "Ctrl.js\"";
+            }
+
+            //Cria o arquivo pra cada service
+            foreach (string service in services)
+            {
+                fileContent = nome + ".factory('" + service + "Service', function(){});";
+
+                //Salva o arquivo contendo o service no zip
+                template.AddEntry("angularTemplate/app/services/" + service + "Service.js", fileContent);
+
+                //Adiciona o arquivo do service no bundleConfig
+                bundle += ",\r\n" +
+                            "\"~/app/services/" + service + ".js\"";
+            }
+
+            bundle += "));";
+
+            // Pega o arquivo BundleConfig pra modificação
+            aux = new MemoryStream();
+            template["angularTemplate/App_Start/BundleConfig.cs"].Extract(aux);
+            aux.Position = 0;
+            sr = new StreamReader(aux);
+            file = sr.ReadToEnd();
+
+            //Faz o replace no BundleConfig
+            template.RemoveEntry("angularTemplate/App_Start/BundleConfig.cs");
+            template.AddEntry("angularTemplate/App_Start/BundleConfig.cs", file.Replace("//importa arquivos app", bundle));
+
+            //Salva o zip num memorystream pra mandar de retorno
+            MemoryStream tmpRetorno = new MemoryStream();
+            template.Save(tmpRetorno);
+
+            //Monta a montagem de retorno com o arquivo .zip no conteúdo
+            HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.OK);
+
+            result.Content = new ByteArrayContent(tmpRetorno.ToArray());
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            result.Content.Headers.ContentDisposition.FileName = "angularTemplate.zip";
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
 
             return result;

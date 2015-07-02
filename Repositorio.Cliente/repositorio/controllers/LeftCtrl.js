@@ -115,13 +115,33 @@
         });
     };
 
+    // Abre o modal que gera o template com .NET e angular material
     $scope.gerarMaterialTemplate = function (ev) {
 
+        // Faz com que o menu lateral seja escondido
         $scope.$emit('modal', null);
 
+        // Chama o modal de geração do template
         $mdDialog.show({
             controller: 'materialTemplateCtrl',
             templateUrl: 'repositorio/templates/MaterialDesignModal.html',
+            parent: angular.element(document.body),
+            targetEvent: ev
+        }).then(function () {
+            $scope.toggleTemplates(true);
+        });
+    };
+
+    // Abre o modal que gera o template com .NET e angular
+    $scope.gerarAngularTemplate = function (ev) {
+
+        // Faz com que o menu lateral seja escondido
+        $scope.$emit('modal', null);
+
+        // Chama o modal de geração do template
+        $mdDialog.show({
+            controller: 'angularTemplateCtrl',
+            templateUrl: 'repositorio/templates/AngularModal.html',
             parent: angular.element(document.body),
             targetEvent: ev
         }).then(function () {

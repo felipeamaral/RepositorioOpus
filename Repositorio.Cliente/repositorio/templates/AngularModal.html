@@ -1,0 +1,55 @@
+﻿<md-dialog aria-label="angularTemplate" flex="60">
+    <form name="angularTemplateForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Gerar Template .NET + Angular</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelar()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="modal-conteudo" layout="column">
+
+                <div layout="row" layout-sm="column">
+                    <md-input-container flex="40" flex-sm="100" flex-md="60">
+                        <label><b>Nome módulo <span class="obrigatorio">*</span></b></label>
+                        <input ng-model="nomeApp" name="nome" required maxlength="10">
+                        <div ng-messages="angularTemplateForm.nome.$error" ng-show="angularTemplateForm.nome.$touched">
+                            <div ng-message="required" ng-show="angularTemplateForm.nome.$error.required">É necessário informar um nome para o módulo</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <!-- Controllers a serem gerados -->
+                <div flex="100">
+                    <md-chips ng-model="controllers"
+                              readonly="readonly"
+                              placeholder="Nome Controllers"
+                              secondary-placeholder="Nome Controllers">
+                    </md-chips>
+                </div>
+                 
+                </br>
+                <!-- Services a serem gerados -->
+                <div flex="100">
+                    <md-chips ng-model="services"
+                              readonly="readonly"
+                              placeholder="Nome Services"
+                              secondary-placeholder="Nome Services">
+                    </md-chips>
+                </div>
+
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button ng-click="cancelar()" class="md-warn md-raised md-hue-2" style="margin-right: 1em">
+                Cancelar
+            </md-button>
+            <md-button ng-click="downloadTemplate()" class="md-warn md-raised md-hue-2">
+                Gerar
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
