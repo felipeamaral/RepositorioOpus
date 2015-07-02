@@ -12,7 +12,7 @@
 
     // Função que seta que deve fazer um download
     $scope.download = function () {
-        $scope.$broadcast('download');
+        $scope.$broadcast('download', {nomeSnippet: $scope.nomeSnippet});
     };
 
     // Pega o nome do snippet

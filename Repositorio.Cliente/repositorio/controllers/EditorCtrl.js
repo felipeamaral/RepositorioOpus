@@ -55,7 +55,7 @@
         
         // Faz o download do arquivo
         var blob = zipDownload.generate({ type: "blob" });
-        saveAs(blob, $scope.idSnippet + ".zip");
+        saveAs(blob, args.nomeSnippet + ".zip");
     });
 
     // Faz o upload dos arquivos de código que estão no editor
